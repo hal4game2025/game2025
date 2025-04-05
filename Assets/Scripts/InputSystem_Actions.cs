@@ -101,7 +101,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Trun"",
                     ""type"": ""Button"",
                     ""id"": ""cc6a1e91-80df-4963-9a3b-60d4e81580db"",
                     ""expectedControlType"": """",
@@ -198,11 +198,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""58d92bca-483c-4a91-972f-1afa464e9cb3"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Trun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58cde78f-c0c5-4d1b-b393-cc16820ee533"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Trun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -824,7 +835,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Direction = m_Player.FindAction("Direction", throwIfNotFound: true);
-        m_Player_Newaction = m_Player.FindAction("New action", throwIfNotFound: true);
+        m_Player_Trun = m_Player.FindAction("Trun", throwIfNotFound: true);
         m_Player_HammerSwing = m_Player.FindAction("HammerSwing", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         // UI
@@ -921,7 +932,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Direction;
-    private readonly InputAction m_Player_Newaction;
+    private readonly InputAction m_Player_Trun;
     private readonly InputAction m_Player_HammerSwing;
     private readonly InputAction m_Player_Look;
     /// <summary>
@@ -940,9 +951,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Direction => m_Wrapper.m_Player_Direction;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Newaction".
+        /// Provides access to the underlying input action "Player/Trun".
         /// </summary>
-        public InputAction @Newaction => m_Wrapper.m_Player_Newaction;
+        public InputAction @Trun => m_Wrapper.m_Player_Trun;
         /// <summary>
         /// Provides access to the underlying input action "Player/HammerSwing".
         /// </summary>
@@ -980,9 +991,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Direction.started += instance.OnDirection;
             @Direction.performed += instance.OnDirection;
             @Direction.canceled += instance.OnDirection;
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Trun.started += instance.OnTrun;
+            @Trun.performed += instance.OnTrun;
+            @Trun.canceled += instance.OnTrun;
             @HammerSwing.started += instance.OnHammerSwing;
             @HammerSwing.performed += instance.OnHammerSwing;
             @HammerSwing.canceled += instance.OnHammerSwing;
@@ -1003,9 +1014,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Direction.started -= instance.OnDirection;
             @Direction.performed -= instance.OnDirection;
             @Direction.canceled -= instance.OnDirection;
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Trun.started -= instance.OnTrun;
+            @Trun.performed -= instance.OnTrun;
+            @Trun.canceled -= instance.OnTrun;
             @HammerSwing.started -= instance.OnHammerSwing;
             @HammerSwing.performed -= instance.OnHammerSwing;
             @HammerSwing.canceled -= instance.OnHammerSwing;
@@ -1320,12 +1331,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDirection(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Trun" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnTrun(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "HammerSwing" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

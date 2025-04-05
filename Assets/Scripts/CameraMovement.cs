@@ -1,0 +1,81 @@
+using System.Collections;
+using Unity.Cinemachine;
+
+using UnityEngine;
+
+public class CameraMovement : MonoBehaviour
+{
+    // シングルトン
+    public static CameraMovement instance;
+    bool isTurning = false;
+    float turnDuration = 0.3f; // 回転にかける時間（秒）
+
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            isTurning = false;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void TurnCamera()
+    {
+        if (!isTurning)
+        {
+            StartCoroutine(TurnCameraCoroutine());
+        }
+    }
+
+    private IEnumerator TurnCameraCoroutine()
+    {
+        isTurning = true; // コルーチンの実行を開始
+
+        CinemachineOrbitalFollow orbitalFollow = GetComponent<CinemachineOrbitalFollow>();
+        float elapsed = 0.0f;
+        float initialValue = orbitalFollow.HorizontalAxis.Value;
+
+        while (elapsed < turnDuration)
+        {
+            float increment = (180.0f * Time.deltaTime) / turnDuration;
+            orbitalFollow.HorizontalAxis.Value += increment;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        isTurning = false; // コルーチンの実行が終了
+    }
+
+    private IEnumerator BackCameraCorutine()
+    {
+        CinemachineOrbitalFollow orbitalFollow = GetComponent<CinemachineOrbitalFollow>();
+        float value = orbitalFollow.HorizontalAxis.Value + 180;
+
+        while(isTurning)
+        {
+            orbitalFollow.HorizontalAxis.Value = value;
+            yield return null;
+        }
+
+    }
+
+    public void BackCamera()
+    {
+
+        if (!isTurning)
+        {
+            StartCoroutine(BackCameraCorutine());
+        }
+        else
+        {
+            isTurning = false;
+            StopCoroutine(BackCameraCorutine());
+        }
+    }
+
+}

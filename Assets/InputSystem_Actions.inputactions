@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "New action",
+                    "name": "Trun",
                     "type": "Button",
                     "id": "cc6a1e91-80df-4963-9a3b-60d4e81580db",
                     "expectedControlType": "",
@@ -112,11 +112,22 @@
                 {
                     "name": "",
                     "id": "58d92bca-483c-4a91-972f-1afa464e9cb3",
-                    "path": "",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Trun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58cde78f-c0c5-4d1b-b393-cc16820ee533",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Trun",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
