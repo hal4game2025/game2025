@@ -1,3 +1,4 @@
+using Unity.Collections;
 using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
@@ -5,6 +6,7 @@ public class PlayerCollision : MonoBehaviour
     PlayerStatus playerStatus;
     string EnemyTag;
     string obstacleTag;
+    string ItemTag;
 
     private void Start()
     {
@@ -17,6 +19,7 @@ public class PlayerCollision : MonoBehaviour
 
         EnemyTag = "Enemy";
         obstacleTag = "Obstacles";
+        ItemTag = "Item";
     }
 
 
@@ -27,8 +30,20 @@ public class PlayerCollision : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == EnemyTag)
+        {
             playerStatus.StunByEnemy();
+        }    
         else if (collision.gameObject.tag == obstacleTag)
+        {
             playerStatus.StunByObstacle();
+        }
+        else if (collision.gameObject.tag == ItemTag)
+        {
+            Debug.Log("ÉAÉCÉeÉÄçÌèú");
+            Destroy(collision.gameObject);
+        }
     }
+
+
+    
 }
