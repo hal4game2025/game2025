@@ -11,6 +11,13 @@ public interface IPlayerMovement
     /// <param name="swingForce"></param>
     /// <param name="combo"></param>
     void SwingHammer(Vector2 inputDirection, Quaternion cameraRotation, float swingForce, int combo);
+
+    /// <summary>
+    /// 前進するだけのやつ
+    /// </summary>
+    /// <param name="swingForce"></param>
+    /// <param name="combo"></param>
+    void SwingHammerMoveForward(float swingForce, int combo);
 }
 
 public class PlayerMovement : IPlayerMovement
@@ -41,6 +48,16 @@ public class PlayerMovement : IPlayerMovement
         forceDirection = playerRotation * forceDirection;
         // 速度を直接設定
         rb.linearVelocity = forceDirection.normalized * adjustedSwingForce;
+    }
+
+
+    public void SwingHammerMoveForward(float swingForce, int combo)
+    {
+        //コンボ数で調整(要調整）
+        float adjustedSwingForce = swingForce * Mathf.Sqrt(combo + 1) * adjustSwingForce;
+
+        // 速度を直接設定
+        rb.linearVelocity = rb.transform.forward * adjustedSwingForce;
     }
 
 

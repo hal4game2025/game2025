@@ -24,6 +24,11 @@ public class CameraMovement : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Start()
+    {
+        isTurning = false;
+    }
     public void TurnCamera()
     {
         if (!isTurning)
@@ -51,31 +56,42 @@ public class CameraMovement : MonoBehaviour
         isTurning = false; // コルーチンの実行が終了
     }
 
-    private IEnumerator BackCameraCorutine()
+    private IEnumerator BackCameraCoroutine()
     {
-        CinemachineOrbitalFollow orbitalFollow = GetComponent<CinemachineOrbitalFollow>();
-        float value = orbitalFollow.HorizontalAxis.Value + 180;
+        isTurning = true; // コルーチンの実行を開始
 
-        while(isTurning)
+        CinemachineOrbitalFollow orbitalFollow = GetComponent<CinemachineOrbitalFollow>();
+
+        float oldValue = orbitalFollow.HorizontalAxis.Value;
+        orbitalFollow.HorizontalAxis.Value += 180.0f; // 180度回転
+        float targetValue = orbitalFollow.HorizontalAxis.Value;
+
+
+        while (isTurning)
         {
-            orbitalFollow.HorizontalAxis.Value = value;
+            orbitalFollow.HorizontalAxis.Value = targetValue;
             yield return null;
         }
 
+        orbitalFollow.HorizontalAxis.Value = oldValue; // 元の値に戻す
     }
 
     public void BackCamera()
     {
-
         if (!isTurning)
         {
-            StartCoroutine(BackCameraCorutine());
-        }
-        else
-        {
-            isTurning = false;
-            StopCoroutine(BackCameraCorutine());
+            StartCoroutine(BackCameraCoroutine());
         }
     }
 
+    public void StopBackCamera()
+    {
+        isTurning = false;
+        StopCoroutine(BackCameraCoroutine());   
+    }
+
+    public bool GetIsTurning()
+    {
+        return isTurning;
+    }
 }

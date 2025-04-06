@@ -126,6 +126,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""HammerSwingMoveForward"",
+                    ""type"": ""Button"",
+                    ""id"": ""96d8806c-92a4-49cb-871d-3db53ff81171"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TrunForward"",
+                    ""type"": ""Button"",
+                    ""id"": ""7b01f400-108a-4f9f-906f-bd209daa3b50"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TrunBack"",
+                    ""type"": ""Button"",
+                    ""id"": ""36fed7b9-6711-483c-ba45-3732f8672e07"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +274,83 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": ""InvertVector2(invertX=false),ScaleVector2"",
                     ""groups"": "";Joystick;Gamepad"",
                     ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9eec6e4e-184d-446f-a7ad-4931f1e7ab93"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HammerSwingMoveForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8182ee25-4c76-402b-bf8e-bb90fe4342e9"",
+                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HammerSwingMoveForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78524ac9-85ce-4274-a15b-7fa6c58e8c66"",
+                    ""path"": ""<DualShockGamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HammerSwingMoveForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6059993-b795-41b3-9123-7dab24b8abb7"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""TrunBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3ea03fc8-0cbf-4ff0-b79c-4ce845874cb2"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TrunBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9b0e04d-b9f9-42de-bb03-228b28b307f8"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TrunForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6ef692b-7a63-4285-9b94-b58a469d3bd0"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TrunForward"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -838,6 +942,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Trun = m_Player.FindAction("Trun", throwIfNotFound: true);
         m_Player_HammerSwing = m_Player.FindAction("HammerSwing", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+        m_Player_HammerSwingMoveForward = m_Player.FindAction("HammerSwingMoveForward", throwIfNotFound: true);
+        m_Player_TrunForward = m_Player.FindAction("TrunForward", throwIfNotFound: true);
+        m_Player_TrunBack = m_Player.FindAction("TrunBack", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -935,6 +1042,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Trun;
     private readonly InputAction m_Player_HammerSwing;
     private readonly InputAction m_Player_Look;
+    private readonly InputAction m_Player_HammerSwingMoveForward;
+    private readonly InputAction m_Player_TrunForward;
+    private readonly InputAction m_Player_TrunBack;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -962,6 +1072,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Look".
         /// </summary>
         public InputAction @Look => m_Wrapper.m_Player_Look;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/HammerSwingMoveForward".
+        /// </summary>
+        public InputAction @HammerSwingMoveForward => m_Wrapper.m_Player_HammerSwingMoveForward;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/TrunForward".
+        /// </summary>
+        public InputAction @TrunForward => m_Wrapper.m_Player_TrunForward;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/TrunBack".
+        /// </summary>
+        public InputAction @TrunBack => m_Wrapper.m_Player_TrunBack;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1000,6 +1122,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
+            @HammerSwingMoveForward.started += instance.OnHammerSwingMoveForward;
+            @HammerSwingMoveForward.performed += instance.OnHammerSwingMoveForward;
+            @HammerSwingMoveForward.canceled += instance.OnHammerSwingMoveForward;
+            @TrunForward.started += instance.OnTrunForward;
+            @TrunForward.performed += instance.OnTrunForward;
+            @TrunForward.canceled += instance.OnTrunForward;
+            @TrunBack.started += instance.OnTrunBack;
+            @TrunBack.performed += instance.OnTrunBack;
+            @TrunBack.canceled += instance.OnTrunBack;
         }
 
         /// <summary>
@@ -1023,6 +1154,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
+            @HammerSwingMoveForward.started -= instance.OnHammerSwingMoveForward;
+            @HammerSwingMoveForward.performed -= instance.OnHammerSwingMoveForward;
+            @HammerSwingMoveForward.canceled -= instance.OnHammerSwingMoveForward;
+            @TrunForward.started -= instance.OnTrunForward;
+            @TrunForward.performed -= instance.OnTrunForward;
+            @TrunForward.canceled -= instance.OnTrunForward;
+            @TrunBack.started -= instance.OnTrunBack;
+            @TrunBack.performed -= instance.OnTrunBack;
+            @TrunBack.canceled -= instance.OnTrunBack;
         }
 
         /// <summary>
@@ -1351,6 +1491,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "HammerSwingMoveForward" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHammerSwingMoveForward(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TrunForward" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTrunForward(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "TrunBack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTrunBack(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

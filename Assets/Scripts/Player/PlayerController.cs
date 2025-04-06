@@ -30,16 +30,23 @@ public class PlayerController : MonoBehaviour
         controls.Player.Direction.performed += OnDirection;
         controls.Player.Direction.canceled += OnDirection;
         controls.Player.HammerSwing.performed += OnHammerSwing;
-        controls.Player.Trun.performed += ONTurn;
+       controls.Player.TrunForward.performed += OnTurnForwardReleased;
+       controls.Player.TrunBack.performed += OnTurnBackPressed;
+        controls.Player.HammerSwingMoveForward.performed += OnHammerSwingMoveForward;
         controls.Enable();
     }
 
     void Update()
     {
-        // カメラの向きに合わせてプレイヤーを回転させる
-        Vector3 cameraForward = cameraLook.forward;
-        Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
-        transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
+        //後ろを向いていないときだけ
+        if (!CameraMovement.instance.GetIsTurning())
+        {
+            // カメラの向きに合わせてプレイヤーを回転させる
+            Vector3 cameraForward = cameraLook.forward;
+            Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
+            transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
+        }
+      
 
         text.text = "コンボ数:" + playerStatus.Combo;
 
@@ -81,6 +88,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnHammerSwingMoveForward(InputAction.CallbackContext context)
+    {
+        //スタン状態なら処理しない
+        if (playerStatus.IsStunned)
+            return;
+        //壁か敵だったらコンボ数増やす
+        if (hammerCollision.IsColliding())
+        {
+            playerStatus.Combo++;
+            playerMovement.SwingHammerMoveForward(swingForce, playerStatus.Combo);
+            Debug.Log("壁か敵殴った");
+        }
+        else
+        {
+            if (!processOnlyOnCollision)
+                playerMovement.SwingHammerMoveForward(swingForce, playerStatus.Combo);
+            Debug.Log("空気殴った");
+        }
+    }
+
     /// <summary>
     /// 入力方向を取得し、反転した値をinputDirectionに格納する
     /// </summary>
@@ -108,6 +135,16 @@ public class PlayerController : MonoBehaviour
         CameraMovement.instance.TurnCamera();
     }
 
+    void OnTurnBackPressed(InputAction.CallbackContext context)
+    {
+        CameraMovement.instance.BackCamera();
+    }
+
+    void OnTurnForwardReleased(InputAction.CallbackContext context)
+    {
+        if (CameraMovement.instance.GetIsTurning())
+            CameraMovement.instance.StopBackCamera();
+    }
     /// <summary>
     /// イベントハンドラの解除
     /// </summary>
