@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "HammerSwing",
+                    "name": "HammerSwing_LR_UD",
                     "type": "Button",
                     "id": "2f3b47dd-5dc2-4118-bc8a-5e538ce195a6",
                     "expectedControlType": "",
@@ -66,6 +66,15 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HammerSwing_FR",
+                    "type": "Button",
+                    "id": "286b0d02-165b-4098-babd-2bdd3566146b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -139,7 +148,7 @@
                 {
                     "name": "",
                     "id": "58d92bca-483c-4a91-972f-1afa464e9cb3",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<XInputController>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -160,12 +169,23 @@
                 },
                 {
                     "name": "",
+                    "id": "a9d18f22-3f0b-4e31-a4aa-8c8b3f319892",
+                    "path": "<DualShockGamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Trun",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f47227c6-2896-4b39-b2c0-ab10e74836c8",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "HammerSwing",
+                    "groups": ";Touch;Gamepad",
+                    "action": "HammerSwing_LR_UD",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -176,7 +196,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HammerSwing",
+                    "action": "HammerSwing_LR_UD",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -205,7 +225,7 @@
                 {
                     "name": "",
                     "id": "8182ee25-4c76-402b-bf8e-bb90fe4342e9",
-                    "path": "<XInputController>/rightShoulder",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -238,7 +258,18 @@
                 {
                     "name": "",
                     "id": "3ea03fc8-0cbf-4ff0-b79c-4ce845874cb2",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<XInputController>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TrunBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ad177cd-984d-4200-b145-d6dffe4dfad0",
+                    "path": "<DualShockGamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -265,6 +296,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "TrunForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "42937c8f-0c76-48d3-978c-d559915b8734",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HammerSwing_FR",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b86993e2-2cd3-4bbf-9e96-87ba713e1ca3",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HammerSwing_FR",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

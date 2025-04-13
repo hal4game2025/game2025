@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         // 入力アクション
         controls.Player.Direction.performed += OnDirection;
         controls.Player.Direction.canceled += OnDirection;
-        controls.Player.HammerSwing.performed += OnHammerSwing;
+        controls.Player.HammerSwing_LR_UD.performed += OnHammerSwing;
        controls.Player.TrunForward.performed += OnTurnForwardReleased;
        controls.Player.TrunBack.performed += OnTurnBackPressed;
         controls.Player.HammerSwingMoveForward.performed += OnHammerSwingMoveForward;
@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
     void OnHammerSwingMoveForward(InputAction.CallbackContext context)
     {
         //スタン状態なら処理しない
@@ -97,13 +98,13 @@ public class PlayerController : MonoBehaviour
         if (hammerCollision.IsColliding())
         {
             playerStatus.Combo++;
-            playerMovement.SwingHammerMoveForward(swingForce, playerStatus.Combo);
+            playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
             Debug.Log("壁か敵殴った");
         }
         else
         {
             if (!processOnlyOnCollision)
-                playerMovement.SwingHammerMoveForward(swingForce, playerStatus.Combo);
+                playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
             Debug.Log("空気殴った");
         }
     }
@@ -152,7 +153,7 @@ public class PlayerController : MonoBehaviour
     {
         controls.Player.Direction.performed -= OnDirection;
         controls.Player.Direction.canceled -= OnDirection;
-        controls.Player.HammerSwing.performed -= OnHammerSwing;
+        controls.Player.HammerSwing_LR_UD.performed -= OnHammerSwing;
         controls.Disable();
     }
 }

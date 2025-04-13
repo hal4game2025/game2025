@@ -110,7 +110,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""HammerSwing"",
+                    ""name"": ""HammerSwing_LR_UD"",
                     ""type"": ""Button"",
                     ""id"": ""2f3b47dd-5dc2-4118-bc8a-5e538ce195a6"",
                     ""expectedControlType"": """",
@@ -152,6 +152,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HammerSwing_FR"",
+                    ""type"": ""Button"",
+                    ""id"": ""286b0d02-165b-4098-babd-2bdd3566146b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -225,7 +234,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""58d92bca-483c-4a91-972f-1afa464e9cb3"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<XInputController>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -246,12 +255,23 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a9d18f22-3f0b-4e31-a4aa-8c8b3f319892"",
+                    ""path"": ""<DualShockGamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Trun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f47227c6-2896-4b39-b2c0-ab10e74836c8"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""HammerSwing"",
+                    ""groups"": "";Touch;Gamepad"",
+                    ""action"": ""HammerSwing_LR_UD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -262,7 +282,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""HammerSwing"",
+                    ""action"": ""HammerSwing_LR_UD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -291,7 +311,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8182ee25-4c76-402b-bf8e-bb90fe4342e9"",
-                    ""path"": ""<XInputController>/rightShoulder"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -324,7 +344,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3ea03fc8-0cbf-4ff0-b79c-4ce845874cb2"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<XInputController>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TrunBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ad177cd-984d-4200-b145-d6dffe4dfad0"",
+                    ""path"": ""<DualShockGamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -351,6 +382,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""TrunForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42937c8f-0c76-48d3-978c-d559915b8734"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HammerSwing_FR"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b86993e2-2cd3-4bbf-9e96-87ba713e1ca3"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HammerSwing_FR"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -940,11 +993,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Direction = m_Player.FindAction("Direction", throwIfNotFound: true);
         m_Player_Trun = m_Player.FindAction("Trun", throwIfNotFound: true);
-        m_Player_HammerSwing = m_Player.FindAction("HammerSwing", throwIfNotFound: true);
+        m_Player_HammerSwing_LR_UD = m_Player.FindAction("HammerSwing_LR_UD", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_HammerSwingMoveForward = m_Player.FindAction("HammerSwingMoveForward", throwIfNotFound: true);
         m_Player_TrunForward = m_Player.FindAction("TrunForward", throwIfNotFound: true);
         m_Player_TrunBack = m_Player.FindAction("TrunBack", throwIfNotFound: true);
+        m_Player_HammerSwing_FR = m_Player.FindAction("HammerSwing_FR", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1040,11 +1094,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Direction;
     private readonly InputAction m_Player_Trun;
-    private readonly InputAction m_Player_HammerSwing;
+    private readonly InputAction m_Player_HammerSwing_LR_UD;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_HammerSwingMoveForward;
     private readonly InputAction m_Player_TrunForward;
     private readonly InputAction m_Player_TrunBack;
+    private readonly InputAction m_Player_HammerSwing_FR;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1065,9 +1120,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Trun => m_Wrapper.m_Player_Trun;
         /// <summary>
-        /// Provides access to the underlying input action "Player/HammerSwing".
+        /// Provides access to the underlying input action "Player/HammerSwing_LR_UD".
         /// </summary>
-        public InputAction @HammerSwing => m_Wrapper.m_Player_HammerSwing;
+        public InputAction @HammerSwing_LR_UD => m_Wrapper.m_Player_HammerSwing_LR_UD;
         /// <summary>
         /// Provides access to the underlying input action "Player/Look".
         /// </summary>
@@ -1084,6 +1139,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/TrunBack".
         /// </summary>
         public InputAction @TrunBack => m_Wrapper.m_Player_TrunBack;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/HammerSwing_FR".
+        /// </summary>
+        public InputAction @HammerSwing_FR => m_Wrapper.m_Player_HammerSwing_FR;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1116,9 +1175,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Trun.started += instance.OnTrun;
             @Trun.performed += instance.OnTrun;
             @Trun.canceled += instance.OnTrun;
-            @HammerSwing.started += instance.OnHammerSwing;
-            @HammerSwing.performed += instance.OnHammerSwing;
-            @HammerSwing.canceled += instance.OnHammerSwing;
+            @HammerSwing_LR_UD.started += instance.OnHammerSwing_LR_UD;
+            @HammerSwing_LR_UD.performed += instance.OnHammerSwing_LR_UD;
+            @HammerSwing_LR_UD.canceled += instance.OnHammerSwing_LR_UD;
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
@@ -1131,6 +1190,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @TrunBack.started += instance.OnTrunBack;
             @TrunBack.performed += instance.OnTrunBack;
             @TrunBack.canceled += instance.OnTrunBack;
+            @HammerSwing_FR.started += instance.OnHammerSwing_FR;
+            @HammerSwing_FR.performed += instance.OnHammerSwing_FR;
+            @HammerSwing_FR.canceled += instance.OnHammerSwing_FR;
         }
 
         /// <summary>
@@ -1148,9 +1210,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Trun.started -= instance.OnTrun;
             @Trun.performed -= instance.OnTrun;
             @Trun.canceled -= instance.OnTrun;
-            @HammerSwing.started -= instance.OnHammerSwing;
-            @HammerSwing.performed -= instance.OnHammerSwing;
-            @HammerSwing.canceled -= instance.OnHammerSwing;
+            @HammerSwing_LR_UD.started -= instance.OnHammerSwing_LR_UD;
+            @HammerSwing_LR_UD.performed -= instance.OnHammerSwing_LR_UD;
+            @HammerSwing_LR_UD.canceled -= instance.OnHammerSwing_LR_UD;
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
@@ -1163,6 +1225,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @TrunBack.started -= instance.OnTrunBack;
             @TrunBack.performed -= instance.OnTrunBack;
             @TrunBack.canceled -= instance.OnTrunBack;
+            @HammerSwing_FR.started -= instance.OnHammerSwing_FR;
+            @HammerSwing_FR.performed -= instance.OnHammerSwing_FR;
+            @HammerSwing_FR.canceled -= instance.OnHammerSwing_FR;
         }
 
         /// <summary>
@@ -1478,12 +1543,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrun(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "HammerSwing" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "HammerSwing_LR_UD" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnHammerSwing(InputAction.CallbackContext context);
+        void OnHammerSwing_LR_UD(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1512,6 +1577,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrunBack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "HammerSwing_FR" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHammerSwing_FR(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
