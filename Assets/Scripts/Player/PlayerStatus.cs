@@ -5,13 +5,30 @@ using Unity.VisualScripting;
 public class PlayerStatus : MonoBehaviour
 {
 
+    [SerializeField] int hp = 10;
+    public int HP { 
+        get { return hp; } 
+        private set { hp = value; }
+    }
+
     [SerializeField] float stunDuration = 1.0f;
     [SerializeField] float mutekiDuration = 2;
     [SerializeField] bool isNotStunned = false; //テスト用
+
     bool isStunned;
     bool isMuteki;
     int combo;
     public bool IsStunned => isStunned;
+
+    /// <summary>
+    /// ダメージを受ける
+    /// </summary>
+    /// <param name="damage"></param>
+    public void TakeDamage(int damage)
+    {
+        HP -= damage;
+    }
+
     private void Start()
     {
         isStunned = false;

@@ -14,6 +14,9 @@ public class DebugSystem : MonoBehaviour
 
     LineRenderer renderer;
 
+    [SerializeField]
+    SceneManager sceneManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,7 +30,5 @@ public class DebugSystem : MonoBehaviour
 
         renderer.SetPosition(0, transform.position);
         renderer.SetPosition(1, transform.position + cameraFront * range);
-
-
     }
 }
