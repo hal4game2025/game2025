@@ -17,12 +17,14 @@ public class PlayerController : MonoBehaviour
     Vector2 inputDirection;          //入力方向
     IPlayerMovement playerMovement;  //プレイヤーの動き
     PlayerStatus playerStatus;       //プレイヤーの状態
+    PlayerAnim playerAnim;           //プレイヤーのアニメーション
 
     void Start()
     {
        
         hammerCollision = gameObject.transform.GetChild(0).GetComponent<HammerCollision>(); //こども（はんまーの当たり判定）取得
         playerStatus = GetComponent<PlayerStatus>();
+        playerAnim = GetComponent<PlayerAnim>();
         controls = new PlayerControls();
         playerMovement = new PlayerMovement(GetComponent<Rigidbody>(), adjustSwingForce);
 
@@ -78,12 +80,14 @@ public class PlayerController : MonoBehaviour
         {
             playerStatus.Combo++;
             playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
+            playerAnim.SetAnimationByDirection(inputDirection);
             Debug.Log("壁か敵殴った");
         }
         else
         {
             if (!processOnlyOnCollision)
                 playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
+            playerAnim.SetAnimationByDirection(inputDirection);
             Debug.Log("空気殴った");
         }
     }
@@ -99,12 +103,14 @@ public class PlayerController : MonoBehaviour
         {
             playerStatus.Combo++;
             playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
+            playerAnim.SetAnimationByCameraForward();
             Debug.Log("壁か敵殴った");
         }
         else
         {
             if (!processOnlyOnCollision)
                 playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
+            playerAnim.SetAnimationByCameraForward();
             Debug.Log("空気殴った");
         }
     }
@@ -125,6 +131,8 @@ public class PlayerController : MonoBehaviour
             inputDirection = newInputDirection.normalized * -1.0f;
         else
             inputDirection = newInputDirection.normalized;
+
+
     }
 
     /// <summary>
