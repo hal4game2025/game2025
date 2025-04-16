@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     IPlayerMovement playerMovement;  //プレイヤーの動き
     PlayerStatus playerStatus;       //プレイヤーの状態
 
+
     void Start()
     {
        
@@ -73,18 +74,29 @@ public class PlayerController : MonoBehaviour
         if (playerStatus.IsStunned)
             return;
 
-        //壁か敵だったらコンボ数増やす
+        //壁か敵or空中判定
         if (hammerCollision.IsColliding())
         {
+            //壁か敵だったら
+            //コンボ数増やす
             playerStatus.Combo++;
+            //リセット
+            playerStatus.ResetAirJumpCount();
+            playerStatus.ResetAirMoveTimer();
+
             playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
             Debug.Log("壁か敵殴った");
         }
         else
         {
-            if (!processOnlyOnCollision)
+            if (playerStatus.CanAirMove)
+            {
+                // 空中のジャンプ回数を数える
+                playerStatus.IncrementAirJumpCount();
+
                 playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
-            Debug.Log("空気殴った");
+                Debug.Log("空気殴った");
+            }
         }
     }
 
@@ -94,18 +106,30 @@ public class PlayerController : MonoBehaviour
         //スタン状態なら処理しない
         if (playerStatus.IsStunned)
             return;
-        //壁か敵だったらコンボ数増やす
+
+        //壁か敵or空中判定
         if (hammerCollision.IsColliding())
         {
+            //壁か敵だったら
+            //コンボ数増やす
             playerStatus.Combo++;
+            //カウントリセット
+            playerStatus.ResetAirJumpCount();
+            playerStatus.ResetAirMoveTimer();
+
             playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
             Debug.Log("壁か敵殴った");
         }
         else
         {
-            if (!processOnlyOnCollision)
-                playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
-            Debug.Log("空気殴った");
+            if (playerStatus.CanAirMove)
+            {
+                // 空中のジャンプ回数を数える
+                playerStatus.IncrementAirJumpCount();
+
+                playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward, swingForce, playerStatus.Combo);
+                Debug.Log("空気殴った");
+            }
         }
     }
 
