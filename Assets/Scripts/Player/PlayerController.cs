@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool directionReverse = false;// trueなら入力方向を反転
     [SerializeField] bool processOnlyOnCollision = false; // trueなら壁か敵に当たったときだけ
 
-    [SerializeField] Text text;      //コンボ数表示（デバッグ用）
+    //[SerializeField] Text text;      //コンボ数表示（デバッグ用）
 
     HammerCollision hammerCollision; //はんまーの当たり判定
     PlayerControls controls;         //入力アクション
@@ -48,8 +48,7 @@ public class PlayerController : MonoBehaviour
         }
       
 
-        text.text = "コンボ数:" + playerStatus.Combo;
-
+        //text.text = "コンボ数:" + playerStatus.Combo;
 
         //デバッグ用コンボ数増減
         if (Input.GetKeyDown(KeyCode.P))
