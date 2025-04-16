@@ -30,26 +30,18 @@ public class PlayerController : MonoBehaviour
         controls.Player.Direction.performed += OnDirection;
         controls.Player.Direction.canceled += OnDirection;
         controls.Player.HammerSwing_LR_UD.performed += OnHammerSwing;
-       controls.Player.TrunForward.performed += OnTurnForwardReleased;
-       controls.Player.TrunBack.performed += OnTurnBackPressed;
+        controls.Player.Trun.performed += ONTurn;
         controls.Player.HammerSwingMoveForward.performed += OnHammerSwingMoveForward;
         controls.Enable();
     }
 
     void Update()
     {
-        //後ろを向いていないときだけ
-        if (!CameraMovement.instance.GetIsTurning())
-        {
-            // カメラの向きに合わせてプレイヤーを回転させる
-            Vector3 cameraForward = cameraLook.forward;
-            Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
-            transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
-        }
-      
+        //カメラの向きに合わせてプレイヤーを回転させる
+        FaceCameraDirection();
 
+        //デバッグ用
         text.text = "コンボ数:" + playerStatus.Combo;
-
 
         //デバッグ用コンボ数増減
         if (Input.GetKeyDown(KeyCode.P))
@@ -73,6 +65,7 @@ public class PlayerController : MonoBehaviour
         if (playerStatus.IsStunned)
             return;
 
+        
         //壁か敵だったらコンボ数増やす
         if (hammerCollision.IsColliding())
         {
@@ -134,6 +127,16 @@ public class PlayerController : MonoBehaviour
     void ONTurn(InputAction.CallbackContext context)
     {
         CameraMovement.instance.TurnCamera();
+    }
+
+    /// <summary>
+    /// カメラの向きに合わせてプレイヤーを回転させる
+    /// </summary>
+    void FaceCameraDirection()
+    {
+        Vector3 cameraForward = cameraLook.forward;
+        Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
+        transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
     }
 
     void OnTurnBackPressed(InputAction.CallbackContext context)

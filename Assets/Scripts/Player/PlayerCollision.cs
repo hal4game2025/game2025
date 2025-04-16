@@ -24,7 +24,15 @@ public class PlayerCollision : MonoBehaviour
     /// もしプレイヤーと敵か障害物が衝突したら、スタン状態にする
     /// </summary>
     /// <param name="collision"></param>
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == EnemyTag)
+    //        playerStatus.StunByEnemy();
+    //    else if (collision.gameObject.tag == obstacleTag)
+    //        playerStatus.StunByObstacle();
+    //}
+
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == EnemyTag)
             playerStatus.StunByEnemy();
