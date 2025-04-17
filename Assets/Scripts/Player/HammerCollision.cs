@@ -28,7 +28,7 @@ public class HammerCollision : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.gameObject.tag == obstaclesTag || hitCollider.gameObject.tag == enemyTag)
+            if (hitCollider.gameObject.CompareTag(obstaclesTag) || hitCollider.gameObject.CompareTag(enemyTag))
             {
                 return true;
             }
@@ -36,7 +36,7 @@ public class HammerCollision : MonoBehaviour
         return false;
     }
 
-    // Gizmosを使用して球状の範囲を表示
+    //Gizmosを使用して球状の範囲を表示
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red; // 球の色を設定
