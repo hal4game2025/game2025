@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -14,10 +15,15 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] float stunDuration = 1.0f;
     [SerializeField] float mutekiDuration = 2;
     [SerializeField] bool isNotStunned = false; //テスト用
+    [SerializeField] int maxAirMove = 1; // 空中で方向転換出来る最大数
+    [SerializeField] float airMoveCooldown = 0.5f; // 空中移動が可能になるまでの時間
 
     bool isStunned;
     bool isMuteki;
     int combo;
+    int airMoveCount;
+    float airMoveCooldownTimer;
+
     public bool IsStunned => isStunned;
 
     /// <summary>
@@ -29,12 +35,22 @@ public class PlayerStatus : MonoBehaviour
         HP -= damage;
     }
 
+    public int AirMoveCount => airMoveCount;
+
     private void Start()
     {
         isStunned = false;
         isMuteki = false;
         combo = 0;
+        airMoveCooldown = 0;
+        airMoveCooldownTimer = 0.0f;
     }
+
+    private void Update()
+    {
+        airMoveCooldownTimer += Time.deltaTime;
+    }
+
     public int Combo
     {
         get => combo;
@@ -47,6 +63,15 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 空中移動が可能か？
+    /// </summary>
+    public bool CanAirMove => (airMoveCount < maxAirMove && airMoveCooldown < airMoveCooldownTimer);
+
+    /// <summary>
+    /// 空中移動はクールタイム中か？
+    /// </summary>
+    public bool HasAirMoveCooldown => (airMoveCooldown < airMoveCooldownTimer);
 
     public void StunByObstacle()
     {
@@ -64,6 +89,21 @@ public class PlayerStatus : MonoBehaviour
             
         }
     }
+
+    /// <summary>
+    /// 空中の移動回数をリセットする
+    /// </summary>
+    public void ResetAirJumpCount() => airMoveCount = 0;
+
+    /// <summary>
+    /// 空中の移動回数を数える
+    /// </summary>
+    public void IncrementAirJumpCount() => airMoveCount++;
+
+    /// <summary>
+    /// 空中移動が可能になるまでの時間をリセットする
+    /// </summary>
+    public void ResetAirMoveTimer() => airMoveCooldownTimer = 0.0f;
 
     /// <summary>
     /// スタン状態にする。スタン後は一定時間むてき
