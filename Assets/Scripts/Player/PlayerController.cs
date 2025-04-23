@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float swingForce = 10f;//ぱわー
+    [SerializeField][Tooltip("ベースのパワー")] float swingForce = 10f;//ぱわー
     [SerializeField] Transform cameraLook;
-    [SerializeField] float adjustSwingForce = 1.0f;//コンボが増えたときに早くなるペース
+    [SerializeField][Tooltip("コンボが増えたときに早くなるペース")] float adjustSwingForce = 1.0f;//コンボが増えたときに早くなるペース
     [SerializeField] bool directionReverse = false;// trueなら入力方向を反転
     [SerializeField] bool processOnlyOnCollision = false; // trueなら壁か敵に当たったときだけ
 
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     HammerCollision hammerCollision; //はんまーの当たり判定
     PlayerControls controls;         //入力アクション
     Vector2 inputDirection;          //入力方向
-    IPlayerMovement playerMovement;  //プレイヤーの動き
+    [SerializeField]  PlayerMovement playerMovement;  //プレイヤーの動き
     PlayerStatus playerStatus;       //プレイヤーの状態
     PlayerAnim playerAnim;           //プレイヤーのアニメーション
 
