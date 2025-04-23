@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
             playerStatus.ResetAirJumpCount();
             playerStatus.ResetAirMoveTimer();
 
-            playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
+            playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByDirection(inputDirection);
             Debug.Log("•Ç‚©“G‰£‚Á‚½");
         }
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
                 // ‹ó’†‚ÌƒWƒƒƒ“ƒv‰ñ”‚ğ”‚¦‚é
                 playerStatus.IncrementAirJumpCount();
 
-                playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
+                playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
                 playerAnim.SetAnimationByDirection(inputDirection);
                 Debug.Log("‹ó‹C‰£‚Á‚½");
             }
