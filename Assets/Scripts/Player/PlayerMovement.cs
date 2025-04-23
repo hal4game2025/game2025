@@ -21,13 +21,11 @@ public interface IPlayerMovement
     void SwingHammerMoveForward(Vector3 cameraForward, float swingForce, int combo);
 }
 
-    [System.Serializable]
-    public class PlayerMovement : IPlayerMovement
-    {
-        Rigidbody rb;
-        float adjustSwingForce;
-        [Tooltip("速度上昇の係数")]
-        public int max_coef;    // 速度上昇の係数
+public class PlayerMovement : IPlayerMovement
+{
+    Rigidbody rb;
+    float adjustSwingForce;
+    public int max_coef = 0;    
         
         public PlayerMovement(Rigidbody _rb, float _adjustSwingForce)
         {
@@ -46,7 +44,7 @@ public interface IPlayerMovement
                 forceDirection = Vector3.Normalize(new Vector3(inputDirection.x, inputDirection.y, 0.0f));
 
             //コンボ数で調整(要調整）
-            float adjustedSwingForce = swingForce * Mathf.Sqrt(combo > max_coef ? max_coef : combo + 1) * adjustSwingForce;
+             float adjustedSwingForce = swingForce * Mathf.Sqrt(combo > max_coef ? max_coef : combo + 1) * adjustSwingForce;
 
             //プレイヤーの向きに合わせる
             Quaternion playerRotation = rb.transform.rotation;

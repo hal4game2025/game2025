@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField][Tooltip("コンボが増えたときに早くなるペース")] float adjustSwingForce = 1.0f;//コンボが増えたときに早くなるペース
     [SerializeField] bool directionReverse = false;// trueなら入力方向を反転
     [SerializeField] bool processOnlyOnCollision = false; // trueなら壁か敵に当たったときだけ
+    [SerializeField] int max_speed_coef = 1;
 
     //[SerializeField] Text text;      //コンボ数表示（デバッグ用）
 
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<PlayerAnim>();
         controls = new PlayerControls();
         playerMovement = new PlayerMovement(GetComponent<Rigidbody>(), adjustSwingForce);
+        playerMovement.max_coef = max_speed_coef;
 
         // 入力アクション
         controls.Player.Direction.performed += OnDirection;
