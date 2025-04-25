@@ -21,6 +21,7 @@ public class PlayerStatus : MonoBehaviour
     bool isStunned;
     bool isMuteki;
     int combo;
+    int rate; // UŒ‚‚Ì”{—¦
     int airMoveCount;
     float airMoveCooldownTimer;
 
@@ -60,6 +61,22 @@ public class PlayerStatus : MonoBehaviour
                 combo = value;
             else
                 Debug.LogError("ƒRƒ“ƒ{”‚ª‚O–¢–‚¾‚æ[");
+        }
+    }
+
+    public int Rate
+    {
+        get => rate;
+        set
+        {
+            if(value >= 1)
+            {
+                rate = value;
+            }
+            else
+            {
+                rate = 1;
+            }
         }
     }
 

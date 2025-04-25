@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
@@ -5,10 +6,16 @@ public class PlayerCollision : MonoBehaviour
     PlayerStatus playerStatus;
     string EnemyTag;
     string obstacleTag;
+    [SerializeField]
+    [Tooltip("レートの更新間隔")]
+    float rateInterval = 1; // レートの更新間隔
+    bool isRunning = false;
 
     private void Start()
     {
         playerStatus = GetComponent<PlayerStatus>();
+
+        GetComponent<Rigidbody>().sleepThreshold = 0.0f; // Rigidbodyのスリープ閾値を0に設定
 
         if (playerStatus == null)
         {
@@ -38,5 +45,23 @@ public class PlayerCollision : MonoBehaviour
             playerStatus.StunByEnemy();
         else if (collision.gameObject.tag == obstacleTag)
             playerStatus.StunByObstacle();
+
+        if (collision.gameObject.tag == "floor")
+        {
+            Debug.Log("床に衝突中");
+
+            if(!isRunning)
+            {
+                StartCoroutine(UpdateRate());
+            }   
+        }
+    }
+
+    IEnumerator UpdateRate()
+    {
+        isRunning = true;
+        playerStatus.Rate -= 1;
+        yield return new WaitForSeconds(rateInterval);        
+        isRunning = false;
     }
 }
