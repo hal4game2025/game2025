@@ -79,8 +79,9 @@ public class PlayerController : MonoBehaviour
             //コンボ数増やす
             playerStatus.Combo++;
             //リセット
-            playerStatus.ResetAirJumpCount();
-            playerStatus.ResetAirMoveTimer();
+            //playerStatus.ResetAirMoveCount();
+            //playerStatus.ResetAirMoveTimer();
+            playerStatus.RechargeAirMove();
 
             playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByDirection(inputDirection);
@@ -93,7 +94,7 @@ public class PlayerController : MonoBehaviour
             if (playerStatus.CanAirMove)
             {
                 // 空中のジャンプ回数を数える
-                playerStatus.IncrementAirJumpCount();
+                playerStatus.IncrementAirMoveCount();
 
                 playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
                 playerAnim.SetAnimationByDirection(inputDirection);
@@ -118,8 +119,9 @@ public class PlayerController : MonoBehaviour
             //コンボ数増やす
             playerStatus.Combo++;
             //カウントリセット
-            playerStatus.ResetAirJumpCount();
-            playerStatus.ResetAirMoveTimer();
+            //playerStatus.ResetAirMoveCount();
+            //playerStatus.ResetAirMoveTimer();
+            playerStatus.RechargeAirMove();
 
             playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByCameraForward();
@@ -131,7 +133,7 @@ public class PlayerController : MonoBehaviour
             if (playerStatus.CanAirMove)
             {
                 // 空中のジャンプ回数を数える
-                playerStatus.IncrementAirJumpCount();
+                playerStatus.IncrementAirMoveCount();
 
                 playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward, swingForce, playerStatus.Combo);
                 playerAnim.SetAnimationByCameraForward();
