@@ -4,10 +4,12 @@ using UnityEngine.UIElements;
 
 public class EnemyHp : MonoBehaviour
 {
+    [SerializeField]private EnemyStatus enemyStatus;
     UIDocument enemyHpUIDocument;
     UnityEngine.UIElements.ProgressBar progressBar;
     void Start()
     {
+        
         enemyHpUIDocument = GetComponent<UIDocument>();
         progressBar = enemyHpUIDocument.rootVisualElement.Q<ProgressBar>("EnemyHp");
         
@@ -15,13 +17,7 @@ public class EnemyHp : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            progressBar.value += 10;
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            progressBar.value -= 10;
-        }
+        progressBar.value = enemyStatus.HP;
+
     }
 }
