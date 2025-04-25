@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
             //playerStatus.ResetAirMoveTimer();
             playerStatus.RechargeAirMove();
 
-            playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
+            playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByDirection(inputDirection);
 
             lookDirection = playerMovement.ReturnDirection(inputDirection,cameraLook.rotation);//カメラの向きに合わせた方向を取得
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
                 // 空中のジャンプ回数を数える
                 playerStatus.IncrementAirMoveCount();
 
-                playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
+                playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
                 playerAnim.SetAnimationByDirection(inputDirection);
                 lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
                 Debug.Log("空気殴った");

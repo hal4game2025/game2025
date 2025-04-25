@@ -11,7 +11,7 @@ public interface IPlayerMovement
     /// <param name="cameraRotation"></param>
     /// <param name="swingForce"></param>
     /// <param name="combo"></param>
-    void SwingHammer(Vector2 inputDirection, Quaternion cameraRotation,float swingForce, int combo);
+    void SwingHammer(Vector2 inputDirection, in Transform camera, float swingForce, int combo);
 
     /// <summary>
     /// カメラの方向に向かって飛ぶ
@@ -67,21 +67,23 @@ public class PlayerMovement : IPlayerMovement
         return forceDirection;
     }
 
-    public void SwingHammer(Vector2 inputDirection, Quaternion cameraRotation,float swingForce, int combo)
+        public void SwingHammer(Vector2 inputDirection, in Transform camera, float swingForce, int combo)
         {
             Vector3 forceDirection;
             
             if (inputDirection == Vector2.zero) // 入力がない場合は後ろに飛ぶ
-                forceDirection = Vector3.back;
+                forceDirection = -camera.forward;
             else
+            {
                 forceDirection = Vector3.Normalize(new Vector3(inputDirection.x, inputDirection.y, 0.0f));
+                //プレイヤーの向きに合わせる
+                Quaternion playerRotation = rb.transform.rotation;
+                forceDirection = playerRotation * forceDirection;
+            }
 
             //コンボ数で調整(要調整）
              float adjustedSwingForce = swingForce * Mathf.Sqrt(combo > max_coef ? max_coef : combo + 1) * adjustSwingForce;
 
-            //プレイヤーの向きに合わせる
-            Quaternion playerRotation = rb.transform.rotation;
-            forceDirection = playerRotation * forceDirection;
             // 速度を直接設定
             rb.linearVelocity = forceDirection.normalized * adjustedSwingForce;
             Debug.Log(forceDirection.normalized * adjustedSwingForce);    
