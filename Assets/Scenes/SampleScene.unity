@@ -1982,7 +1982,7 @@ GameObject:
   - component: {fileID: 1139100699}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Obstacles
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2774,6 +2774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e02510c2c27f646be7d23216e9fef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rateInterval: 1
 --- !u!114 &1270736887
 MonoBehaviour:
   m_ObjectHideFlags: 0
