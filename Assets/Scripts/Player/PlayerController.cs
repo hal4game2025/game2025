@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     PlayerStatus playerStatus;       //プレイヤーの状態
     PlayerAnim playerAnim;           //プレイヤーのアニメーション
 
-
+     Vector3 lookDirection;
     void Start()
     {
        
@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
         controls.Player.Trun.performed += ONTurn;
         controls.Player.HammerSwingMoveForward.performed += OnHammerSwingMoveForward;
         controls.Enable();
+
+        
     }
 
     void Update()
@@ -82,6 +84,8 @@ public class PlayerController : MonoBehaviour
 
             playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByDirection(inputDirection);
+
+            lookDirection = playerMovement.ReturnDirection(inputDirection,cameraLook.rotation);//カメラの向きに合わせた方向を取得
             Debug.Log("壁か敵殴った");
         }
         else
@@ -93,12 +97,14 @@ public class PlayerController : MonoBehaviour
 
                 playerMovement.SwingHammer(inputDirection, cameraLook.rotation, swingForce, playerStatus.Combo);
                 playerAnim.SetAnimationByDirection(inputDirection);
+                lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
                 Debug.Log("空気殴った");
             }
         }
+        
     }
 
-    
+
     void OnHammerSwingMoveForward(InputAction.CallbackContext context)
     {
         //スタン状態なら処理しない
@@ -117,6 +123,7 @@ public class PlayerController : MonoBehaviour
 
             playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByCameraForward();
+            lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方向を取得
             Debug.Log("壁か敵殴った");
         }
         else
@@ -128,6 +135,7 @@ public class PlayerController : MonoBehaviour
 
                 playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward, swingForce, playerStatus.Combo);
                 playerAnim.SetAnimationByCameraForward();
+                lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方向を取得
                 Debug.Log("空気殴った");
             }
         }
@@ -168,7 +176,8 @@ public class PlayerController : MonoBehaviour
     void FaceCameraDirection()
     {
         Vector3 cameraForward = cameraLook.forward;
-        Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
+        //Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
+        Quaternion targetRotation = Quaternion.LookRotation(lookDirection);//cameraForward→lookDirectionに変更
         transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
     }
 
