@@ -43,7 +43,7 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.gameObject.tag == EnemyTag)
             playerStatus.StunByEnemy();
-        else if (collision.gameObject.tag == obstacleTag)
+        else if (collision.gameObject.tag == obstacleTag || collision.gameObject.tag == "floor")
             playerStatus.StunByObstacle();
 
         if (collision.gameObject.tag == "floor")
