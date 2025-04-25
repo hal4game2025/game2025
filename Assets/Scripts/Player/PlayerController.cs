@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool processOnlyOnCollision = false; // trueなら壁か敵に当たったときだけ
     [SerializeField] int max_speed_coef = 1;
 
-    //[SerializeField] Text text;      //コンボ数表示（デバッグ用）
-
     HammerCollision hammerCollision; //はんまーの当たり判定
     PlayerControls controls;         //入力アクション
     Vector2 inputDirection;          //入力方向
@@ -60,6 +58,7 @@ public class PlayerController : MonoBehaviour
             playerStatus.Combo--;
         }
 
+        Debug.Log("rate:" + playerStatus.Rate);
     }
 
     /// <summary>
@@ -75,13 +74,7 @@ public class PlayerController : MonoBehaviour
         //壁か敵or空中判定
         if (hammerCollision.IsColliding())
         {
-            //壁か敵だったら
-            //コンボ数増やす
-            playerStatus.Combo++;
-            //リセット
-            //playerStatus.ResetAirMoveCount();
-            //playerStatus.ResetAirMoveTimer();
-            playerStatus.RechargeAirMove();
+            UpdatePlayerStatus();
 
             playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByDirection(inputDirection);
@@ -105,7 +98,6 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
     void OnHammerSwingMoveForward(InputAction.CallbackContext context)
     {
         //スタン状態なら処理しない
@@ -115,13 +107,7 @@ public class PlayerController : MonoBehaviour
         //壁か敵or空中判定
         if (hammerCollision.IsColliding())
         {
-            //壁か敵だったら
-            //コンボ数増やす
-            playerStatus.Combo++;
-            //カウントリセット
-            //playerStatus.ResetAirMoveCount();
-            //playerStatus.ResetAirMoveTimer();
-            playerStatus.RechargeAirMove();
+            UpdatePlayerStatus();
 
             playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByCameraForward();
@@ -141,6 +127,17 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("空気殴った");
             }
         }
+    }
+
+    void UpdatePlayerStatus()
+    {
+        //壁か敵だったら
+        //コンボ数増やす
+        playerStatus.Combo++;
+        playerStatus.Rate *= 2;
+
+        //リセット
+        playerStatus.RechargeAirMove();
     }
 
     /// <summary>

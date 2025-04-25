@@ -28,7 +28,18 @@ public class HammerCollision : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.gameObject.CompareTag(obstaclesTag) || hitCollider.gameObject.CompareTag(enemyTag))
+            if (hitCollider.gameObject.CompareTag(obstaclesTag) || hitCollider.gameObject.CompareTag(enemyTag) || hitCollider.gameObject.CompareTag("floor"))
+            {
+                // 衝突しているオブジェクトが障害物または敵の場合
+                //Debug.Log(hitCollider.gameObject.name);
+                //Debug.Log(hitCollider.gameObject.tag);
+                //Debug.Log("衝突中");
+                return true;
+            }
+            else
+            {
+                //Debug.Log("衝突していない");
+            }
             {
                 return true;
             }
