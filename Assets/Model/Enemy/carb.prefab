@@ -1098,11 +1098,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4087416517473069519}
   - component: {fileID: 7639206381927750437}
+  - component: {fileID: 7045140121533663686}
   - component: {fileID: 307939064400958111}
-  - component: {fileID: 7471110446573331197}
+  - component: {fileID: 7904749768523985051}
   m_Layer: 0
   m_Name: carb
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1149,8 +1150,30 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!64 &7045140121533663686
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3743259875811767157}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -267059760217051132, guid: 7668a9db6d855024d99ca960aad3a8e5, type: 3}
 --- !u!114 &307939064400958111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,8 +1186,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5ce02963d2c3b4cb29aad289b7065f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
---- !u!114 &7471110446573331197
+  maxHP: 100
+  nowHP: 100
+  moveSpeed: 10
+  lookSpeed: 1
+  distance: 20
+  atkData:
+  - maxCD: 2
+    atkDamage: 5
+    atkRange: 10
+    nowCD: 0
+--- !u!114 &7904749768523985051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1173,13 +1205,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3743259875811767157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e786a6d3a9d644409d5052ae349b382, type: 3}
+  m_Script: {fileID: 11500000, guid: 9532cc281515ec841a6ecd2d5f812cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {fileID: 0}
-  speed: 10
-  distance: 10
-  lookSpeed: 1
 --- !u!1 &3748275852567718751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1493,13 +1522,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4717646569190397257}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 2.54, y: 2.54, z: 2.54}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4087416517473069519}
-  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 180}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &3330144370003119957
 MeshFilter:
   m_ObjectHideFlags: 0
