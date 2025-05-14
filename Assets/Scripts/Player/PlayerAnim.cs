@@ -39,6 +39,15 @@ public class PlayerAnim : MonoBehaviour
             }
         }
     }
+    public void HitStopStart()
+    {
+        Debug.Log("アニメーション：ヒットストップ");
+    }
+    public void HitStopEnd()
+    {
+        Debug.Log("アニメーション：ヒットストップ終了");
+    }
+
 
     /// <summary>
     /// カメラの向きに基づき、アニメーションを設定する

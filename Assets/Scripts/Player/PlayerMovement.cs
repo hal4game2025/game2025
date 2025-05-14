@@ -39,9 +39,10 @@ public class PlayerMovement : IPlayerMovement
 {
     Rigidbody rb;
     float adjustSwingForce;
-    public int max_coef = 0;    
-        
-        public PlayerMovement(Rigidbody _rb, float _adjustSwingForce)
+    public int max_coef = 0;
+    private Vector3 hitStopBackupVelocity; // ヒットストップ用にバックアップする速度
+
+    public PlayerMovement(Rigidbody _rb, float _adjustSwingForce)
         {
             rb = _rb;
             adjustSwingForce = _adjustSwingForce;
@@ -65,6 +66,24 @@ public class PlayerMovement : IPlayerMovement
         //カメラの向きに合わせる
         Vector3 forceDirection = cameraRotation * Vector3.forward;
         return forceDirection;
+    }
+
+    /// <summary>
+    /// ヒットストップ開始　止まる前の速度を保存
+    /// </summary>
+    public void HitStopStart()
+    {
+        hitStopBackupVelocity = rb.linearVelocity;
+        rb.linearVelocity = Vector3.zero;
+        rb.isKinematic = true;
+    }
+    /// <summary>
+    /// ヒットストップ終了　保存した速度を復元
+    /// </summary>
+    public void HitStopEnd()
+    {
+        rb.isKinematic = false;
+        rb.linearVelocity = hitStopBackupVelocity;
     }
 
         public void SwingHammer(Vector2 inputDirection, in Transform camera, float swingForce, int combo)
