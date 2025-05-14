@@ -139,12 +139,14 @@ public class PlayerStatus : MonoBehaviour
         if (isNotStunned)
         {
             combo = 0;
+            rate = 1;
             yield break;
         }
          
 
         Debug.Log("ƒXƒ^ƒ“ó‘Ô");
         combo = 0;
+        rate = 1;
         isStunned = true;
         isMuteki = true;
 

@@ -39,8 +39,11 @@ public class HammerCollision : MonoBehaviour
             else
             {
                 //Debug.Log("Õ“Ë‚µ‚Ä‚¢‚È‚¢");
+
+                return false;
             }
         }
+
         return false;
     }
 
