@@ -93,6 +93,7 @@ public class PlayerStatus : MonoBehaviour
         }
 
         RechargeAirMove();
+    
     }
 
     public void StunByEnemy()

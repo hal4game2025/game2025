@@ -17,7 +17,7 @@ public class ComboUI : MonoBehaviour
 
     void Update()
     {
-        combolabel.text = "コンボ数: " + playerStatus.Combo.ToString(); //表示
+        combolabel.text = "x" + playerStatus.Rate.ToString(); //表示
     }
 }
 
