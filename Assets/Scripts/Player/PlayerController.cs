@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -10,15 +11,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool directionReverse = false;// trueなら入力方向を反転
     [SerializeField] bool processOnlyOnCollision = false; // trueなら壁か敵に当たったときだけ
     [SerializeField] int max_speed_coef = 1;
+    [SerializeField] PlayerMovement playerMovement;  //プレイヤーの動き
+
+    [CustomLabel("最小ヒットストップ時間")]
+    [SerializeField] float baseHitStopTime = 0.1f; //コンボ数が0の時のベースヒットストップ時間
+    [CustomLabel("最大ヒットストップ時間")]
+    [SerializeField] float maxHitStopTime = 0.5f; //最大ヒットストップ時間
+    [CustomLabel("ヒットストップのコンボ倍率")]
+    [SerializeField] float perComboHitStopTime = 0.05f; //コンボ数に応じ、だんだんヒットストップ時間が増える
 
     HammerCollision hammerCollision; //はんまーの当たり判定
     PlayerControls controls;         //入力アクション
     Vector2 inputDirection;          //入力方向
-    [SerializeField]  PlayerMovement playerMovement;  //プレイヤーの動き
     PlayerStatus playerStatus;       //プレイヤーの状態
     PlayerAnim playerAnim;           //プレイヤーのアニメーション
+    Coroutine hitStopCoroutine;      //ヒットストップのこるーちん
+    bool isHitStop = false;         //ヒットストップ中かどうか
 
-     Vector3 lookDirection;
+    Vector3 lookDirection;
     void Start()
     {
         // マウス固定＆非表示
@@ -70,8 +80,9 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     void OnHammerSwing(InputAction.CallbackContext context)
     {
-        //スタン状態なら処理しない
-        if (playerStatus.IsStunned)
+        //スタン状態か、ヒットストップ状態なら処理しない
+        if (playerStatus.IsStunned ||
+            isHitStop)
             return;
 
         //壁か敵or空中判定
@@ -83,6 +94,9 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetAnimationByDirection(inputDirection);
 
             lookDirection = playerMovement.ReturnDirection(inputDirection,cameraLook.rotation);//カメラの向きに合わせた方向を取得
+
+            //ヒットストップ開始
+            StartHitStop(playerStatus.Combo);
             Debug.Log("壁か敵殴った");
         }
         else
@@ -103,8 +117,9 @@ public class PlayerController : MonoBehaviour
 
     void OnHammerSwingMoveForward(InputAction.CallbackContext context)
     {
-        //スタン状態なら処理しない
-        if (playerStatus.IsStunned)
+        //スタン状態か、ヒットストップ状態なら処理しない
+        if (playerStatus.IsStunned ||
+            isHitStop)
             return;
 
         //壁か敵or空中判定
@@ -115,6 +130,9 @@ public class PlayerController : MonoBehaviour
             playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByCameraForward();
             lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方向を取得
+
+            //ヒットストップ開始
+            StartHitStop(playerStatus.Combo);
             Debug.Log("壁か敵殴った");
         }
         else
@@ -182,6 +200,39 @@ public class PlayerController : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(lookDirection);//cameraForward→lookDirectionに変更
         transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
     }
+
+    /// <summary>
+    /// 一定時間ヒットストップさせる。コンボ数が増えるごとにヒットストップ時間が増える
+    /// </summary>
+    /// <param name="combo"></param>
+    void StartHitStop(int combo)
+    {
+        float hitStopTime = Mathf.Min(baseHitStopTime  + perComboHitStopTime* combo, maxHitStopTime);
+
+        if (hitStopCoroutine != null)
+        {
+            StopCoroutine(hitStopCoroutine);
+        }
+        hitStopCoroutine = StartCoroutine(HitStopCoroutine(hitStopTime));
+    }
+
+    IEnumerator HitStopCoroutine(float hitStopTime)
+    {
+        // ヒットストップ開始
+        isHitStop = true;
+        playerMovement.HitStopStart();
+        playerAnim.HitStopStart();
+
+        yield return new WaitForSeconds(hitStopTime);
+
+        // ヒットストップ終了
+        playerMovement.HitStopEnd();
+        playerAnim.HitStopEnd();
+        isHitStop = false;
+        hitStopCoroutine = null;
+    }
+
+
 
     void OnTurnBackPressed(InputAction.CallbackContext context)
     {
