@@ -21,7 +21,10 @@ public class PlayerController : MonoBehaviour
      Vector3 lookDirection;
     void Start()
     {
-       
+        // マウス固定＆非表示
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         hammerCollision = gameObject.transform.GetChild(0).GetComponent<HammerCollision>(); //こども（はんまーの当たり判定）取得
         playerStatus = GetComponent<PlayerStatus>();
         playerAnim = GetComponent<PlayerAnim>();
