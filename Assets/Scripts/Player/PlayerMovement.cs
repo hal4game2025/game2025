@@ -76,9 +76,7 @@ public class PlayerMovement : IPlayerMovement
             else
             {
                 forceDirection = Vector3.Normalize(new Vector3(inputDirection.x, inputDirection.y, 0.0f));
-                //プレイヤーの向きに合わせる
-                Quaternion playerRotation = rb.transform.rotation;
-                forceDirection = playerRotation * forceDirection;
+                forceDirection = camera.rotation * forceDirection;
             }
 
             //コンボ数で調整(要調整）
