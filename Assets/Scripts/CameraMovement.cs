@@ -4,20 +4,9 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    // シングルトン
-    public static CameraMovement instance;
     bool isTurning = false;
     float turnDuration = 0.3f; // 回転にかける時間（秒）
 
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            isTurning = false;
-        }
-    }
 
     private void Start()
     {

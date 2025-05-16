@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField][Tooltip("ベースのパワー")] float swingForce = 10f;//ぱわー
     [SerializeField] Transform cameraLook;
+    [SerializeField] CameraMovement cameraMovement; //カメラの動き
     [SerializeField][Tooltip("コンボが増えたときに早くなるペース")] float adjustSwingForce = 1.0f;//コンボが増えたときに早くなるペース
     [SerializeField] bool directionReverse = false;// trueなら入力方向を反転
     [SerializeField] bool processOnlyOnCollision = false; // trueなら壁か敵に当たったときだけ
@@ -41,16 +42,8 @@ public class PlayerController : MonoBehaviour
         controls = new PlayerControls();
         playerMovement = new PlayerMovement(GetComponent<Rigidbody>(), adjustSwingForce);
         playerMovement.max_coef = max_speed_coef;
-
-        // 入力アクション
-        controls.Player.Direction.performed += OnDirection;
-        controls.Player.Direction.canceled += OnDirection;
-        controls.Player.HammerSwing_LR_UD.performed += OnHammerSwing;
-        controls.Player.Trun.performed += ONTurn;
-        controls.Player.HammerSwingMoveForward.performed += OnHammerSwingMoveForward;
-        controls.Enable();
-
         
+        InitializeInputAction();
     }
 
     void Update()
@@ -127,7 +120,7 @@ public class PlayerController : MonoBehaviour
         {
             UpdatePlayerStatus();
 
-            playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
+            playerMovement.SwingHammerMoveForward(cameraMovement.transform.forward,swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByCameraForward();
             lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方向を取得
 
@@ -142,7 +135,7 @@ public class PlayerController : MonoBehaviour
                 // 空中のジャンプ回数を数える
                 playerStatus.IncrementAirMoveCount();
 
-                playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward, swingForce, playerStatus.Combo);
+                playerMovement.SwingHammerMoveForward(cameraMovement.transform.forward, swingForce, playerStatus.Combo);
                 playerAnim.SetAnimationByCameraForward();
                 lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方向を取得
                 Debug.Log("空気殴った");
@@ -187,7 +180,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     void ONTurn(InputAction.CallbackContext context)
     {
-        CameraMovement.instance.TurnCamera();
+        cameraMovement.TurnCamera();
     }
 
     /// <summary>
@@ -236,13 +229,13 @@ public class PlayerController : MonoBehaviour
 
     void OnTurnBackPressed(InputAction.CallbackContext context)
     {
-        CameraMovement.instance.BackCamera();
+        cameraMovement.BackCamera();
     }
 
     void OnTurnForwardReleased(InputAction.CallbackContext context)
     {
-        if (CameraMovement.instance.GetIsTurning())
-            CameraMovement.instance.StopBackCamera();
+        if (cameraMovement.GetIsTurning())
+            cameraMovement.StopBackCamera();
     }
     /// <summary>
     /// イベントハンドラの解除
@@ -253,5 +246,17 @@ public class PlayerController : MonoBehaviour
         controls.Player.Direction.canceled -= OnDirection;
         controls.Player.HammerSwing_LR_UD.performed -= OnHammerSwing;
         controls.Disable();
+    }
+
+
+    void InitializeInputAction()
+    {
+        // 入力アクション
+        controls.Player.Direction.performed += OnDirection;
+        controls.Player.Direction.canceled += OnDirection;
+        controls.Player.HammerSwing_LR_UD.performed += OnHammerSwing;
+        controls.Player.Trun.performed += ONTurn;
+        controls.Player.HammerSwingMoveForward.performed += OnHammerSwingMoveForward;
+        controls.Enable();
     }
 }
