@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FadeManager : MonoBehaviour
+public class SceneFade : MonoBehaviour
 {
-    [SerializeField] Image fadeImage;
+    FadeUtils fadeUtils;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    async void Start()
     {
-        
+
+
     }
 
     // Update is called once per frame

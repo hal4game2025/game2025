@@ -4,31 +4,23 @@ using UnityEngine;
 public class DebugSystem : MonoBehaviour
 {
     [SerializeField]
-    GameObject headObject;
-
-    [SerializeField]
-    CinemachineCamera cam;
-
-    [SerializeField]
-    float range;
-
-    LineRenderer renderer;
-
-    [SerializeField]
     SceneManager sceneManager;
+    [SerializeField]
+    string sceneName = "TestScene";
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Start()
     {
-        renderer = GetComponent<LineRenderer>();
+       sceneManager = SceneManager.Instance;
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 cameraFront = cam.transform.forward;
-
-        renderer.SetPosition(0, transform.position);
-        renderer.SetPosition(1, transform.position + cameraFront * range);
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+           sceneManager.ChangeScene(sceneName);
+        }
     }
 }

@@ -1,6 +1,5 @@
 using System.Collections;
 using Unity.Cinemachine;
-
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -17,11 +16,6 @@ public class CameraMovement : MonoBehaviour
         {
             instance = this;
             isTurning = false;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
         }
     }
 
