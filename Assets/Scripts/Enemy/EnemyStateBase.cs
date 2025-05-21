@@ -14,6 +14,7 @@ public class EnemyStateBase : MonoBehaviour
 
     [SerializeField, CustomLabel("プレイヤーの座標")] Transform player;
 
+    [SerializeField, CustomLabel("攻撃コライダー")] protected Collider[] atkCollider;
     protected EnemyStatus status;                       // ステータス
     protected Animator animator;                        // アニメーター
     protected EnemyState nowState = EnemyState.Chase;   // 現在のステート (最初から追いかける
@@ -62,7 +63,7 @@ public class EnemyStateBase : MonoBehaviour
         }
     }
 
-
+    //--- public
     /// <summary>
     /// ステートを変更 (アニメーションイベントでも使用予定
     /// </summary>
@@ -79,6 +80,15 @@ public class EnemyStateBase : MonoBehaviour
         nowState = (EnemyState)state;
         // アニメーション
         animator.SetInteger("State", (int)nowState);
+    }
+
+    /// <summary>
+    /// 攻撃用コライダーをアクティブ化
+    /// </summary>
+    /// <param name="atk"></param>
+    public void ActiveCollider(int atk)
+    {
+        atkCollider[atk].enabled ^= true;
     }
 
 
@@ -104,6 +114,7 @@ public class EnemyStateBase : MonoBehaviour
     {
         if (delay <= 0f)
         {
+            delay = 0f;
             // ステートをChaseに変更
             SetEnemyState((int)EnemyState.Chase);
             return;
