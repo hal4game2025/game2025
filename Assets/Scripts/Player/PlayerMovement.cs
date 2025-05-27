@@ -103,7 +103,7 @@ public class PlayerMovement : IPlayerMovement
 
             // ë¨ìxÇíºê⁄ê›íË
             rb.linearVelocity = forceDirection.normalized * adjustedSwingForce;
-            Debug.Log(forceDirection.normalized * adjustedSwingForce);    
+           // Debug.Log(forceDirection.normalized * adjustedSwingForce);    
         }
 
 
