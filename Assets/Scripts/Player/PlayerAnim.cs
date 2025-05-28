@@ -48,7 +48,6 @@ public class PlayerAnim : MonoBehaviour
         Debug.Log("アニメーション：ヒットストップ終了");
     }
 
-
     /// <summary>
     /// カメラの向きに基づき、アニメーションを設定する
     /// </summary>

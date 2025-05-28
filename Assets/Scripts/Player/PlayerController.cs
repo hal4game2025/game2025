@@ -1,8 +1,9 @@
+using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
+using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField][Tooltip("ベースのパワー")] float swingForce = 10f;//ぱわー
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int max_speed_coef = 1;
     [SerializeField] PlayerMovement playerMovement;  //プレイヤーの動き
 
+
     [CustomLabel("最小ヒットストップ時間")]
     [SerializeField] float baseHitStopTime = 0.1f; //コンボ数が0の時のベースヒットストップ時間
     [CustomLabel("最大ヒットストップ時間")]
@@ -20,13 +22,24 @@ public class PlayerController : MonoBehaviour
     [CustomLabel("ヒットストップのコンボ倍率")]
     [SerializeField] float perComboHitStopTime = 0.05f; //コンボ数に応じ、だんだんヒットストップ時間が増える
 
+
     HammerCollision hammerCollision; //はんまーの当たり判定
     PlayerControls controls;         //入力アクション
     Vector2 inputDirection;          //入力方向
     PlayerStatus playerStatus;       //プレイヤーの状態
     PlayerAnim playerAnim;           //プレイヤーのアニメーション
     Coroutine hitStopCoroutine;      //ヒットストップのこるーちん
+
     bool isHitStop = false;         //ヒットストップ中かどうか
+
+
+    //追加
+    EnemyStatus enemyStatus;         //敵のステータス
+    public EnemyStatus EnemyStatus
+    {
+        get { return enemyStatus; }
+        set { enemyStatus = value; }
+    }
 
     Vector3 lookDirection;
     void Start()
@@ -86,14 +99,35 @@ public class PlayerController : MonoBehaviour
             return;
 
         //壁か敵or空中判定
-        if (hammerCollision.IsColliding())
+        if (hammerCollision.IsColliding() )
         {
+
             UpdatePlayerStatus();
 
             playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByDirection(inputDirection);
 
             lookDirection = playerMovement.ReturnDirection(inputDirection,cameraLook.rotation);//カメラの向きに合わせた方向を取得
+
+
+
+            List<EnemyStatus> enemyStatusList = hammerCollision.GetEnemyStatusList();
+            if (enemyStatusList != null)
+            {
+                for(int i = 0; i < enemyStatusList.Count; i++)
+                {
+                    enemyStatusList[i].Damage(playerStatus.Rate * 10);
+                }
+            }
+            else
+            {
+                enemyStatus = null;
+            }
+
+            if (enemyStatus != null)
+            {
+                enemyStatus.Damage(playerStatus.Rate * 10);
+            }
 
             //ヒットストップ開始
             StartHitStop(playerStatus.Combo);
@@ -112,7 +146,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("空気殴った");
             }
         }
-        
+
     }
 
     void OnHammerSwingMoveForward(InputAction.CallbackContext context)
@@ -130,6 +164,25 @@ public class PlayerController : MonoBehaviour
             playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByCameraForward();
             lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方向を取得
+
+
+            List<EnemyStatus> enemyStatusList = hammerCollision.GetEnemyStatusList();
+            if (enemyStatusList != null)
+            {
+                for(int i = 0; i < enemyStatusList.Count; i++)
+                {
+                    enemyStatusList[i].Damage(playerStatus.Rate * 10);
+                }
+            }
+            else
+            {
+                enemyStatus = null;
+            }
+
+            if (enemyStatus != null)
+            {
+                enemyStatus.Damage(playerStatus.Rate * 10);
+            }
 
             //ヒットストップ開始
             StartHitStop(playerStatus.Combo);
@@ -244,6 +297,7 @@ public class PlayerController : MonoBehaviour
         if (CameraMovement.instance.GetIsTurning())
             CameraMovement.instance.StopBackCamera();
     }
+
     /// <summary>
     /// イベントハンドラの解除
     /// </summary>

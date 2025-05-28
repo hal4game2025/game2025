@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 // 子オブジェクトの衝突判定を管理するスクリプト
 
@@ -11,40 +13,64 @@ public class HammerCollision : MonoBehaviour
 {
     [SerializeField] float collisionCheckRadius = 0.5f;
 
+
+    PlayerController playerController;
+
     string obstaclesTag;
     string enemyTag;
+
+
+    List<EnemyStatus> enemyStatusList = new List<EnemyStatus>();
 
     private void Start()
     {
         obstaclesTag = "Obstacles";
         enemyTag = "Enemy";
+        playerController = GetComponentInParent<PlayerController>();
     }
 
     public bool IsColliding()
     {
+        //
+        enemyStatusList.Clear(); // 毎回リストをクリア
+
         // 現在の位置を中心にして、指定した半径内にあるコライダーを取得
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, collisionCheckRadius);
-       
 
+
+        bool isEnemyOrObstaclesTag = false;
+        playerController.EnemyStatus = null; // 何とも衝突していなければnull
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.gameObject.CompareTag(obstaclesTag) || hitCollider.gameObject.CompareTag(enemyTag) || hitCollider.gameObject.CompareTag("floor"))
             {
-                // 衝突しているオブジェクトが障害物または敵の場合
-                //Debug.Log(hitCollider.gameObject.name);
-                //Debug.Log(hitCollider.gameObject.tag);
-                //Debug.Log("衝突中");
-                return true;
-            }
-            else
-            {
-                //Debug.Log("衝突していない");
+                // エネミーと衝突した場合はplayerController.EnemyStatusにセット
+                if (hitCollider.gameObject.CompareTag(enemyTag))
+                {
+                    Debug.Log("敵と衝突ああああああああああああああああああああああああああああああああああ");
+                    playerController.EnemyStatus = hitCollider.gameObject.GetComponentInParent<EnemyStatus>();
+                    if(playerController.EnemyStatus != null)
+                    {
+                       enemyStatusList.Add(playerController.EnemyStatus);
+                    }
+                }
+                else
+                {
+                    playerController.EnemyStatus = null; // エネミー以外ならnullにリセット
+                }
 
-                return false;
+                isEnemyOrObstaclesTag = true;
             }
+
         }
 
-        return false;
+
+        return isEnemyOrObstaclesTag; // エネミーまたは障害物に衝突しているかどうかを返す
+    }
+
+    public  List<EnemyStatus> GetEnemyStatusList()
+    {
+        return enemyStatusList;
     }
 
     //Gizmosを使用して球状の範囲を表示

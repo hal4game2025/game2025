@@ -39,7 +39,11 @@ public class EnemyStatus : MonoBehaviour
     void Update()
     {
         // 仮で非表示
-        if (nowHP <= 0f) gameObject.SetActive(false);
+        if (nowHP <= 0f)
+        {
+            gameObject.SetActive(false);
+            Debug.Log("HPが０になったので非表示");
+        }
     }
 
     /// <summary>
@@ -50,6 +54,7 @@ public class EnemyStatus : MonoBehaviour
     {
         if (nowHP <= 0f) return;
         nowHP -= damage;
+        Debug.Log("ダメージを与えた: " + damage);
     }
         
 }

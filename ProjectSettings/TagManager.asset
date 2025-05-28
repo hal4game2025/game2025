@@ -7,7 +7,7 @@ TagManager:
   - Obstacles
   - Enemy
   - floor
-  - EnemyAtk
+  - ENEMY
   layers:
   - Default
   - TransparentFX
