@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class EnemyCarb : EnemyStateBase
 {
+    /// <summary>
+    /// 行動の種類
+    /// </summary>
     enum ActionKind
     {
         Attack1,    // 振り下ろす攻撃
         Attack2,    // 薙ぎ払い
         Max
     }
-
-    [SerializeField, CustomLabel("攻撃コライダー")] Collider[] atkCollider;
 
     ActionKind action;
     
@@ -31,6 +32,7 @@ public class EnemyCarb : EnemyStateBase
             // 行動決定
             action = (ActionKind)i;
             // 値更新
+            status.atkDatas[i].nowCD = 0f;                          // リセット
             status.atkDatas[i].nowCD = status.atkDatas[i].maxCD;    // クールダウン適用
             delay = status.atkDatas[i].delay;                       // ディレイ適用
             // ステート変更
@@ -67,12 +69,5 @@ public class EnemyCarb : EnemyStateBase
     private void Attack2()
     {
 
-    }
-
-
-    //--- public
-    public void ActiveCollider(int atk)
-    {
-        atkCollider[atk].enabled ^= true;
     }
 }
