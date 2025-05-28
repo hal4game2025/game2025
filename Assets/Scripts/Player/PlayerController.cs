@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float perComboHitStopTime = 0.05f; //コンボ数に応じ、だんだんヒットストップ時間が増える
 
 
+    EnemyStatus[] enemyList; //衝突した敵のリスト
+
     HammerCollision hammerCollision; //はんまーの当たり判定
     PlayerControls controls;         //入力アクション
     Vector2 inputDirection;          //入力方向
@@ -63,7 +65,19 @@ public class PlayerController : MonoBehaviour
         controls.Player.HammerSwingMoveForward.performed += OnHammerSwingMoveForward;
         controls.Enable();
 
-        
+
+        //敵のリストを取得
+        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
+        List<EnemyStatus> enemyStatusList = new List<EnemyStatus>();
+        foreach (var obj in enemyObjects)
+        {
+            EnemyStatus status = obj.GetComponent<EnemyStatus>();
+            if (status != null)
+            {
+                enemyStatusList.Add(status);
+            }
+        }
+        enemyList = enemyStatusList.ToArray();
     }
 
     void Update()
@@ -111,12 +125,17 @@ public class PlayerController : MonoBehaviour
 
 
 
-            List<EnemyStatus> enemyStatusList = hammerCollision.GetEnemyStatusList();
-            if (enemyStatusList != null)
+            // 共通するEnemyStatusだけにダメージ
+            var hammerEnemies = hammerCollision.GetEnemyStatusList();
+            if (hammerEnemies != null && enemyList != null)
             {
-                for(int i = 0; i < enemyStatusList.Count; i++)
+                foreach (var enemy in hammerEnemies)
                 {
-                    enemyStatusList[i].Damage(playerStatus.Rate);
+                    // enemyList（配列）に含まれているかチェック
+                    if (System.Array.Exists(enemyList, e => e == enemy))
+                    {
+                        enemy.Damage(playerStatus.Rate);
+                    }
                 }
             }
 
@@ -157,12 +176,17 @@ public class PlayerController : MonoBehaviour
             lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方向を取得
 
 
-            List<EnemyStatus> enemyStatusList = hammerCollision.GetEnemyStatusList();
-            if (enemyStatusList != null)
+            // 共通するEnemyStatusだけにダメージ
+            var hammerEnemies = hammerCollision.GetEnemyStatusList();
+            if (hammerEnemies != null && enemyList != null)
             {
-                for(int i = 0; i < enemyStatusList.Count; i++)
+                foreach (var enemy in hammerEnemies)
                 {
-                    enemyStatusList[i].Damage(playerStatus.Rate);
+                    // enemyList（配列）に含まれているかチェック
+                    if (System.Array.Exists(enemyList, e => e == enemy))
+                    {
+                        enemy.Damage(playerStatus.Rate);
+                    }
                 }
             }
 
