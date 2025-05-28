@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using MySystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField][Tooltip("ベースのパワー")] float swingForce = 10f;//ぱわー
@@ -32,6 +33,12 @@ public class PlayerController : MonoBehaviour
 
     bool isHitStop = false;         //ヒットストップ中かどうか
 
+    [SerializeField]
+    SoundManager soundManager;
+    [SerializeField]
+    pair<string,AudioClip>[] playerSE;
+    Dictionary<string, AudioClip> seList;
+    
 
     //追加
     EnemyStatus enemyStatus;         //敵のステータス
@@ -44,6 +51,8 @@ public class PlayerController : MonoBehaviour
     Vector3 lookDirection;
     void Start()
     {
+        
+
         // マウス固定＆非表示
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -63,6 +72,11 @@ public class PlayerController : MonoBehaviour
         controls.Player.HammerSwingMoveForward.performed += OnHammerSwingMoveForward;
         controls.Enable();
 
+        seList = new Dictionary<string, AudioClip>();
+        foreach (pair<string,AudioClip> temp in playerSE)
+        {
+            seList.Add(temp.Key, temp.Value);
+        }
         
     }
 
@@ -99,7 +113,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         //壁か敵or空中判定
-        if (hammerCollision.IsColliding() )
+        if (hammerCollision.IsColliding())
         {
 
             UpdatePlayerStatus();
@@ -107,14 +121,14 @@ public class PlayerController : MonoBehaviour
             playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
             playerAnim.SetAnimationByDirection(inputDirection);
 
-            lookDirection = playerMovement.ReturnDirection(inputDirection,cameraLook.rotation);//カメラの向きに合わせた方向を取得
+            lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
 
 
 
             List<EnemyStatus> enemyStatusList = hammerCollision.GetEnemyStatusList();
             if (enemyStatusList != null)
             {
-                for(int i = 0; i < enemyStatusList.Count; i++)
+                for (int i = 0; i < enemyStatusList.Count; i++)
                 {
                     enemyStatusList[i].Damage(playerStatus.Rate);
                 }
@@ -123,28 +137,29 @@ public class PlayerController : MonoBehaviour
             //ヒットストップ開始
             StartHitStop(playerStatus.Combo);
             Debug.Log("壁か敵殴った");
+            soundManager.Play(seList["swing"]);
         }
-        else
+        else if (playerStatus.CanAirMove)
         {
-            if (playerStatus.CanAirMove)
-            {
-                // 空中のジャンプ回数を数える
-                playerStatus.IncrementAirMoveCount();
+            // 空中のジャンプ回数を数える
+            playerStatus.IncrementAirMoveCount();
 
-                playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
-                playerAnim.SetAnimationByDirection(inputDirection);
-                lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
-                Debug.Log("空気殴った");
-            }
+            playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
+            playerAnim.SetAnimationByDirection(inputDirection);
+            lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
+            Debug.Log("空気殴った");
+            soundManager.Play(seList["swing"]);
+
         }
+
+        
 
     }
 
     void OnHammerSwingMoveForward(InputAction.CallbackContext context)
     {
         //スタン状態か、ヒットストップ状態なら処理しない
-        if (playerStatus.IsStunned ||
-            isHitStop)
+        if (playerStatus.IsStunned || isHitStop)
             return;
 
         //壁か敵or空中判定
@@ -183,6 +198,9 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("空気殴った");
             }
         }
+
+        soundManager.Play(seList["swing"]);
+
     }
 
     void UpdatePlayerStatus()

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class SoundManager : SingletonMonoBehaviour<SoundManager>
 {
     [SerializeField]
@@ -40,7 +41,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     /// âπê∫ÇÃçƒê∂
     /// </summary>
     /// <param name="clip"></param>
-    void Play(in AudioClip clip, bool isLoop)
+    public void Play(in AudioClip clip, bool isLoop = false)
     {
         AudioSource audioSource = GetUnusedAudioSource();
         if (audioSource == null) return; //çƒê∂Ç≈Ç´Ç‹ÇπÇÒÇ≈ÇµÇΩ
