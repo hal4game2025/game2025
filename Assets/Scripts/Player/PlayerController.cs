@@ -116,17 +116,8 @@ public class PlayerController : MonoBehaviour
             {
                 for(int i = 0; i < enemyStatusList.Count; i++)
                 {
-                    enemyStatusList[i].Damage(playerStatus.Rate * 10);
+                    enemyStatusList[i].Damage(playerStatus.Rate);
                 }
-            }
-            else
-            {
-                enemyStatus = null;
-            }
-
-            if (enemyStatus != null)
-            {
-                enemyStatus.Damage(playerStatus.Rate * 10);
             }
 
             //ヒットストップ開始
@@ -171,17 +162,8 @@ public class PlayerController : MonoBehaviour
             {
                 for(int i = 0; i < enemyStatusList.Count; i++)
                 {
-                    enemyStatusList[i].Damage(playerStatus.Rate * 10);
+                    enemyStatusList[i].Damage(playerStatus.Rate);
                 }
-            }
-            else
-            {
-                enemyStatus = null;
-            }
-
-            if (enemyStatus != null)
-            {
-                enemyStatus.Damage(playerStatus.Rate * 10);
             }
 
             //ヒットストップ開始
