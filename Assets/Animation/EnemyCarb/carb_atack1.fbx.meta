@@ -63,7 +63,7 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.48184615
-        functionName: ActiveCollider
+        functionName: AtkColidON
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -77,7 +77,7 @@ ModelImporter:
         intParameter: 1
         messageOptions: 0
       - time: 0.7920001
-        functionName: ActiveCollider
+        functionName: AtkColidOFF
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
