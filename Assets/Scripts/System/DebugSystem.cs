@@ -26,9 +26,9 @@ public class DebugSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 cameraFront = cam.transform.forward;
-
-        renderer.SetPosition(0, transform.position);
-        renderer.SetPosition(1, transform.position + cameraFront * range);
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            sceneManager.ChangeScene("TestScene");
+        }
     }
 }
