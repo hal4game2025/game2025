@@ -11071,6 +11071,10 @@ PrefabInstance:
       propertyPath: cameraLook
       value: 
       objectReference: {fileID: 1108842477}
+    - target: {fileID: 4658772409171152569, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5074694956606986746, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: m_Name
       value: player
@@ -11114,6 +11118,14 @@ PrefabInstance:
     - target: {fileID: 5559448005628052288, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797576671443125886, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767420425988174799, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
