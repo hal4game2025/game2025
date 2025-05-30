@@ -11479,6 +11479,10 @@ PrefabInstance:
       propertyPath: 'enemyList.Array.data[0]'
       value: 
       objectReference: {fileID: 832238588}
+    - target: {fileID: 4658772409171152569, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5074694956606986746, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: m_Name
       value: player
