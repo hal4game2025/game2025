@@ -36,6 +36,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     async public void ChangeScene(string sceneName)
     {
         await fadeUtils.Fade(FadeUtils.E_FADE_TYPE.FADE_OUT); // フェードアウト
+        SoundManager.Instance.StopAll(); // 音を止める
         await UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
         await fadeUtils.Fade(FadeUtils.E_FADE_TYPE.FADE_IN); // フェードイン
     }

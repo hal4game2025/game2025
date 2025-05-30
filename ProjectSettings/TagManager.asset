@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - floor
   - ENEMY
+  - EnemyAtk
+  - SceneManager
   layers:
   - Default
   - TransparentFX

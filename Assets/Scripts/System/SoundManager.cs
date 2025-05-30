@@ -58,6 +58,16 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
             audioSource.loop = false;
             audioSource.Play();
         }
+    }
 
+    public void StopAll()
+    {
+        foreach (AudioSource audioSource in audioSourceList)
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+        }
     }
 }

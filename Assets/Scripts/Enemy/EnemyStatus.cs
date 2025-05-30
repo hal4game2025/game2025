@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyStatus : MonoBehaviour
 {
@@ -21,7 +22,6 @@ public class EnemyStatus : MonoBehaviour
     [CustomLabel("攻撃情報"), Tooltip("優先順位が高い行動から")] public AtkData[] atkDatas;
     [HideInInspector] public bool isAtk{ get; set; }
 
-
     public float MaxHP { get => maxHP; }
     public float HP { get => nowHP; }
     public float MoveSpeed { get => moveSpeed; }
@@ -34,6 +34,7 @@ public class EnemyStatus : MonoBehaviour
         isAtk = false;      // 攻撃中じゃない
         // クールダウン適用
         for (int i = 0; i < atkDatas.Length; ++i) atkDatas[i].nowCD = atkDatas[i].maxCD;
+ 
     }
 
     void Update()
@@ -42,6 +43,7 @@ public class EnemyStatus : MonoBehaviour
         if (nowHP <= 0f)
         {
             gameObject.SetActive(false);
+            SceneManager.Instance.ChangeScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
             Debug.Log("HPが０になったので非表示");
         }
     }
