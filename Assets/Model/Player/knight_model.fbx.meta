@@ -3,7 +3,27 @@ guid: 4c97d4abb3f493d498f9354813c2ac5c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Default_Material
+    second: {fileID: 2100000, guid: 54663377a64697e4b9baa55e5fd24ac3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hammer_tex1_hammer_c
+    second: {fileID: 2100000, guid: b7be79361183c8e4b88dc64d31c579be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: knight_c1
+    second: {fileID: 2100000, guid: c72467f1579c6a2418235c6182f2e5f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: knight_c2
+    second: {fileID: 2100000, guid: 25e1def6c51dc2a4b9d01dce4aca114a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

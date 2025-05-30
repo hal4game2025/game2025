@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     bool isHitStop = false;         //ヒットストップ中かどうか
 
+<<<<<<< HEAD
     [SerializeField]
     SoundManager soundManager;
     [SerializeField]
@@ -54,6 +55,9 @@ public class PlayerController : MonoBehaviour
         set { enemyStatus = value; }
     }
 
+=======
+    //追
+>>>>>>> origin/future/rukina/newStage
     Vector3 lookDirection;
     void Start()
     {
@@ -129,7 +133,9 @@ public class PlayerController : MonoBehaviour
         if (playerStatus.IsStunned ||
             isHitStop)
             return;
+        CollisionType hitCollisionType = hammerCollision.GetCollidingType();
 
+<<<<<<< HEAD
         //壁か敵or空中判定
         if (hammerCollision.IsColliding())
         {
@@ -176,6 +182,32 @@ public class PlayerController : MonoBehaviour
             lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
             Debug.Log("空気殴った");
             soundManager.Play(seList["swing"]);
+=======
+        switch (hitCollisionType)
+        {
+            case CollisionType.Enemy:
+                UpdatePlayerStatus();
+                playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
+                SwingAction();
+                EnemyDamage();
+                StartHitStop(playerStatus.Combo);
+                break;
+            case CollisionType.Obstacles:  
+                UpdatePlayerStatus();
+                playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
+                SwingAction();
+                break;
+            case CollisionType.None:
+
+                if (playerStatus.CanAirMove)
+                {
+                    // 空中のジャンプ回数を数える
+                    playerStatus.IncrementAirMoveCount();
+                    playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
+                    SwingAction();
+                }
+                break;
+>>>>>>> origin/future/rukina/newStage
 
         }
 
@@ -189,9 +221,10 @@ public class PlayerController : MonoBehaviour
         if (playerStatus.IsStunned || isHitStop)
             return;
 
-        //壁か敵or空中判定
-        if (hammerCollision.IsColliding())
+        CollisionType hitCollisionType = hammerCollision.GetCollidingType();
+        switch (hitCollisionType)
         {
+<<<<<<< HEAD
             UpdatePlayerStatus();
 
             playerMovement.SwingHammerMoveForward(playerCamera.transform.forward,swingForce, playerStatus.Combo);
@@ -230,12 +263,78 @@ public class PlayerController : MonoBehaviour
                 playerAnim.SetAnimationByCameraForward();
                 lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方向を取得
                 Debug.Log("空気殴った");
+=======
+            case CollisionType.Enemy:
+                UpdatePlayerStatus();
+
+                playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward, swingForce, playerStatus.Combo);
+                SwingActionForward();
+                EnemyDamage();
+                StartHitStop(playerStatus.Combo);
+                break;
+            case CollisionType.Obstacles:
+                UpdatePlayerStatus();
+                playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward, swingForce, playerStatus.Combo);
+                SwingActionForward();
+                break;
+            case CollisionType.None:
+
+                if (playerStatus.CanAirMove)
+                {
+                    // 空中のジャンプ回数を数える
+                    playerStatus.IncrementAirMoveCount();
+                    playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward, swingForce, playerStatus.Combo);
+                    SwingActionForward();
+                }
+                break;
+
+        }
+
+    }
+
+    void EnemyDamage()
+    {
+
+        List<EnemyStatus> enemyStatusList = hammerCollision.GetEnemyStatusList();
+        if (enemyStatusList != null)
+        {
+            for (int i = 0; i < enemyStatusList.Count; i++)
+            {
+                enemyStatusList[i].Damage(playerStatus.Rate);
+>>>>>>> origin/future/rukina/newStage
             }
         }
 
         soundManager.Play(seList["swing"]);
 
     }
+
+    void SwingAction()
+    {
+        playerAnim.SetAnimationByDirection(inputDirection);
+        lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
+    }
+
+    void SwingActionForward()
+    {
+        playerAnim.SetAnimationByCameraForward();
+        lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方
+    }
+
+    void SwingActionAir()
+    {
+        if (playerStatus.CanAirMove)
+        {
+            // 空中のジャンプ回数を数える
+            playerStatus.IncrementAirMoveCount();
+
+            playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
+            playerAnim.SetAnimationByDirection(inputDirection);
+            lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
+            Debug.Log("空気殴った");
+        }
+    }
+
 
     void UpdatePlayerStatus()
     {
