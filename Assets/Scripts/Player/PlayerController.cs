@@ -32,15 +32,7 @@ public class PlayerController : MonoBehaviour
 
     bool isHitStop = false;         //ヒットストップ中かどうか
 
-
-    //追加
-    EnemyStatus enemyStatus;         //敵のステータス
-    public EnemyStatus EnemyStatus
-    {
-        get { return enemyStatus; }
-        set { enemyStatus = value; }
-    }
-
+    //追
     Vector3 lookDirection;
     void Start()
     {
@@ -97,45 +89,33 @@ public class PlayerController : MonoBehaviour
         if (playerStatus.IsStunned ||
             isHitStop)
             return;
+        CollisionType hitCollisionType = hammerCollision.GetCollidingType();
 
-        //壁か敵or空中判定
-        if (hammerCollision.IsColliding() )
+        switch (hitCollisionType)
         {
-
-            UpdatePlayerStatus();
-
-            playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
-            playerAnim.SetAnimationByDirection(inputDirection);
-
-            lookDirection = playerMovement.ReturnDirection(inputDirection,cameraLook.rotation);//カメラの向きに合わせた方向を取得
-
-
-
-            List<EnemyStatus> enemyStatusList = hammerCollision.GetEnemyStatusList();
-            if (enemyStatusList != null)
-            {
-                for(int i = 0; i < enemyStatusList.Count; i++)
-                {
-                    enemyStatusList[i].Damage(playerStatus.Rate);
-                }
-            }
-
-            //ヒットストップ開始
-            StartHitStop(playerStatus.Combo);
-            Debug.Log("壁か敵殴った");
-        }
-        else
-        {
-            if (playerStatus.CanAirMove)
-            {
-                // 空中のジャンプ回数を数える
-                playerStatus.IncrementAirMoveCount();
-
+            case CollisionType.Enemy:
+                UpdatePlayerStatus();
                 playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
-                playerAnim.SetAnimationByDirection(inputDirection);
-                lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
-                Debug.Log("空気殴った");
-            }
+                SwingAction();
+                EnemyDamage();
+                StartHitStop(playerStatus.Combo);
+                break;
+            case CollisionType.Obstacles:  
+                UpdatePlayerStatus();
+                playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
+                SwingAction();
+                break;
+            case CollisionType.None:
+
+                if (playerStatus.CanAirMove)
+                {
+                    // 空中のジャンプ回数を数える
+                    playerStatus.IncrementAirMoveCount();
+                    playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
+                    SwingAction();
+                }
+                break;
+
         }
 
     }
@@ -147,43 +127,76 @@ public class PlayerController : MonoBehaviour
             isHitStop)
             return;
 
-        //壁か敵or空中判定
-        if (hammerCollision.IsColliding())
+        CollisionType hitCollisionType = hammerCollision.GetCollidingType();
+        switch (hitCollisionType)
         {
-            UpdatePlayerStatus();
-
-            playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward,swingForce, playerStatus.Combo);
-            playerAnim.SetAnimationByCameraForward();
-            lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方向を取得
-
-
-            List<EnemyStatus> enemyStatusList = hammerCollision.GetEnemyStatusList();
-            if (enemyStatusList != null)
-            {
-                for(int i = 0; i < enemyStatusList.Count; i++)
-                {
-                    enemyStatusList[i].Damage(playerStatus.Rate);
-                }
-            }
-
-            //ヒットストップ開始
-            StartHitStop(playerStatus.Combo);
-            Debug.Log("壁か敵殴った");
-        }
-        else
-        {
-            if (playerStatus.CanAirMove)
-            {
-                // 空中のジャンプ回数を数える
-                playerStatus.IncrementAirMoveCount();
+            case CollisionType.Enemy:
+                UpdatePlayerStatus();
 
                 playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward, swingForce, playerStatus.Combo);
-                playerAnim.SetAnimationByCameraForward();
-                lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方向を取得
-                Debug.Log("空気殴った");
+                SwingActionForward();
+                EnemyDamage();
+                StartHitStop(playerStatus.Combo);
+                break;
+            case CollisionType.Obstacles:
+                UpdatePlayerStatus();
+                playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward, swingForce, playerStatus.Combo);
+                SwingActionForward();
+                break;
+            case CollisionType.None:
+
+                if (playerStatus.CanAirMove)
+                {
+                    // 空中のジャンプ回数を数える
+                    playerStatus.IncrementAirMoveCount();
+                    playerMovement.SwingHammerMoveForward(CameraMovement.instance.transform.forward, swingForce, playerStatus.Combo);
+                    SwingActionForward();
+                }
+                break;
+
+        }
+
+    }
+
+    void EnemyDamage()
+    {
+
+        List<EnemyStatus> enemyStatusList = hammerCollision.GetEnemyStatusList();
+        if (enemyStatusList != null)
+        {
+            for (int i = 0; i < enemyStatusList.Count; i++)
+            {
+                enemyStatusList[i].Damage(playerStatus.Rate);
             }
         }
     }
+
+    void SwingAction()
+    {
+        playerAnim.SetAnimationByDirection(inputDirection);
+        lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
+    }
+
+    void SwingActionForward()
+    {
+        playerAnim.SetAnimationByCameraForward();
+        lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方
+    }
+
+    void SwingActionAir()
+    {
+        if (playerStatus.CanAirMove)
+        {
+            // 空中のジャンプ回数を数える
+            playerStatus.IncrementAirMoveCount();
+
+            playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
+            playerAnim.SetAnimationByDirection(inputDirection);
+            lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
+            Debug.Log("空気殴った");
+        }
+    }
+
 
     void UpdatePlayerStatus()
     {

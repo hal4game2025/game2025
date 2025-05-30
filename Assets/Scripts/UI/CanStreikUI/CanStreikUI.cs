@@ -19,10 +19,10 @@ public class CanStreikUI : MonoBehaviour
     private void Update()
     {
         visualElement.style.display = DisplayStyle.None;
-
+        CollisionType collisionType = hammerCollision.GetCollidingType();
         if (!playerStatus.IsStunned)
         {
-            if (hammerCollision.IsColliding() || playerStatus.CanAirMove)
+            if (collisionType == CollisionType.Enemy || collisionType == CollisionType.Obstacles || playerStatus.CanAirMove)
             {   //show
                 visualElement.style.display = DisplayStyle.Flex;
             }
