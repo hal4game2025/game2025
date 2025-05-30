@@ -70,4 +70,17 @@ public class EnemyCarb : EnemyStateBase
     {
 
     }
+
+    //==AnimationEventを使用してコライダーを有効化・無効化する==
+     void AtkColidON()
+    {
+        // コライダーを有効化
+        ActiveCollider((int)action);
+    }
+     void AtkColidOFF()
+    {
+        // コライダーを無効化
+        ActiveCollider((int)action);
+        status.isAtk = false; // 攻撃中フラグを下ろす
+    }
 }

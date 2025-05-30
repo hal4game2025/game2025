@@ -10054,6 +10054,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: carb
       objectReference: {fileID: 0}
+    - target: {fileID: 8691056837541598648, guid: 8c7b44df39bdee24bbf73ee72dc8283b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9209077720478017690, guid: 8c7b44df39bdee24bbf73ee72dc8283b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11486,6 +11490,10 @@ PrefabInstance:
     - target: {fileID: 5074694956606986746, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074694956606986746, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5559448005628052288, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: m_LocalPosition.x

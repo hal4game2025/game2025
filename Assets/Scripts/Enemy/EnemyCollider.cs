@@ -1,4 +1,5 @@
 using UnityEngine;
+using static EnemyStateBase;
 using static UnityEditor.VersionControl.Asset;
 
 public class EnemyCollider : MonoBehaviour
@@ -9,6 +10,7 @@ public class EnemyCollider : MonoBehaviour
     {
         status = GetComponentInParent<EnemyStatus>();
         if (!status) Debug.Log("EnemyCollider 敵のステータス取得失敗");
+
     }
 
     /// <summary>
