@@ -163,12 +163,12 @@ public class PlayerController : MonoBehaviour
     void EnemyDamage()
     {
 
-        List<EnemyStatus> enemyStatusList = hammerCollision.GetEnemyStatusList();
-        if (enemyStatusList != null)
+        List<EnemyCollider> enemyColliderList = hammerCollision.GetEnemyColliderList();
+        if (enemyColliderList != null)
         {
-            for (int i = 0; i < enemyStatusList.Count; i++)
+            for (int i = 0; i < enemyColliderList.Count; i++)
             {
-                enemyStatusList[i].Damage(playerStatus.Rate);
+                enemyColliderList[i].AddDamage(playerStatus.Rate);
             }
         }
     }

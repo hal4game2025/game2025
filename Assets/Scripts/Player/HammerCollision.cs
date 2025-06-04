@@ -27,7 +27,7 @@ public class HammerCollision : MonoBehaviour
     string enemyTag;
     string floorTag;
 
-    List<EnemyStatus> enemyStatusList = new List<EnemyStatus>();
+    List<EnemyCollider> enemyColliderList = new List<EnemyCollider>();
 
     private void Start()
     {
@@ -47,7 +47,7 @@ public class HammerCollision : MonoBehaviour
     public CollisionType GetCollidingType()
     {
         //
-        enemyStatusList.Clear(); // 毎回リストをクリア
+        enemyColliderList.Clear(); // 毎回リストをクリア
         // 現在の位置を中心にして、指定した半径内にあるコライダーを取得
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, collisionCheckRadius);
 
@@ -58,10 +58,10 @@ public class HammerCollision : MonoBehaviour
             if(hitCollider.gameObject.CompareTag(enemyTag))
             {
                 hitEnemy = true;
-                var enemyStatus = hitCollider.gameObject.GetComponentInChildren<EnemyStatus>();
+                var enemyStatus = hitCollider.gameObject.GetComponent<EnemyCollider>();
                 if (enemyStatus != null)
                 {
-                    enemyStatusList.Add(enemyStatus);
+                    enemyColliderList.Add(enemyStatus);
                 }
             }
             else if (hitCollider.gameObject.CompareTag(obstaclesTag))
@@ -76,9 +76,9 @@ public class HammerCollision : MonoBehaviour
         return CollisionType.None; // 衝突なし
     }
 
-    public  List<EnemyStatus> GetEnemyStatusList()
+    public  List<EnemyCollider> GetEnemyColliderList()
     {
-        return enemyStatusList;
+        return enemyColliderList;
     }
 
     //Gizmosを使用して球状の範囲を表示
