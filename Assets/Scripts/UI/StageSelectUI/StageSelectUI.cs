@@ -2,17 +2,20 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
 public class StageSelectUI : MonoBehaviour
 {
     UIDocument stageSelectUIDocument;
     UnityEngine.UIElements.Button button;
-    [SerializeField] SceneManager sceneManager;
+    SceneManager sceneManager;
 
     [SerializeField] string stage1;
     [SerializeField] string stage2;
     void Start()
     {
-
+        // マウス使えるように設定
+        UnityEngine.Cursor.visible = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
         stageSelectUIDocument = GetComponent<UIDocument>();
 
         // VisualElement のルート取得
@@ -25,6 +28,9 @@ public class StageSelectUI : MonoBehaviour
         // イベント登録
         stage1Button?.RegisterCallback<ClickEvent>(evt => sceneManager.ChangeScene(stage1));
         stage2Button?.RegisterCallback<ClickEvent>(evt => sceneManager.ChangeScene(stage2));
+
+        // シーンマネージャーの取得
+        sceneManager = SceneManager.Instance;
     }
 
     void Update()
