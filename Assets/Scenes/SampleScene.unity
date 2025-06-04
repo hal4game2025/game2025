@@ -23425,6 +23425,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 243969680828074136, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1428186863122343957, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: cameraLook
       value: 

@@ -87,6 +87,9 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     void OnHammerSwing(InputAction.CallbackContext context)
     {
+        if (gameObject.activeInHierarchy == false)
+            return;
+
         //スタン状態か、ヒットストップ状態なら処理しない
         if (playerStatus.IsStunned ||
             isHitStop)
@@ -124,6 +127,9 @@ public class PlayerController : MonoBehaviour
 
     void OnHammerSwingMoveForward(InputAction.CallbackContext context)
     {
+        if(gameObject.activeInHierarchy == false)
+            return;
+
         //スタン状態か、ヒットストップ状態なら処理しない
         if (playerStatus.IsStunned ||
             isHitStop)
@@ -217,6 +223,9 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     void OnDirection(InputAction.CallbackContext context)
     {
+        if (gameObject.activeInHierarchy == false)
+            return;
+
         //スタン状態なら処理しない
         if (playerStatus.IsStunned)
             return;
