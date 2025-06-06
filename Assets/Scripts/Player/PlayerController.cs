@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using MySystem;
+
 public class PlayerController : MonoBehaviour
 {
     [SerializeField][Tooltip("ベースのパワー")] float swingForce = 10f;//ぱわー
@@ -34,6 +36,12 @@ public class PlayerController : MonoBehaviour
 
     bool isHitStop = false;         //ヒットストップ中かどうか
 
+    [SerializeField]
+    pair<string, AudioClip>[] playerSE;
+    Dictionary<string, AudioClip> playerSEDict = new Dictionary<string, AudioClip>(); //プレイヤーのSEを格納する辞書
+
+
+
     //追
     Vector3 lookDirection;
     void Start()
@@ -57,6 +65,10 @@ public class PlayerController : MonoBehaviour
         controls.Player.HammerSwingMoveForward.performed += OnHammerSwingMoveForward;
         controls.Enable();
 
+        foreach(pair<string,AudioClip> se in playerSE)
+        {
+            playerSEDict.Add(se.Key, se.Value);
+        }
 
     }
 
@@ -101,11 +113,14 @@ public class PlayerController : MonoBehaviour
                 SwingAction();
                 EnemyDamage();
                 StartHitStop(playerStatus.Combo);
+                SoundManager.Instance.Play(playerSEDict["attack"]);
                 break;
             case CollisionType.Obstacles:
                 UpdatePlayerStatus();
                 playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
+                SoundManager.Instance.Play(playerSEDict["swing"]);
                 SwingAction();
+           
                 break;
             case CollisionType.None:
 
@@ -114,11 +129,14 @@ public class PlayerController : MonoBehaviour
                     // 空中のジャンプ回数を数える
                     playerStatus.IncrementAirMoveCount();
                     playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
+                    SoundManager.Instance.Play(playerSEDict["swing"]);
                     SwingAction();
                 }
                 break;
 
         }
+
+        
         playerAnim.SetAnimationByDirection(inputDirection);
     }
 
@@ -138,11 +156,13 @@ public class PlayerController : MonoBehaviour
                 playerMovement.SwingHammerMoveForward(cameraMovement.transform.forward, swingForce, playerStatus.Combo);
                 SwingActionForward();
                 EnemyDamage();
+                SoundManager.Instance.Play(playerSEDict["attack"]);
                 StartHitStop(playerStatus.Combo);
                 break;
             case CollisionType.Obstacles:
                 UpdatePlayerStatus();
                 playerMovement.SwingHammerMoveForward(cameraMovement.transform.forward, swingForce, playerStatus.Combo);
+                SoundManager.Instance.Play(playerSEDict["swing"]);
                 SwingActionForward();
                 break;
             case CollisionType.None:
@@ -152,6 +172,7 @@ public class PlayerController : MonoBehaviour
                     // 空中のジャンプ回数を数える
                     playerStatus.IncrementAirMoveCount();
                     playerMovement.SwingHammerMoveForward(cameraMovement.transform.forward, swingForce, playerStatus.Combo);
+                    SoundManager.Instance.Play(playerSEDict["swing"]);
                     SwingActionForward();
                 }
                 break;
