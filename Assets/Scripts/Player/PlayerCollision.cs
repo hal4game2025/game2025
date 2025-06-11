@@ -48,6 +48,7 @@ public class PlayerCollision : MonoBehaviour
 
         if (collision.gameObject.tag == "floor")
         {
+            playerStatus.isFloor = true;    // 床に接地
             Debug.Log("床に衝突中");
 
             if(!isRunning)
@@ -55,6 +56,12 @@ public class PlayerCollision : MonoBehaviour
                 StartCoroutine(UpdateRate());
             }   
         }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        // 床から離れたかチェック
+        if (collision.gameObject.tag == "floor") playerStatus.isFloor = false;
     }
 
     IEnumerator UpdateRate()
