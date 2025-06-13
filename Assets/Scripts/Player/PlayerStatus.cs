@@ -106,10 +106,7 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 空中の移動回数をリセットする
-    /// </summary>
-    //public void ResetAirMoveCount() => airMoveCount = 0;
+
 
     /// <summary>
     /// 空中の移動回数を数える
@@ -159,4 +156,13 @@ public class PlayerStatus : MonoBehaviour
         isMuteki = false;
         Debug.Log("スタン解除");
     }
+
+
+    private void OnDisable()
+    {
+        StopCoroutine(StunCoroutine());
+        isStunned = false;
+
+    }
+    
 }
