@@ -1193,7 +1193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494e647b3cbeb4d49ad3ecee47ac4123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStatus: {fileID: 779836077}
+  playerStatus: {fileID: 1504185087}
   comboUI:
   - {fileID: 220910239}
   - {fileID: 1698436524}
@@ -5314,7 +5314,7 @@ MonoBehaviour:
   - {fileID: 414599744}
   - {fileID: 1580076560}
   - {fileID: 62250332}
-  playerStatus: {fileID: 779836077}
+  playerStatus: {fileID: 1504185087}
 --- !u!1 &510344450
 GameObject:
   m_ObjectHideFlags: 0
@@ -8841,22 +8841,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 256456177}
   m_SourcePrefab: {fileID: 100100000, guid: 1211a8a70ccbf8941b4f049e54df814a, type: 3}
---- !u!114 &779836077 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1578316493717532742, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
-  m_PrefabInstance: {fileID: 4396038711639705304}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2b591b5c3d894847bcfc5727e6d41aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &779836081 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5559448005628052288, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
-  m_PrefabInstance: {fileID: 4396038711639705304}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &781894056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10098,7 +10082,7 @@ Transform:
   m_GameObject: {fileID: 851997450}
   serializedVersion: 2
   m_LocalRotation: {x: 3.2351107e-23, y: 0.00000005960465, z: -1.9282764e-30, w: 1}
-  m_LocalPosition: {x: -19, y: 0, z: -91}
+  m_LocalPosition: {x: -14, y: 0, z: -91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12927,7 +12911,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 779836081}
+    TrackingTarget: {fileID: 1504185091}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -12959,7 +12943,7 @@ Transform:
   m_GameObject: {fileID: 1108842473}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.00000005960465, z: -5.4276145e-16, w: 1}
-  m_LocalPosition: {x: -19, y: 0, z: -91}
+  m_LocalPosition: {x: -14, y: 0, z: -91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17686,6 +17670,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 2, z: 0.20000018}
   m_Center: {x: 2, y: 1, z: 0.00000017136335}
+--- !u!114 &1504185087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3426180059383489452, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+  m_PrefabInstance: {fileID: 4396038711639705304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b591b5c3d894847bcfc5727e6d41aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1504185091 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3031344241159604963, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+  m_PrefabInstance: {fileID: 4396038711639705304}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1511404111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23012,7 +23012,7 @@ PrefabInstance:
     - target: {fileID: 7036523275441724695, guid: 8c7b44df39bdee24bbf73ee72dc8283b, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 779836081}
+      objectReference: {fileID: 0}
     - target: {fileID: 8396653407980368416, guid: 8c7b44df39bdee24bbf73ee72dc8283b, type: 3}
       propertyPath: m_Name
       value: carb
@@ -25400,6 +25400,14 @@ PrefabInstance:
       propertyPath: hp
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3473820953543052245, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: cameraLook
+      value: 
+      objectReference: {fileID: 1108842477}
+    - target: {fileID: 3473820953543052245, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: cameraMovement
+      value: 
+      objectReference: {fileID: 1108842482}
     - target: {fileID: 4658772409171152569, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: m_IsActive
       value: 0
