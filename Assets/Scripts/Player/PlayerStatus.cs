@@ -50,6 +50,7 @@ public class PlayerStatus : MonoBehaviour
     private void Update()
     {
         airMoveCooldownTimer += Time.deltaTime;
+
     }
 
     public int Combo
@@ -69,14 +70,17 @@ public class PlayerStatus : MonoBehaviour
         get => rate;
         set
         {
-            if(value >= 1)
+
+            if(value < 0)
             {
-                rate = value;
+                value = 1;
             }
-            else
+            else if(value > 9999)
             {
-                rate = 1;
+                value = 9999;
             }
+
+            rate = value;
         }
     }
 

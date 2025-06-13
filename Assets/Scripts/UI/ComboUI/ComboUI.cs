@@ -1,23 +1,41 @@
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class ComboUI : MonoBehaviour
 {
     [SerializeField] PlayerStatus playerStatus;     //コンボ取得用
-    UIDocument comboUIDocument;    
+    [SerializeField] RawImage[] comboUI = new RawImage[4];
+    [SerializeField] Texture2D[] comboTexture=new Texture2D[10];
 
-    UnityEngine.UIElements.Label combolabel;        //テキスト表示用
-    bool isReady = false;
-
+    private int[] place = new int[4];
+    private int nextNum;
     void Start()
-    { 
-        comboUIDocument = GetComponent<UIDocument>();
-        combolabel = comboUIDocument.rootVisualElement.Q<Label>("ComboLabel");
+    {
     }
 
     void Update()
     {
-        combolabel.text = "x" + playerStatus.Rate.ToString(); //表示
+        Debug.Log("Combo: " + playerStatus.Rate);
+        //千の位
+        place[0] = playerStatus.Rate / 1000;
+        nextNum = playerStatus.Rate % 1000;
+
+        //百の位
+        place[1] = nextNum / 100;
+        nextNum = nextNum % 100;
+
+        //十の位
+        place[2] = nextNum / 10;
+        //一の位
+        place[3] = nextNum % 10;
+
+        for(int i = 0; i<4; i++)
+        {
+            comboUI[i].texture = comboTexture[place[i]];
+            comboUI[i].enabled = (playerStatus.Rate >= Mathf.Pow(10, 3 - i));
+        }
+
+
     }
 }
 
