@@ -100,6 +100,7 @@ public class PlayerStatus : MonoBehaviour
     {
         if (!isStunned && !isMuteki)
         {
+            rate = 0;
             StartCoroutine(StunCoroutine());
             
         }
