@@ -27,6 +27,7 @@ public class PlayerStatus : MonoBehaviour
     int airMoveCount;
     float airMoveCooldownTimer;
 
+    public bool isFloor;  // °‚ÉÚ’n‚µ‚Ä‚¢‚é‚©
     public bool IsStunned => isStunned;
 
     /// <summary>

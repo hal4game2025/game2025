@@ -10,24 +10,42 @@ public class PlayerAnim : MonoBehaviour
     {
         // 順番を変える場合はAnimator内の数値も変更すること
         Stand = 0,
-        GroundDown, // 地面殴り
+        GroundFront,// 地面上で前殴り
+        GroundBack, // 地面上で後殴り
+        GroundUp,   // 地面上で上殴り
+        GroundDown, // 地面上で下殴り
+        GroundLeft, // 地面上で左殴り
+        GroundRight,// 地面上で右殴り
+
         AirFront,   // 前殴り
-        // 後ろ殴り
-        // 上殴り
+        AirBack,    // 後殴り
+        AirUp,      // 上殴り
         AirDown,    // 下殴り
         AirLeft,    // 左殴り
         AirRight,   // 右殴り
+
         AirPose,    // 空中姿勢
         Dorp,       // 落下中
         Landing,    // 着地
     }
 
+    bool isLanging = false;
+
     Animator animator;
+    Rigidbody rb;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
         if (!animator) Debug.Log("PlayerAnim Animator取得失敗");
+        if (!rb) Debug.Log("PlayerAnim Rigidbody取得失敗");
+    }
+
+    private void Update()
+    {
+        //if (rb.angularVelocity.y < -0.1f)
+        
     }
 
     /// <summary>
@@ -38,40 +56,39 @@ public class PlayerAnim : MonoBehaviour
     {
         if( _direction == null) { return; }
 
+        // 後
         if (_direction == Vector2.zero)
         {
             ChangeAnimation((int)State.AirFront);
-            Debug.Log("アニメーション：前殴り");
         }
         else if (Mathf.Abs(_direction.y) > Mathf.Abs(_direction.x))
         {
+            // 上下
             if (_direction.y > 0)
             {
                 ChangeAnimation((int)State.AirDown);
-                Debug.Log("アニメーション：下殴り");
             }
             else
             {
-                //ChangeAnimation(State.);
-                Debug.Log("アニメーション：上殴り");
+                ChangeAnimation((int)State.AirUp);  // 上
             }
         }
         else
         {
-            
+            // 左右
             if (_direction.x > 0)
             {
                 ChangeAnimation((int)State.AirLeft);
-                Debug.Log("アニメーション：左殴り");
 
             }
             else
             {
                 ChangeAnimation((int)State.AirRight);
-                Debug.Log("アニメーション：右殴り");
             }
         }
     }
+
+
     public void HitStopStart()
     {
         Debug.Log("アニメーション：ヒットストップ");
@@ -85,8 +102,8 @@ public class PlayerAnim : MonoBehaviour
     /// カメラの向きに基づき、アニメーションを設定する
     /// </summary>
     public void SetAnimationByCameraForward()
-    {   
-        Debug.Log("アニメーション：カメラ視線方向移動");
+    {
+        ChangeAnimation((int)State.AirBack);   // 後殴り
     }
 
     /// <summary>

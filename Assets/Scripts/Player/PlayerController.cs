@@ -74,23 +74,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //カメラの向きに合わせてプレイヤーを回転させる
-        FaceCameraDirection();
 
-        //デバッグ用
-        //text.text = "コンボ数:" + playerStatus.Combo;
-
-        //デバッグ用コンボ数増減
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            playerStatus.Combo++;
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            playerStatus.Combo--;
-        }
-
-        Debug.Log("rate:" + playerStatus.Rate);
     }
 
     /// <summary>
@@ -138,8 +122,6 @@ public class PlayerController : MonoBehaviour
                 break;
 
         }
-
-        
         playerAnim.SetAnimationByDirection(inputDirection);
     }
 
@@ -184,7 +166,6 @@ public class PlayerController : MonoBehaviour
                 break;
 
         }
-        playerAnim.SetAnimationByDirection(inputDirection);
     }
 
     void EnemyDamage()
@@ -203,13 +184,16 @@ public class PlayerController : MonoBehaviour
     void SwingAction()
     {
         playerAnim.SetAnimationByDirection(inputDirection);
-        lookDirection = playerMovement.ReturnDirection(inputDirection, cameraLook.rotation);//カメラの向きに合わせた方向を取得
+        Vector3 cameraForward = cameraLook.forward;
+        Quaternion targetRotation = Quaternion.LookRotation(cameraLook.forward);
+        transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
     }
 
     void SwingActionForward()
     {
         playerAnim.SetAnimationByCameraForward();
-        lookDirection = playerMovement.ReturnDirectionForward(cameraLook.rotation);//カメラの向きに合わせた方
+        Quaternion targetRotation = Quaternion.LookRotation(cameraLook.forward);
+        transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
     }
 
     void SwingActionAir()
@@ -276,8 +260,7 @@ public class PlayerController : MonoBehaviour
     void FaceCameraDirection()
     {
         Vector3 cameraForward = cameraLook.forward;
-        //Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
-        Quaternion targetRotation = Quaternion.LookRotation(lookDirection);//cameraForward→lookDirectionに変更
+        Quaternion targetRotation = Quaternion.LookRotation(cameraForward);
         transform.rotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
     }
 
