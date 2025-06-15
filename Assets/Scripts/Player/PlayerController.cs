@@ -122,7 +122,6 @@ public class PlayerController : MonoBehaviour
                 break;
 
         }
-        playerAnim.SetAnimationByDirection(inputDirection);
     }
 
     void OnHammerSwingMoveForward(InputAction.CallbackContext context)

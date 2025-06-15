@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31fa73ef73fdcb46923e9f50ad0e5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundCount: 0
+  soundCount: 1
 --- !u!1 &501492671
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +787,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31df61fafc166f4580f9ae8ae651013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneManager: {fileID: 378837004}
   stage1: Stage1
   stage2: Stage2
 --- !u!1 &1788633771
