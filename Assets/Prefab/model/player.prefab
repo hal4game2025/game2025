@@ -4749,7 +4749,7 @@ GameObject:
   - component: {fileID: 2913738275158336036}
   - component: {fileID: 3892255849037138096}
   m_Layer: 0
-  m_Name: Player
+  m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4832,6 +4832,11 @@ MonoBehaviour:
   maxHitStopTime: 0.5
   perComboHitStopTime: 0.05
   cameraMovement: {fileID: 0}
+  playerSE:
+  - Key: swing
+    Value: {fileID: 8300000, guid: 8810efa0f081a704697984c217d86fb6, type: 3}
+  - Key: attack
+    Value: {fileID: 8300000, guid: 5d795f2ff0056b04f97a7c9627a3f5e1, type: 3}
 --- !u!114 &3426180059383489452
 MonoBehaviour:
   m_ObjectHideFlags: 0
