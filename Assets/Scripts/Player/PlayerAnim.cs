@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerAnim : MonoBehaviour
 {
+
+    [SerializeField] EffectPlay effectPlay; //エフェクトを再生する
     // 列挙
     /// <summary>
     /// アニメーションの状態
@@ -67,6 +69,10 @@ public class PlayerAnim : MonoBehaviour
             if (_direction.y > 0)
             {
                 ChangeAnimation((int)State.AirDown);
+                if(effectPlay != null)
+                {
+                    effectPlay.Play("ExplosionEffect");
+                }
             }
             else
             {
