@@ -16,16 +16,19 @@ public abstract class SingletonMonoBehaviour<T> :
             {
                 Type t = typeof(T);
 
-                instance = FindObjectsByType<T>(FindObjectsSortMode.None)[0];
-                if (instance == null)
+                var found = FindObjectsByType<T>(FindObjectsSortMode.None);
+                if (found.Length == 0)
                 {
                     Debug.LogError(t + " をアタッチしているGameObjectはありません");
+                    return null;
                 }
+                instance = found[0];
             }
 
             return instance;
         }
     }
+
 
     virtual protected void Awake()
     {

@@ -423,6 +423,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""8dc10131-2ffc-4e6e-9686-433a963623cb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Submit"",
                     ""type"": ""Button"",
                     ""id"": ""7607c7b6-cd76-4816-beef-bd0341cfe950"",
@@ -499,6 +508,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be"",
                     ""expectedControlType"": ""Quaternion"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Down"",
+                    ""type"": ""Button"",
+                    ""id"": ""94dc0ec3-70fb-4b1b-b227-9fa15a160e02"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""type"": ""Button"",
+                    ""id"": ""e3421754-0c0e-4611-8338-24ae07243457"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -771,6 +798,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""d8949e1b-5a2b-4017-b61b-5d1b4927cb28"",
+                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02c81087-2abb-4f3c-9553-9b078d744c32"",
+                    ""path"": ""<DualShockGamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""9e92bb26-7e3b-4ec4-b06b-3c8f8e498ddc"",
                     ""path"": ""*/{Submit}"",
                     ""interactions"": """",
@@ -922,6 +971,94 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""TrackedDeviceOrientation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""460a5f2d-1c8e-4f9a-8efe-a9e8cd3a0514"",
+                    ""path"": ""<XInputController>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8555a06-7609-45e7-a4e8-e653c66d9b24"",
+                    ""path"": ""<XInputController>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32669ba7-376a-4298-bac6-7b0d67ae32a6"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3053c256-e254-4eac-b8ba-1d80f3d1a612"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4cae916-3fc2-4eaa-afac-c06bd559e5e2"",
+                    ""path"": ""<XInputController>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acac408a-d2bd-4bcb-a870-654d51ad112b"",
+                    ""path"": ""<XInputController>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45d5b73b-b4fb-4f72-8003-de4238b117a3"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dce71f44-a3b2-4fbb-85f7-8801b91679a1"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Up"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1002,6 +1139,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_Confirm = m_UI.FindAction("Confirm", throwIfNotFound: true);
         m_UI_Submit = m_UI.FindAction("Submit", throwIfNotFound: true);
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
@@ -1011,6 +1149,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        m_UI_Down = m_UI.FindAction("Down", throwIfNotFound: true);
+        m_UI_Up = m_UI.FindAction("Up", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -1266,6 +1406,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_Confirm;
     private readonly InputAction m_UI_Submit;
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Point;
@@ -1275,6 +1416,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
+    private readonly InputAction m_UI_Down;
+    private readonly InputAction m_UI_Up;
     /// <summary>
     /// Provides access to input actions defined in input action map "UI".
     /// </summary>
@@ -1290,6 +1433,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "UI/Navigate".
         /// </summary>
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/Confirm".
+        /// </summary>
+        public InputAction @Confirm => m_Wrapper.m_UI_Confirm;
         /// <summary>
         /// Provides access to the underlying input action "UI/Submit".
         /// </summary>
@@ -1327,6 +1474,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         /// <summary>
+        /// Provides access to the underlying input action "UI/Down".
+        /// </summary>
+        public InputAction @Down => m_Wrapper.m_UI_Down;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/Up".
+        /// </summary>
+        public InputAction @Up => m_Wrapper.m_UI_Up;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_UI; }
@@ -1355,6 +1510,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Navigate.started += instance.OnNavigate;
             @Navigate.performed += instance.OnNavigate;
             @Navigate.canceled += instance.OnNavigate;
+            @Confirm.started += instance.OnConfirm;
+            @Confirm.performed += instance.OnConfirm;
+            @Confirm.canceled += instance.OnConfirm;
             @Submit.started += instance.OnSubmit;
             @Submit.performed += instance.OnSubmit;
             @Submit.canceled += instance.OnSubmit;
@@ -1382,6 +1540,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed += instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled += instance.OnTrackedDeviceOrientation;
+            @Down.started += instance.OnDown;
+            @Down.performed += instance.OnDown;
+            @Down.canceled += instance.OnDown;
+            @Up.started += instance.OnUp;
+            @Up.performed += instance.OnUp;
+            @Up.canceled += instance.OnUp;
         }
 
         /// <summary>
@@ -1396,6 +1560,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Navigate.started -= instance.OnNavigate;
             @Navigate.performed -= instance.OnNavigate;
             @Navigate.canceled -= instance.OnNavigate;
+            @Confirm.started -= instance.OnConfirm;
+            @Confirm.performed -= instance.OnConfirm;
+            @Confirm.canceled -= instance.OnConfirm;
             @Submit.started -= instance.OnSubmit;
             @Submit.performed -= instance.OnSubmit;
             @Submit.canceled -= instance.OnSubmit;
@@ -1423,6 +1590,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @TrackedDeviceOrientation.started -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.performed -= instance.OnTrackedDeviceOrientation;
             @TrackedDeviceOrientation.canceled -= instance.OnTrackedDeviceOrientation;
+            @Down.started -= instance.OnDown;
+            @Down.performed -= instance.OnDown;
+            @Down.canceled -= instance.OnDown;
+            @Up.started -= instance.OnUp;
+            @Up.performed -= instance.OnUp;
+            @Up.canceled -= instance.OnUp;
         }
 
         /// <summary>
@@ -1600,6 +1773,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNavigate(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "Confirm" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnConfirm(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "Submit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -1662,5 +1842,19 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Down" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDown(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Up" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnUp(InputAction.CallbackContext context);
     }
 }
