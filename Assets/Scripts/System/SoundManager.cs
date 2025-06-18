@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SoundManager : SingletonMonoBehaviour<SoundManager>
 {
+
     [SerializeField]
     [Tooltip("“¯‚É‚È‚ç‚·‰¹‚Ì”")]
     int soundCount = 0; //‰¹‚Ì”
@@ -18,6 +19,11 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         {
             audioSourceList[i] = gameObject.AddComponent<AudioSource>();
         }
+    }
+
+    void Start()
+    {
+        
     }
 
     /// <summary>

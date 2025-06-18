@@ -8,10 +8,21 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     [SerializeField]
     Image fadeImage;
 
+    [SerializeField]
+    GameObject imagePrefab; // imageがなかったときの生成用
+
     FadeUtils fadeUtils;
 
     void Start()
     {
+        if(fadeImage  == null)
+        {
+            
+            fadeImage = Instantiate(imagePrefab).GetComponentInChildren<Image>();
+        }
+
+         
+
         DontDestroyOnLoad(gameObject); // シーン遷移時に破棄しないように設定
         DontDestroyOnLoad(fadeImage.canvas); // フェードキャンバスを破棄しないように設定
 
