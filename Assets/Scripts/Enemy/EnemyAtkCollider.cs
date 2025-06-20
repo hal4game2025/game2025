@@ -19,8 +19,8 @@ public class EnemyAtkCollider : MonoBehaviour
         var script = other.gameObject.GetComponent<PlayerStatus>();
         if (!script) Debug.Log("プレイヤーとの衝突エラー");
 
-        other.gameObject.SetActive(false); // プレイヤーを非表示
+        //other.gameObject.SetActive(false); // プレイヤーを非表示
         // 仮で10ダメ ←ワンパンなはず
-        script.TakeDamage(10);
+        script.TakeDamage(3);
     }
 }

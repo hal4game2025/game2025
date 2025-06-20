@@ -37,6 +37,10 @@ public class PlayerStatus : MonoBehaviour
     public void TakeDamage(int damage)
     {
         HP -= damage;
+        if(HP <= 0)
+        {
+            SceneManager.Instance.ChangeScene("ResultScene");
+        }
     }
 
     private void Start()

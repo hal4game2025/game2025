@@ -2688,9 +2688,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 453572342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: f31fa73ef73fdcb46923e9f50ad0e5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundCount: 0
 --- !u!4 &453572344
 Transform:
   m_ObjectHideFlags: 0
@@ -3220,6 +3221,10 @@ PrefabInstance:
       propertyPath: playerSE.Array.data[1].Value
       value: 
       objectReference: {fileID: 8300000, guid: 5d795f2ff0056b04f97a7c9627a3f5e1, type: 3}
+    - target: {fileID: 2403425947497713753, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 3473820953543052245, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: cameraLook
       value: 
