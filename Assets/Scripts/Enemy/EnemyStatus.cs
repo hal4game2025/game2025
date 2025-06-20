@@ -43,7 +43,7 @@ public class EnemyStatus : MonoBehaviour
         if (nowHP <= 0f)
         { 
             gameObject.SetActive(false); // HP‚ª‚O‚É‚È‚Á‚½‚ç”ñ•\Ž¦    
-            SceneManager.Instance.ChangeScene("StageSelect");
+            SceneManager.Instance.ChangeScene("ResultScene");
             Debug.Log("HP‚ª‚O‚É‚È‚Á‚½‚Ì‚Å”ñ•\Ž¦");
         }
     }

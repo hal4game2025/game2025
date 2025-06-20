@@ -4351,7 +4351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f523f22d490e9d4eae1e6760851d862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeImage: {fileID: 0}
+  fadeImage: {fileID: 2012333970}
 --- !u!1001 &444406746
 PrefabInstance:
   m_ObjectHideFlags: 0

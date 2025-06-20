@@ -4,13 +4,12 @@ using UnityEngine.InputSystem;
 public class TitleScene : MonoBehaviour
 {
     [SerializeField] RectTransform checkImg; // 移動させるUI
-    [SerializeField] float[] yPositions;     // 選択肢ごとのY座標（Inspectorで設定）
-
+    [SerializeField] RectTransform[] yPositions;
     // SceneManagerのインスタンス参照
     SceneManager sceneManager;
     PlayerControls controls;
     int currentIndex = 0;
-
+    string StageSelect = "StageSelect"; // ステージ選択シーンの名前
     void Start()
     {
         MoveCheckImgInstant();
@@ -18,6 +17,7 @@ public class TitleScene : MonoBehaviour
         sceneManager = SceneManager.Instance;
         controls = new PlayerControls();
 
+        // InputActionのイベントハンドラを登録
         controls.UI.Confirm.performed += Confirm;
         controls.UI.Up.performed += Up;
         controls.UI.Down.performed += Down;
@@ -29,9 +29,12 @@ public class TitleScene : MonoBehaviour
         if (checkImg != null && yPositions != null && currentIndex < yPositions.Length)
         {
             var pos = checkImg.anchoredPosition;
-            checkImg.anchoredPosition = new Vector2(pos.x, yPositions[currentIndex]);
+            checkImg.anchoredPosition = new Vector2(pos.x, yPositions[currentIndex].anchoredPosition.y);
         }
     }
+
+
+    // InputActionのコールバックメソッド
     void Up(InputAction.CallbackContext context)
     {
         if (gameObject.activeInHierarchy == false)
@@ -57,7 +60,7 @@ public class TitleScene : MonoBehaviour
             case 0:
                 if (sceneManager != null)
                 {
-                    sceneManager.ChangeScene("StageSelect");
+                    sceneManager.ChangeScene(StageSelect);
                 }
                 break;
             case 1:
