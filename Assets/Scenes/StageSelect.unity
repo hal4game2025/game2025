@@ -790,6 +790,7 @@ MonoBehaviour:
   stageName:
   - Stage1
   - Stage2
+  bgm: {fileID: 8300000, guid: 2d030535087b4994aa891e071815439b, type: 3}
 --- !u!1 &1207684094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,7 +1151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31fa73ef73fdcb46923e9f50ad0e5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundCount: 0
+  soundCount: 5
 --- !u!4 &1667800502
 Transform:
   m_ObjectHideFlags: 0

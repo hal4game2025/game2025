@@ -1,6 +1,5 @@
 using UnityEngine;
 using static EnemyStateBase;
-using static UnityEditor.VersionControl.Asset;
 
 public class EnemyCollider : MonoBehaviour
 {

@@ -1,4 +1,3 @@
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class ResultScene : MonoBehaviour
@@ -10,6 +9,9 @@ public class ResultScene : MonoBehaviour
     PlayerControls controls;
     int currentIndex = 0;
 
+    [SerializeField]
+    AudioClip bgm;
+
     void Start()
     {
       //  MoveCheckImgInstant();
@@ -19,6 +21,8 @@ public class ResultScene : MonoBehaviour
 
         controls.UI.Confirm.performed += Confirm;
         controls.Enable();
+
+        SoundManager.Instance.Play(bgm, true);
     }
   
  

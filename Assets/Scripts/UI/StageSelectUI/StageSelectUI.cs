@@ -13,10 +13,15 @@ public class StageSelectUI : MonoBehaviour
 
     int currentIndex = 0;
 
+    [SerializeField]
+    AudioClip bgm;
+
     void Start()
     {
         sceneManager = SceneManager.Instance;
         UpdateCursorPosition(); // 初期カーソル位置設定
+
+        SoundManager.Instance.Play(bgm, true);
     }
 
     void Update()

@@ -9,10 +9,15 @@ public class CameraMovement : MonoBehaviour
     bool isTurning = false;
     float turnDuration = 0.3f; // ‰ñ“]‚É‚©‚¯‚éŠÔi•bj
 
+    [SerializeField]
+    AudioClip bgm;
+
 
     private void Start()
     {
         isTurning = false;
+
+        SoundManager.Instance.Play(bgm, true);
     }
     public void TurnCamera()
     {

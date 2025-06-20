@@ -555,6 +555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 1869075045}
+  imagePrefab: {fileID: 0}
 --- !u!4 &1001721450
 Transform:
   m_ObjectHideFlags: 0
@@ -905,6 +906,7 @@ MonoBehaviour:
   yPositions:
   - {fileID: 578240367}
   - {fileID: 1240379310}
+  bgm: {fileID: 0}
 --- !u!1 &1459073878
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31fa73ef73fdcb46923e9f50ad0e5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundCount: 0
+  soundCount: 5
 --- !u!4 &1459073880
 Transform:
   m_ObjectHideFlags: 0
