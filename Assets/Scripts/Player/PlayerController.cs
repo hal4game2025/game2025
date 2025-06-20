@@ -207,7 +207,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerStatus.CanAirMove)
         {
-            // 空中のジャンプ回数を数える
+            // 空中のジャンプ回数を数えるw
             playerStatus.IncrementAirMoveCount();
 
             playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
