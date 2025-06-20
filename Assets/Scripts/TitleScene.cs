@@ -65,6 +65,9 @@ public class TitleScene : MonoBehaviour
                 Application.Quit();
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_STANDALONE // Unityエディタ以外の環境では、アプリケーションを終了する
+                
+                Application.Quit(); 
 #endif
                 break;
         }
