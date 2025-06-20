@@ -1,41 +1,55 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
-
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class StageSelectUI : MonoBehaviour
 {
-    UIDocument stageSelectUIDocument;
-    UnityEngine.UIElements.Button button;
+    [SerializeField] Image[] stageUI = new Image[2];
+    [SerializeField] Image cursorUI;
+    [SerializeField] int maxStage;
+    [SerializeField] string[] stageName = new string[2];
+
     SceneManager sceneManager;
 
-    [SerializeField] string stage1;
-    [SerializeField] string stage2;
+    int currentIndex = 0;
+
     void Start()
     {
-        // マウス使えるように設定
-        UnityEngine.Cursor.visible = true;
-        UnityEngine.Cursor.lockState = CursorLockMode.None;
-        stageSelectUIDocument = GetComponent<UIDocument>();
-
-        // VisualElement のルート取得
-        VisualElement root = stageSelectUIDocument.rootVisualElement;
-
-        // ボタン取得（UXML で指定した name に一致させる）
-        var stage1Button = root.Q<Button>("Stage1");
-        var stage2Button = root.Q<Button>("Stage2");
-
-        // イベント登録
-        stage1Button?.RegisterCallback<ClickEvent>(evt => sceneManager.ChangeScene(stage1));
-        stage2Button?.RegisterCallback<ClickEvent>(evt => sceneManager.ChangeScene(stage2));
-
-        // シーンマネージャーの取得
         sceneManager = SceneManager.Instance;
+        UpdateCursorPosition(); // 初期カーソル位置設定
     }
 
     void Update()
     {
-        
+        var keyboard = Keyboard.current;
+        var gamepad = Gamepad.current;
 
+        // ↓ 入力（1フレームだけ）
+        if ((keyboard != null && keyboard.downArrowKey.wasPressedThisFrame) ||
+            (gamepad != null && gamepad.dpad.down.wasPressedThisFrame))
+        {
+            currentIndex = (currentIndex + 1) % maxStage;
+            UpdateCursorPosition();
+        }
+
+        // ↑ 入力
+        if ((keyboard != null && keyboard.upArrowKey.wasPressedThisFrame) ||
+            (gamepad != null && gamepad.dpad.up.wasPressedThisFrame))
+        {
+            currentIndex = (currentIndex - 1 + maxStage) % maxStage;
+            UpdateCursorPosition();
+        }
+
+        // 決定
+        if ((keyboard != null && keyboard.enterKey.wasPressedThisFrame) ||
+            (gamepad != null && gamepad.buttonSouth.wasPressedThisFrame))
+        {
+            sceneManager.ChangeScene(stageName[currentIndex]);
+        }
+    }
+
+    void UpdateCursorPosition()
+    {
+        cursorUI.transform.position =new Vector3(cursorUI.transform.position.x, stageUI[currentIndex].transform.position.y);
     }
 }
