@@ -29,23 +29,34 @@ public class PlayerAnim : MonoBehaviour
         Landing,    // ’…’n
     }
 
-    bool isLanging = false;
+    [SerializeField, Tooltip("ˆê’è‘¬“xˆÈ‰º‚É‚È‚Á‚½‚ç—‰ºƒAƒjƒÄ¶")]
+    float minVelocity = 0.1f;
+    [SerializeField] float aa;
 
+    PlayerStatus status;
     Animator animator;
     Rigidbody rb;
 
     private void Start()
     {
+        status = GetComponent<PlayerStatus>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+
+        if (!status) Debug.Log("PlayerAnim PlayerStatusæ“¾¸”s");
         if (!animator) Debug.Log("PlayerAnim Animatoræ“¾¸”s");
         if (!rb) Debug.Log("PlayerAnim Rigidbodyæ“¾¸”s");
     }
 
     private void Update()
     {
-        //if (rb.angularVelocity.y < -0.1f)
-        
+        aa = rb.linearVelocity.sqrMagnitude;
+
+        if (rb.linearVelocity.sqrMagnitude < minVelocity)
+        {
+            if (status.isFloor) ChangeAnimation((int)State.Landing);
+            else ChangeAnimation((int)State.Dorp);
+        }
     }
 
     /// <summary>

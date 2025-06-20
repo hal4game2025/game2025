@@ -25398,6 +25398,10 @@ PrefabInstance:
       propertyPath: playerSE.Array.data[1].Value
       value: 
       objectReference: {fileID: 8300000, guid: 5d795f2ff0056b04f97a7c9627a3f5e1, type: 3}
+    - target: {fileID: 1560205730640432556, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: minVelocity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1578316493717532742, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: hp
       value: 10
