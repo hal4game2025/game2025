@@ -265,9 +265,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 378837005}
-  - component: {fileID: 378837004}
   - component: {fileID: 378837006}
-  - component: {fileID: 378837007}
+  - component: {fileID: 378837004}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -316,26 +315,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundCount: 1
---- !u!114 &378837007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378837003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b31df61fafc166f4580f9ae8ae651013, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageUI:
-  - {fileID: 1207684097}
-  - {fileID: 1407602286}
-  cursorUI: {fileID: 760366727}
-  maxStage: 2
-  stageName:
-  - Stage1
-  - Stage2
 --- !u!1 &501492671
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +673,7 @@ GameObject:
   - component: {fileID: 1055492334}
   - component: {fileID: 1055492333}
   - component: {fileID: 1055492332}
+  - component: {fileID: 1055492336}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -789,6 +769,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1055492336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055492331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31df61fafc166f4580f9ae8ae651013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageUI:
+  - {fileID: 1207684097}
+  - {fileID: 1407602286}
+  cursorUI: {fileID: 760366727}
+  maxStage: 2
+  stageName:
+  - Stage1
+  - Stage2
 --- !u!1 &1207684094
 GameObject:
   m_ObjectHideFlags: 0
