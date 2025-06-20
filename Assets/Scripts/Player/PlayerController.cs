@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] int max_speed_coef = 1;
     [SerializeField] PlayerMovement playerMovement;  //プレイヤーの動き
 
+    [SerializeField] EffectPlay effectPlay; //エフェクトを再生する
 
     [CustomLabel("最小ヒットストップ時間")]
     [SerializeField] float baseHitStopTime = 0.1f; //コンボ数が0の時のベースヒットストップ時間
@@ -101,13 +102,18 @@ public class PlayerController : MonoBehaviour
                 EnemyDamage();
                 StartHitStop(playerStatus.Combo);
                 SoundManager.Instance.Play(playerSEDict["attack"]);
+
+                if (effectPlay != null)
+                {
+                    effectPlay.Play("ExplosionEffect");
+                }
+
                 break;
             case CollisionType.Obstacles:
                 UpdatePlayerStatus();
                 playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
                 SoundManager.Instance.Play(playerSEDict["swing"]);
                 SwingAction();
-           
                 break;
             case CollisionType.None:
 
@@ -145,6 +151,8 @@ public class PlayerController : MonoBehaviour
                 EnemyDamage();
                 SoundManager.Instance.Play(playerSEDict["attack"]);
                 StartHitStop(playerStatus.Combo);
+
+
                 break;
             case CollisionType.Obstacles:
                 UpdatePlayerStatus();
