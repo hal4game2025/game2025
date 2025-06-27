@@ -1,39 +1,61 @@
 using System;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TimeSystem : SingletonMonoBehaviour<TimeSystem>
 {
-    [SerializeField] private TextMeshProUGUI m_timeText;
-    private float m_countUpSeconds; // カウントアップ用
     private float m_time;
+    private int m_sceneIndex = 0;
 
-    private bool onlyOnesSound = false;
-    private bool onlyOnesEndGameSound = false;
+    void Start()
+    {
+        m_time = 0f;
+        //シーンがロードされたときに呼ばれるイベントに登録
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+        //初期シーンのインデックスもセット
+        m_sceneIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+    }
 
     protected override void Awake()
     {
         base.Awake();
-        DontDestroyOnLoad(this.gameObject); // このGameObjectをシーン遷移で破棄しない
+        DontDestroyOnLoad(this.gameObject);
         ResetTime();
     }
-    void Update()
+
+    void OnDestroy()
     {
-        CountUp();
+        //イベント解除
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    /// <summary>
-    /// カウントアップを行う関数
-    /// </summary>
+    //シーンがロードされたときに呼ばれる
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        m_sceneIndex = scene.buildIndex;
+    }
+
+    void Update()
+    {
+
+        //もしシーンの順番が変わったり、増えたらここを変更する必要がある
+        switch (m_sceneIndex)
+        {
+            case 3: //ステージ１
+            case 4: //ステージ２
+                CountUp();
+                break;
+            default://その他
+                break;
+        }
+    }
+
     void CountUp()
     {
         m_time += Time.deltaTime;
-        TimeSpan span = new TimeSpan(0, 0, (int)m_time);
-        if (m_timeText != null)
-            m_timeText.text = span.ToString(@"mm\:ss");
     }
 
-    // ゲームクリアやゲームオーバー時に呼び出して時間を取得
     public float GetTime()
     {
         return m_time;
@@ -42,7 +64,5 @@ public class TimeSystem : SingletonMonoBehaviour<TimeSystem>
     public void ResetTime()
     {
         m_time = 0f;
-        if (m_timeText != null)
-            m_timeText.text = "00:00";
     }
 }

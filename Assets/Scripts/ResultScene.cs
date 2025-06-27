@@ -19,12 +19,15 @@ public class ResultScene : MonoBehaviour
         controls.Enable();
 
 
+        //ここでリザルトタイムを表示
         if (timeSystem != null && resultTimeText != null)
         {
             float time = timeSystem.GetTime();
             Debug.Log("ResultScene: Time = " + time);
             System.TimeSpan span = new System.TimeSpan(0, 0, (int)time);
             resultTimeText.text = span.ToString(@"mm\:ss");
+
+            timeSystem.ResetTime(); //リザルト表示後に時間をリセット
         }
     }
 
@@ -32,6 +35,8 @@ public class ResultScene : MonoBehaviour
     {
         if (gameObject.activeInHierarchy == false)
             return;
+
+
         sceneManager.ChangeScene("TitleScene");
     }
 
