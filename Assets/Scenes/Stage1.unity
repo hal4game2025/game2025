@@ -25390,7 +25390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3426180059383489452, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: hp
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3473820953543052245, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: cameraLook

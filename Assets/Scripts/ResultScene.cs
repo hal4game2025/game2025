@@ -12,8 +12,9 @@ public class ResultScene : MonoBehaviour
 
     private string playerHP = "20"; // プレイヤーのHPの最大値
 
+    [Header("経過時間による星の入手難易度はここを変更する(星2つ目は一つめの時間 / 2)")]
     //星1のスコア時間ここを変更することで、星の獲得条件を調整できます。
-    private float ScoreTime = 10f; 
+    [SerializeField] float ScoreTime = 10f; 
 
     //private float ScoreTime2 = f; // 星1のスコア時間
     Texture2D[] HpTex;
