@@ -6,7 +6,7 @@ public class PlayerHpUI : SingletonMonoBehaviour<PlayerHpUI>
     [SerializeField] RawImage[] HpUI = new RawImage[20];
     private RawImage[] playerHp;
     [SerializeField] PlayerStatus playerStatus;
-    private  int maxHp;
+    public static  int maxHp;
     public static int playerHpCount;// ƒvƒŒƒCƒ„[‚ÌHP‚Ì”
     protected override void Awake()
     {

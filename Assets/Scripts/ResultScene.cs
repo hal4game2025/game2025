@@ -6,9 +6,11 @@ using Unity.VisualScripting;
 
 public class ResultScene : MonoBehaviour
 {
-   [SerializeField] TextMeshProUGUI resultTimeText; // リザルトタイム表示用
-                                                    // [SerializeField] RawImage[] HpUI = new RawImage[20];//UIの数
-                                                    // [SerializeField] Texture2D[] HpTex = new Texture2D[2];//表示する画像
+    [SerializeField] TextMeshProUGUI resultTimeText; // リザルトタイム表示用
+    [SerializeField] TextMeshProUGUI resultHpText; // リザルトスコア表示用
+     
+    private string playerHP = "20"; // プレイヤーのHPの最大値
+
     Texture2D[] HpTex;
     RawImage[] HpUI;
     TimeSystem timeSystem;
@@ -54,6 +56,11 @@ public class ResultScene : MonoBehaviour
             {
                 HpUI[i].texture = HpTex[0];
 
+            }
+            // HPの表示
+            if (resultHpText != null)
+            {
+                resultHpText.text = playerHpUI.GetPlayerHpCount().ToString() + " / " + playerHpUI.GetHp().ToString();
             }
         }
     }
