@@ -1,4 +1,3 @@
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class TitleScene : MonoBehaviour
@@ -10,6 +9,10 @@ public class TitleScene : MonoBehaviour
     PlayerControls controls;
     int currentIndex = 0;
     string StageSelect = "StageSelect"; // ステージ選択シーンの名前
+
+    [SerializeField]
+    AudioClip bgm;
+
     void Start()
     {
         MoveCheckImgInstant();
@@ -22,6 +25,8 @@ public class TitleScene : MonoBehaviour
         controls.UI.Up.performed += Up;
         controls.UI.Down.performed += Down;
         controls.Enable();
+
+        SoundManager.Instance.Play(bgm, true);
     }
 
     void MoveCheckImgInstant()

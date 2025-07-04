@@ -4748,9 +4748,10 @@ GameObject:
   - component: {fileID: 1969433216364909839}
   - component: {fileID: 2913738275158336036}
   - component: {fileID: 3892255849037138096}
+  - component: {fileID: -1370485190184045033}
   m_Layer: 0
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4810,6 +4811,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959e00361d9bc4547b4c81c811c227d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectPlay: {fileID: 0}
+  minVelocity: 0.1
+  aa: 0
 --- !u!114 &3473820953543052245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4828,6 +4832,7 @@ MonoBehaviour:
   directionReverse: 0
   processOnlyOnCollision: 0
   max_speed_coef: 1
+  effectPlay: {fileID: 0}
   baseHitStopTime: 0.1
   maxHitStopTime: 0.5
   perComboHitStopTime: 0.05
@@ -4856,6 +4861,7 @@ MonoBehaviour:
   maxAirMove: 1
   airMoveCooldown: 0.5
   isFloor: 0
+  effectPlayer: {fileID: -1370485190184045033}
 --- !u!54 &1969433216364909839
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4927,6 +4933,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1370485190184045033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2403425947497713753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e132f7d063ac8ec4b8987fee3e182438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playPos: {x: 0, y: 2, z: 0}
+  effects:
+    pairs:
+    - Key: Barrier
+      Value: {fileID: 6318209506785580307, guid: 1a6e63e4904653c4bbaa1bde212cd23f, type: 3}
 --- !u!1 &2482098885308853185
 GameObject:
   m_ObjectHideFlags: 0

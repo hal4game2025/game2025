@@ -30,6 +30,9 @@ public class PlayerStatus : MonoBehaviour
     public bool isFloor;  // 床に接地しているか
     public bool IsStunned => isStunned;
 
+    [SerializeField, Tooltip("エフェクトプレイヤーの参照")]
+    EffectPlay effectPlayer;
+
     /// <summary>
     /// ダメージを受ける
     /// </summary>
@@ -37,6 +40,8 @@ public class PlayerStatus : MonoBehaviour
     public void TakeDamage(int damage)
     {
         HP -= damage;
+        effectPlayer.Play("Barrier");
+        
         if(HP <= 0)
         {
             SceneManager.Instance.ChangeScene("ResultScene");
