@@ -5333,8 +5333,6 @@ MonoBehaviour:
   - {fileID: 1580076560}
   - {fileID: 62250332}
   playerStatus: {fileID: 1504185087}
-  maxHp: 0
-  playerHpCount: 0
 --- !u!1 &510344450
 GameObject:
   m_ObjectHideFlags: 0
@@ -25389,6 +25387,10 @@ PrefabInstance:
     - target: {fileID: 2403425947497713753, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426180059383489452, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: hp
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3473820953543052245, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: cameraLook
