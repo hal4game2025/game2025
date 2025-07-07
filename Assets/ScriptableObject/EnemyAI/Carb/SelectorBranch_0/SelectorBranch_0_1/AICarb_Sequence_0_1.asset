@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3e100a6462f914abb1dcd2446a5fd8, type: 3}
+  m_Name: AICarb_Sequence_0_1
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 11400000, guid: 44808f9b4ade0f948a7dd7d32ba7badc, type: 2}
+  - {fileID: 11400000, guid: f44c2d98ea4e2864188fbe28e5960bf1, type: 2}
+  - {fileID: 11400000, guid: 8fa6cf24e31dbca4e9d4f5bc32b39e25, type: 2}

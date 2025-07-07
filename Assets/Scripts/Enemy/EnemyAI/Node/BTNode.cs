@@ -13,9 +13,16 @@ public abstract class BTNode : ScriptableObject
         Running     // 処理中
     }
 
-    protected NodeState state = NodeState.None;     // 状態
+    protected NodeState state;     // 状態
     protected BTNode runningNode;                   // 処理中のノードを記憶
+    protected AIController.EnemyData data;
+    protected Transform target;
 
+    private void SetData(AIController.EnemyData data, Transform target)
+    {
+        this.data = data;
+        this.target = target;
+    }
 
     /// <summary>
     /// 実行時に初期化を行う
@@ -39,17 +46,21 @@ public abstract class BTNode : ScriptableObject
     /// <summary>
     /// ノードの初期化
     /// </summary>
-    public virtual void NodeInit(AIController.EnemyData data, Transform playerTransform)
+    public virtual void NodeInit() 
     {
-        
+        state = NodeState.None;
+        if (runningNode) runningNode = null;
     }
 
     /// <summary>
     /// 実行処理
     /// </summary>
     /// <returns></returns>
-    public NodeState Tick()
+    public NodeState Tick(AIController.EnemyData data, Transform playerTransform)
     {
+        // 値更新
+        SetData(data, playerTransform);
+
         // 実行中じゃなければ初期化処理を行う
         if (state != NodeState.Running) OnInitialize();
         // ノード更新

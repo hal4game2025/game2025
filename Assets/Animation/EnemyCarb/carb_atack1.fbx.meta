@@ -56,35 +56,35 @@ ModelImporter:
       curves: []
       events:
       - time: 1
-        functionName: SetEnemyState
+        functionName: SetEnemyAnimState
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 1
+        messageOptions: 0
+      - time: 0.48184615
+        functionName: OnBoxCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.48184615
-        functionName: AtkColidON
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.48184615
-        functionName: ActiveCollider
+        functionName: OnBoxCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
       - time: 0.7920001
-        functionName: AtkColidOFF
+        functionName: OffBoxCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.7920001
-        functionName: ActiveCollider
+        functionName: OffBoxCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
