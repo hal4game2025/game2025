@@ -7,6 +7,35 @@ using static BTNode;
 [CreateAssetMenu(menuName = "ScriptableObject/AI/BehaviorTree/Action/Bless")]
 public class BTAction_Bless : BTAction
 {
+    [SerializeField, Tooltip("UpBlessのアニメナンバー")] int blessNum = 0;
+    //[SerializeField, Tooltip("エフェクトのクラス")] EffectPlay effectPlay;
+    //[SerializeField, Tooltip("エフェクト名")] string effectName;
+    //[SerializeField, Tooltip("ブレスの発射位置")] Transform blessPos;
+
+    //bool isBless = false;
+
+    protected override void OnInitialize()
+    {
+        // 自分より上に居たらUpBless
+        if (data.status.transform.position.y < target.position.y)
+        {
+            // アニメーション再生
+            data.anim.SetInteger(data.animParamName, blessNum);
+            state = NodeState.Running;      // 実行中に設定
+            data.status.stiffnessTime = 0;  // 硬直時間をリセット
+        }
+        else
+        {
+            base.OnInitialize();
+        }
+    }
+
+    protected override void OnTerminate()
+    {
+        //isBless = false;
+        base.OnTerminate();
+    }
+
     protected override NodeState NodeUpdate()
     {
         switch (data.animState)
@@ -25,6 +54,13 @@ public class BTAction_Bless : BTAction
                 break;
             case AIController.EnemyAnimState.Event:
                 // ブレス攻撃開始
+                // ブレスが出ていなかったら発射
+                //if (!isBless)
+                //{
+                //    effectPlay.Play(effectName, blessPos.position);
+                //    isBless = true;
+                //}
+                // 出ていたら何もしない
                 break;
             case AIController.EnemyAnimState.End:
                 state = NodeState.Success;

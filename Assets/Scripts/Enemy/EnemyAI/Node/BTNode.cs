@@ -61,8 +61,9 @@ public abstract class BTNode : ScriptableObject
         // 値更新
         SetData(data, playerTransform);
 
-        // 実行中じゃなければ初期化処理を行う
-        if (state != NodeState.Running) OnInitialize();
+        // 実行中じゃない or animStateがNextなら初期化処理を行う
+        if (state != NodeState.Running || data.animState == AIController.EnemyAnimState.Next) 
+            OnInitialize();
         // ノード更新
         state = NodeUpdate();
         // 実行中じゃなければ終了処理

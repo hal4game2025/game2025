@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: AICarb_Selector_0
   m_EditorClassIdentifier: 
   nodes:
+  - {fileID: 11400000, guid: a1248c6b88836d147a6ef6a08677454b, type: 2}
   - {fileID: 11400000, guid: f2015c57d9d12294dab1bcc22124976f, type: 2}
+  - {fileID: 11400000, guid: eeda87dbc008ef643b093effb84645a0, type: 2}

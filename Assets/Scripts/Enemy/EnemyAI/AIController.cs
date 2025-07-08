@@ -11,6 +11,7 @@ public class AIController : MonoBehaviour
         End,        // 終了
         Event,      // 特定の処理を挟みたい時
         Start,      // Eventまでの処理
+        Next,       // 次のアニメーションがある場合
     }
 
     /// <summary>
