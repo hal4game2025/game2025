@@ -11,12 +11,13 @@ public class BTSelector : BTComposite
     /// </summary>
     /// <param name="data"></param>
     /// <param name="playerTransform"></param>
-    public override void NodeInit(AIController.EnemyData data, Transform playerTransform)
+    public override void NodeInit()
     {
         foreach (var node in nodes)
         {
-            node.NodeInit(data, playerTransform);
+            node.NodeInit();
         }
+        base.NodeInit();
     }
 
     /// <summary>
@@ -29,7 +30,7 @@ public class BTSelector : BTComposite
         if (runningNode)
         {
             // 実行
-            state = runningNode.Tick();
+            state = runningNode.Tick(data, target);
             return state;
         }
 
@@ -37,7 +38,7 @@ public class BTSelector : BTComposite
         foreach (var node in nodes)
         {
             // 実行
-            state = node.Tick();
+            state = node.Tick(data, target);
 
             // 実行中のノードを記憶
             if (state == NodeState.Running) runningNode = node;

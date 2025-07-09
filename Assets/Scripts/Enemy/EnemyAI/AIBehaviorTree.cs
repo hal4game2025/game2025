@@ -13,17 +13,17 @@ public class AIBehaviorTree : ScriptableObject
     /// </summary>
     /// <param name="data"></param>
     /// <param name="playerTransform"></param>
-    public void BTInit(AIController.EnemyData data, Transform playerTransform)
+    public void BTInit()
     {
-        rootNode.NodeInit(data, playerTransform);
+        rootNode.NodeInit();
     }
 
     /// <summary>
     /// BTçXêV
     /// </summary>
     /// <returns></returns>
-    public BTNode.NodeState BTUpdate()
+    public BTNode.NodeState BTUpdate(AIController.EnemyData data, Transform playerTransform)
     {
-        return rootNode.Tick();
+        return rootNode.Tick(data, playerTransform);
     }
 }
