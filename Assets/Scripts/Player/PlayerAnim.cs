@@ -73,6 +73,7 @@ public class PlayerAnim : MonoBehaviour
         if (_direction == Vector2.zero)
         {
             ChangeAnimation((int)State.AirFront);
+            effectPlay.Play("AirExplosion", Vector3.zero, new Vector3(90, 0, 0)); // 前殴り
         }
         else if (Mathf.Abs(_direction.y) > Mathf.Abs(_direction.x))
         {
@@ -88,6 +89,7 @@ public class PlayerAnim : MonoBehaviour
             else
             {
                 ChangeAnimation((int)State.AirUp);  // 上
+                effectPlay.Play("AirExplosion", Vector3.zero, new Vector3(0, 0, 180));
             }
         }
         else
@@ -96,11 +98,12 @@ public class PlayerAnim : MonoBehaviour
             if (_direction.x > 0)
             {
                 ChangeAnimation((int)State.AirLeft);
-
+                effectPlay.Play("AirExplosion", Vector3.zero, new Vector3(0, 0, 90));
             }
             else
             {
                 ChangeAnimation((int)State.AirRight);
+                effectPlay.Play("AirExplosion", Vector3.zero, new Vector3(0, 0, -90));
             }
         }
     }
@@ -121,6 +124,10 @@ public class PlayerAnim : MonoBehaviour
     public void SetAnimationByCameraForward()
     {
         ChangeAnimation((int)State.AirBack);   // 後殴り
+        if (effectPlay != null)
+        {
+            effectPlay.Play("AirExplosion", Vector3.zero, new Vector3(-90, 0, 0));
+        }
     }
 
     /// <summary>
@@ -131,5 +138,7 @@ public class PlayerAnim : MonoBehaviour
     {
         // アニメーション更新
         animator.SetInteger("State", num);
+
+
     }
 }

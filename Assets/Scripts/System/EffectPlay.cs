@@ -32,11 +32,15 @@ public class EffectPlay : MonoBehaviour
 
     }
 
-    public void Play(in string effectname, in Vector3? addPos = null)
+    public void Play(in string effectname, in Vector3? addPos = null, in Vector3? rot = null)
     {
         playPos = transform.position;
         
         playPos += addPos ?? Vector3.zero;
+        if (rot != null)
+        {
+            transform.Rotate(rot.Value);
+        }
 
         if (effects.Dict[effectname] != null)
         {
