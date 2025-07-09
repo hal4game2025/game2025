@@ -5333,8 +5333,6 @@ MonoBehaviour:
   - {fileID: 1580076560}
   - {fileID: 62250332}
   playerStatus: {fileID: 1504185087}
-  maxHp: 0
-  playerHpCount: 0
 --- !u!1 &510344450
 GameObject:
   m_ObjectHideFlags: 0
@@ -17667,6 +17665,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3031344241159604963, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
   m_PrefabInstance: {fileID: 4396038711639705304}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1504185092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1370485190184045033, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+  m_PrefabInstance: {fileID: 4396038711639705304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e132f7d063ac8ec4b8987fee3e182438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1511404111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25342,6 +25351,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1370485190184045033, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: effects.pairs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1370485190184045033, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: effects.pairs.Array.data[1].Key
+      value: AirExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: -1370485190184045033, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: effects.pairs.Array.data[2].Key
+      value: ExplosionEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: -1370485190184045033, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: effects.pairs.Array.data[1].Value
+      value: 
+      objectReference: {fileID: 7195328954253248561, guid: bfb78e65833f57446aeb91c75d0aa8b8, type: 3}
+    - target: {fileID: -1370485190184045033, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: effects.pairs.Array.data[2].Value
+      value: 
+      objectReference: {fileID: 8152751886377261732, guid: 09cedf3ca0ed855499fc7ed17607059a, type: 3}
     - target: {fileID: 1428186863122343957, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: cameraLook
       value: 
@@ -25382,6 +25411,10 @@ PrefabInstance:
       propertyPath: playerSE.Array.data[1].Value
       value: 
       objectReference: {fileID: 8300000, guid: 5d795f2ff0056b04f97a7c9627a3f5e1, type: 3}
+    - target: {fileID: 1560205730640432556, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
+      propertyPath: effectPlay
+      value: 
+      objectReference: {fileID: 1504185092}
     - target: {fileID: 1578316493717532742, guid: 36228dd8ba534de488d285280002fdfa, type: 3}
       propertyPath: hp
       value: 10
