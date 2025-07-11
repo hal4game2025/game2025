@@ -72,6 +72,13 @@ public class ResultScene : MonoBehaviour
             {
                 resultStarIMG[i].enabled = false;
             }
+            
+            if (playerHpUI.GetPlayerHpCount() <= 0)
+            {
+                // HP‚ª0ˆÈ‰º‚Ìê‡‚Í¯‚ð•\Ž¦‚µ‚È‚¢
+                return;
+            }
+
 
             int starCount = 0;
             // 5•ª(300•b)ˆÈ“à ¨ ¯1
