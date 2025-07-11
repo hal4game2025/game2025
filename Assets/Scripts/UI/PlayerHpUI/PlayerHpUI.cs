@@ -6,12 +6,11 @@ public class PlayerHpUI : SingletonMonoBehaviour<PlayerHpUI>
     [SerializeField] RawImage[] HpUI = new RawImage[20];
     private RawImage[] playerHp;
     [SerializeField] PlayerStatus playerStatus;
-    public static  int maxHp;
+    public static int maxHp;
     public static int playerHpCount;// プレイヤーのHPの数
     protected override void Awake()
     {
         base.Awake();
-        DontDestroyOnLoad(this.gameObject);
     }
     void Start()
     {
@@ -19,28 +18,33 @@ public class PlayerHpUI : SingletonMonoBehaviour<PlayerHpUI>
         {
             maxHp = playerStatus.HP;
             playerHp = new RawImage[maxHp];
-            for (int i = maxHp; i < 20; i++)
+            for (int i = maxHp; i < HpUI.Length; i++)
             {
-                HpUI[i].enabled = false;
+                if (HpUI[i] != null)
+                {
+                    HpUI[i].enabled = false;
+                }
             }
-
         }
-
     }
 
     void Update()
     {
-        if(playerStatus != null)
+        if (playerStatus != null)
         {
-            //HPの値をplayerHpCountに同期
-            playerHpCount = playerStatus.HP;
+            // HPが0未満の場合は0にする
+            int hp = Mathf.Max(playerStatus.HP, 0);
 
-            for (int i = playerStatus.HP; i < 20; i++)
+            //HPの値をplayerHpCountに同期
+            playerHpCount = hp;
+            for (int i = hp; i < HpUI.Length; i++)
             {
-                HpUI[i].texture = HpTex[0];
+                if (HpUI[i] != null)
+                {
+                    HpUI[i].texture = HpTex[0];
+                }
             }
         }
-
     }
 
     /// <summary>

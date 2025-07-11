@@ -46,7 +46,7 @@ public class EnemyChageAttackCollider : MonoBehaviour
 
             //other.gameObject.SetActive(false); // プレイヤーを非表示
             // 仮で10ダメ ←ワンパンなはず
-            script.TakeDamage(3);
+            script.TakeDamage(10);
             isAtk = true;
         }
     }

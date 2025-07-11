@@ -40,8 +40,6 @@ public class ResultScene : MonoBehaviour
 
         SoundManager.Instance.Play(bgm, true);
 
-        //HPを表示するためのメソッド呼び出し
-        int HP = playerHpUI.GetHp(); // HPを取得して表示するためのメソッド呼び出し
         HpTex = playerHpUI.GetHPTex(); // HPのUIデータを取得する
         HpUI = playerHpUI.GetHpUI(); // HPのUI数を取得する
 
@@ -56,10 +54,15 @@ public class ResultScene : MonoBehaviour
             timeSystem.ResetTime(); //リザルト表示後に時間をリセット
 
             //=====残HPの表示=====
-            for (int i = playerHpUI.GetPlayerHpCount(); i < 20; i++)
+            int hpCount = Mathf.Clamp(playerHpUI.GetPlayerHpCount(), 0, HpUI.Length);// プレイヤーの残りHPを取得し、UIの範囲内に制限
+            for (int i = hpCount; i < HpUI.Length; i++)
             {
-                HpUI[i].texture = HpTex[0];
+                if (HpUI[i] != null)
+                {
+                    HpUI[i].texture = HpTex[0];
+                }
             }
+
             if (resultHpText != null)
             {
                 resultHpText.text = playerHpUI.GetPlayerHpCount().ToString() + " / " + playerHpUI.GetHp().ToString();
