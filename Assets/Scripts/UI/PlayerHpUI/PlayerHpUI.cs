@@ -33,9 +33,9 @@ public class PlayerHpUI : SingletonMonoBehaviour<PlayerHpUI>
         if(playerStatus != null)
         {
             //HP‚Ì’l‚ðplayerHpCount‚É“¯Šú
-            playerHpCount = playerStatus.HP;
+            int startIndex = Mathf.Max(playerStatus.HP, 0);
 
-            for (int i = playerStatus.HP; i < 20; i++)
+            for (int i = startIndex; i < 20; i++)
             {
                 HpUI[i].texture = HpTex[0];
             }

@@ -1,7 +1,0 @@
-.unity-progress-bar__progress{
-    background-color: rgb(255,0,0);
-
-}
-.mid{
-    align-self:flex-center;
-}
