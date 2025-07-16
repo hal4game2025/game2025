@@ -47,7 +47,7 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     async public void ChangeScene(string sceneName)
     {
 
-        if(!IsSceneExist(name))
+        if(!IsSceneExist(sceneName))
         {
             Debug.LogError($"ÉVÅ[Éì {sceneName} ÇÕë∂ç›ÇµÇ‹ÇπÇÒÅB");
             return;
