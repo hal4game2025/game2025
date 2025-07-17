@@ -18,6 +18,8 @@ public class SelectBox : MonoBehaviour
             positions[i] = StageSelect.Instance.StageIcons[i].transform.position;
             stageIcons[i] = StageSelect.Instance.StageIcons[i].GetComponent<StageIcon>();  // ステージアイコンの配列を取得
         }
+
+        transform.SetSiblingIndex(3);  // 選択ボックスを最前面に配置
     }
 
     // Update is called once per frame

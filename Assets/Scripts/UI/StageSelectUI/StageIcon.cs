@@ -7,6 +7,7 @@ public class StageIcon : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();  // アニメーターコンポーネントを取得
+        transform.SetSiblingIndex(2);
     }
 
     void OnBecameVisible()

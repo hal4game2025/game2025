@@ -10,6 +10,15 @@ public class StageSelect : SingletonMonoBehaviour<StageSelect>
     [SerializeField]
     GameObject[] stageIcons = new GameObject[MAX_STAGE_COUNT];  // ステージ選択ボタンの配列
 
+    [SerializeField]
+    GameObject linePrefab;
+    [SerializeField] Transform UICanvas;
+
+
+#if UNITY_EDITOR
+    Line[] lines = new Line[3];  // エディターでのデバッグ用にラインを格納する配列
+#endif
+
     public GameObject[] StageIcons
     {
         get { return stageIcons; }
@@ -24,10 +33,7 @@ public class StageSelect : SingletonMonoBehaviour<StageSelect>
             Debug.LogError("ステージ数が多い");
         }
 
-
-
         ShowStageIcons();  // 時間差でステージアイコンを表示するメソッドを呼び出す
-
     }
 
     // Update is called once per frame
@@ -36,6 +42,14 @@ public class StageSelect : SingletonMonoBehaviour<StageSelect>
 #if UNITY_EDITOR
         if(Input.GetKeyDown(KeyCode.T))
         {
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (lines[i] != null)
+                {
+                    Destroy(lines[i].gameObject);  // エディターでのデバッグ用にラインを削除
+                }
+            }
+
             ShowStageIcons();  // Enterキーが押されたらステージアイコンを再表示
         }
 #endif
@@ -59,7 +73,26 @@ public class StageSelect : SingletonMonoBehaviour<StageSelect>
 
             stageIcons[i].SetActive(true);  // ステージアイコンを表示
 
+            if (i < stageIcons.Length - 1)
+            {
+                CreateLine(i);
+            }
         }
     }
 
+
+    async void CreateLine(int index)
+    {
+
+        await UniTask.Delay((int)(deley * 1000));
+
+
+        Line line = Instantiate(linePrefab, UICanvas).GetComponent<Line>();
+#if UNITY_EDITOR
+        lines[index] = line;  // エディターでのデバッグ用にラインを格納
+#endif
+
+        await UniTask.Yield(); // 1フレーム待つ
+        line.Active(stageIcons[index].transform.position, stageIcons[index + 1].transform.position);
+    }
 }
