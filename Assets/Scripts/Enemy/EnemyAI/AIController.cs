@@ -82,7 +82,7 @@ public class AIController : MonoBehaviour
     void Update()
     {
         // BTXV
-        bt.BTUpdate(data, playerTransform);
+        bt.BTUpdate(ref data, in playerTransform);
     }
 
 

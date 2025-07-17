@@ -10,7 +10,7 @@ public class BTCheckHP : BTConditions
     [SerializeField, Tooltip("Å¬‘Ì—Íc—Ê‚ÌŠ„‡"), Range(0f, 1f)] float min = 0f;
     float hp_percentage = 0f;
 
-    protected override NodeState NodeUpdate()
+    protected override NodeState NodeUpdate(ref AIController.EnemyData data, in Transform target)
     {
         // c‚è‘Ì—Í‚ÌŠ„‡
         hp_percentage = data.status.HP / data.status.MaxHP;

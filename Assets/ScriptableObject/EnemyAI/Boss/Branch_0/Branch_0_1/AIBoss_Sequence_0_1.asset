@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e3e100a6462f914abb1dcd2446a5fd8, type: 3}
+  m_Name: AIBoss_Sequence_0_1
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 11400000, guid: 112307cd14f18db47b7d2f01b8af4152, type: 2}
+  - {fileID: 11400000, guid: b7b59102fad72c848b84a20eda4b41fb, type: 2}
+  - {fileID: 11400000, guid: fbdffcb383a617d4d87c778834ff909b, type: 2}
+  - {fileID: 11400000, guid: 2c1846fd1775d0546aeb3123100ec550, type: 2}

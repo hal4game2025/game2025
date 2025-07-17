@@ -14,7 +14,7 @@ public class BTAction_Bless : BTAction
 
     //bool isBless = false;
 
-    protected override void OnInitialize()
+    protected override void OnInitialize(ref AIController.EnemyData data, in Transform target)
     {
         // ©•ª‚æ‚èã‚É‹‚½‚çUpBless
         if (data.status.transform.position.y < target.position.y)
@@ -26,17 +26,17 @@ public class BTAction_Bless : BTAction
         }
         else
         {
-            base.OnInitialize();
+            base.OnInitialize(ref data, in target);
         }
     }
 
-    protected override void OnTerminate()
+    protected override void OnTerminate(ref AIController.EnemyData data, in Transform target)
     {
         //isBless = false;
-        base.OnTerminate();
+        base.OnTerminate(ref data, in target);
     }
 
-    protected override NodeState NodeUpdate()
+    protected override NodeState NodeUpdate(ref AIController.EnemyData data, in Transform target)
     {
         switch (data.animState)
         {
