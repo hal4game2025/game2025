@@ -2075,17 +2075,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bb461c6c78351f84b8aa9b2d613b4359, type: 3}
   - {fileID: 21300000, guid: 37b6706ca84543b48b1456c19e7d0131, type: 3}
   - {fileID: 21300000, guid: 37b6706ca84543b48b1456c19e7d0131, type: 3}
-  - {fileID: 21300000, guid: 37b6706ca84543b48b1456c19e7d0131, type: 3}
+  - {fileID: 21300000, guid: f1f4c21aae823ed4ebf13a7eed95cca9, type: 3}
   hidanSprite:
   - {fileID: 21300000, guid: 476fb29022c07c5418a288198b10ba8c, type: 3}
   - {fileID: 21300000, guid: 9cb281a2273704e44842d029174810fb, type: 3}
   - {fileID: 21300000, guid: 62aea68a338ffa547bc77cf29dac6b5f, type: 3}
-  - {fileID: 21300000, guid: 62aea68a338ffa547bc77cf29dac6b5f, type: 3}
+  - {fileID: 21300000, guid: d3e18bb8d60f54541bdc891bfb0b1590, type: 3}
   bairituSprite:
   - {fileID: 21300000, guid: aaf7f0ff1494f7748b1effba80320d0d, type: 3}
   - {fileID: 21300000, guid: 804cdcd3ab69b7c498c971cb03c34fe8, type: 3}
   - {fileID: 21300000, guid: 126938b7353521e448168251567b79b7, type: 3}
-  - {fileID: 21300000, guid: 126938b7353521e448168251567b79b7, type: 3}
+  - {fileID: 21300000, guid: 0ce9fd3b144821d44a82024a185b3e04, type: 3}
 --- !u!1 &1144988049
 GameObject:
   m_ObjectHideFlags: 0
