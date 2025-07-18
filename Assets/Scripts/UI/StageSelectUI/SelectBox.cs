@@ -46,7 +46,7 @@ public class SelectBox : MonoBehaviour
 
         Move();  // 選択ボックスの移動を処理
 
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown("joystick button 1"))
         {
             stageIcons[index].OnSelected(); // Enterキーが押されたら選択されたステージアイコンのクリックイベントを呼び出す
         }
