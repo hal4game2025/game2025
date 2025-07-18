@@ -10444,7 +10444,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &862932393
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14658,7 +14658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStatus: {fileID: 373465903}
   gaugeParent: {fileID: 492541143}
-  gaugePrefab: {fileID: 3120144470559352868, guid: c792c0d3d6f7a7e48a45dff0e7852414, type: 3}
+  gaugePrefab: {fileID: 3120144470559352868, guid: d2c0ab7c53625e641a9d5639d21d2a1f, type: 3}
   hpBar: {fileID: 751357351}
   damageBar: {fileID: 1581610170}
   hpPerBar: 500
