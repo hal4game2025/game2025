@@ -15,6 +15,12 @@ public class SelectBox : MonoBehaviour
 
     [SerializeField] int[] playerHP = new int[3]; // 各ステージのプレイヤーHPの最大値
 
+    [SerializeField] Image[] resultImage = new Image[3];
+    [SerializeField] Sprite[] senmetuSprite = new Sprite[3];
+    [SerializeField] Sprite[] hidanSprite = new Sprite[3];
+    [SerializeField] Sprite[] bairituSprite = new Sprite[3];
+
+
     private bool flag = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,15 +55,22 @@ public class SelectBox : MonoBehaviour
         {
             case 0:
                 hpEnabled(index);
+                ChangeSprite(index);
                 break;
             case 1:
                 hpEnabled(index);
+                ChangeSprite(index);
+
                 break;
             case 2:
                 hpEnabled(index);
+                ChangeSprite(index);
+
                 break;
             case 3:
                 hpEnabled(index);
+                ChangeSprite(index);
+
                 break;
 
         }
@@ -106,5 +119,10 @@ public class SelectBox : MonoBehaviour
         }
     }
 
-
+    private void ChangeSprite(int index)
+    {
+        resultImage[0].sprite = senmetuSprite[index];
+        resultImage[1].sprite = hidanSprite[index];
+        resultImage[2].sprite = bairituSprite[index];
+    }
 }
