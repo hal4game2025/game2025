@@ -15,8 +15,8 @@ public class EnemyStatus : MonoBehaviour
 
     void Start()
     {
-        nowHP = maxHP;      // ‘Ì—Í‚ğÅ‘å‚É‚·‚é
-    }
+        nowHP = maxHP-1;      // ‘Ì—Í‚ğÅ‘å‚É‚·‚é
+    }                         // HPUI‚Å‚Ç‚¤‚µ‚æ‚¤‚à‚È‚¢ƒoƒO‚ª‚ ‚é‚½‚ß-1‚³‚¹‚Ä‚¢‚½‚¾‚¢‚Ä‚Ü‚·
 
     void Update()
     {
