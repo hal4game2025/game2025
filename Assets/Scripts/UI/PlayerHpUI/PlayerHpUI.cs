@@ -36,9 +36,6 @@ public class PlayerHpUI : SingletonMonoBehaviour<PlayerHpUI>
             int hp = Mathf.Max(playerStatus.HP, 0);
 
             //HP‚Ì’l‚ðplayerHpCount‚É“¯Šú
-            playerHpCount = hp;
-            for (int i = hp; i < HpUI.Length; i++)
-            //HP‚Ì’l‚ðplayerHpCount‚É“¯Šú
             int startIndex = Mathf.Max(playerStatus.HP, 0);
 
             for (int i = startIndex; i < 20; i++)
