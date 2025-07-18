@@ -62,42 +62,42 @@ ModelImporter:
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.09388159
+      - time: 0.09182969
         functionName: OnBoxCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.17513002
+      - time: 0.16915996
         functionName: OffBoxCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.19296506
+      - time: 0.2013809
         functionName: OnBoxCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.30294773
+      - time: 0.2842348
         functionName: OffBoxCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
-      - time: 0.47138965
+      - time: 0.46651325
         functionName: OnBoxCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.6606391
+      - time: 0.6699655
         functionName: OffBoxCollider
         data: 
         objectReferenceParameter: {instanceID: 0}

@@ -12,7 +12,7 @@ public class EnemyAtkCollider : MonoBehaviour
         var script = other.gameObject.GetComponent<PlayerStatus>();
         if (!script) Debug.Log("プレイヤーとの衝突エラー");
 
-        script.TakeDamage(3);
+        script.TakeDamage(1);
 
         // ペアのコライダーを非アクティブ化
         foreach (var boxCollider in boxColliders)

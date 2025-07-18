@@ -4811,7 +4811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959e00361d9bc4547b4c81c811c227d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectPlay: {fileID: 0}
+  effectPlay: {fileID: -1370485190184045033}
   minVelocity: 0.1
   aa: 0
 --- !u!114 &3473820953543052245
@@ -4832,7 +4832,7 @@ MonoBehaviour:
   directionReverse: 0
   processOnlyOnCollision: 0
   max_speed_coef: 1
-  effectPlay: {fileID: 0}
+  effectPlay: {fileID: -1370485190184045033}
   baseHitStopTime: 0.1
   maxHitStopTime: 0.5
   perComboHitStopTime: 0.05
@@ -4950,6 +4950,7 @@ MonoBehaviour:
     pairs:
     - Key: Barrier
       Value: {fileID: 6318209506785580307, guid: 1a6e63e4904653c4bbaa1bde212cd23f, type: 3}
+  lifeTime: 1.3
 --- !u!1 &2482098885308853185
 GameObject:
   m_ObjectHideFlags: 0

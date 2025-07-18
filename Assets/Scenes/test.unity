@@ -6124,6 +6124,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStatus: {fileID: 0}
+  gaugeParent: {fileID: 0}
+  gaugePrefab: {fileID: 0}
+  hpBar: {fileID: 0}
+  damageBar: {fileID: 0}
+  hpPerBar: 500
 --- !u!114 &567845657
 MonoBehaviour:
   m_ObjectHideFlags: 0

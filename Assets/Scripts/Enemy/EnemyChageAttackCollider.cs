@@ -51,7 +51,7 @@ public class EnemyChageAttackCollider : MonoBehaviour
             var script = other.gameObject.GetComponent<PlayerStatus>();
             if (!script) Debug.Log("プレイヤーとの衝突エラー");
 
-            script.TakeDamage(3);
+            script.TakeDamage(1);
             isAtk = true;
 
             // ペアのコライダーを非アクティブ化
