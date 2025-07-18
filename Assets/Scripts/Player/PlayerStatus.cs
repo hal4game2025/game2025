@@ -26,7 +26,7 @@ public class PlayerStatus : MonoBehaviour
     int rate; // UŒ‚‚Ì”{—¦
     int airMoveCount;
     float airMoveCooldownTimer;
-
+    public static int Hit;
     public bool isFloor;  // °‚ÉÚ’n‚µ‚Ä‚¢‚é‚©
     public bool IsStunned => isStunned;
 
@@ -41,7 +41,9 @@ public class PlayerStatus : MonoBehaviour
     {
         HP -= damage;
         effectPlayer.Play("Barrier");
-        
+
+        Hit++;
+
         if(HP <= 0)
         {
             SceneManager.Instance.ChangeScene("ResultScene");

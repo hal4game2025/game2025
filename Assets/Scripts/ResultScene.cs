@@ -71,40 +71,42 @@ public class ResultScene : MonoBehaviour
             //=====星(スコア)の表示=====
             // 星のイラストは、RawImage配列 resultStarIMG[0], [1], [2] を想定
             // すべて非表示にしてから必要な分だけ有効化
-            for (int i = 0; i < resultStarIMG.Length; i++)
-            {
-                resultStarIMG[i].enabled = false;
-            }
+            //for (int i = 0; i < resultStarIMG.Length; i++)
+            //{
+            //    resultStarIMG[i].enabled = false;
+            //}
             
-            if (playerHpUI.GetPlayerHpCount() <= 0)
-            {
-                // HPが0以下の場合は星を表示しない
-                return;
-            }
+            //if (playerHpUI.GetPlayerHpCount() <= 0)
+            //{
+            //    // HPが0以下の場合は星を表示しない
+            //    return;
+            //}
 
 
-            int starCount = 0;
-            // 5分(300秒)以内 → 星1
-            if (time <= ScoreTime)
-            {
-                starCount++;
-                // 2分(120秒)以内 → 星2
-                if (time <= ScoreTime /2 )
-                {
-                    starCount++;                   
-                }
-            }
 
-            // HPが満タン(減っていない)
-            if (playerHpUI.GetPlayerHpCount() == playerHpUI.GetHp())
-            {
-                starCount++;
-            }
 
-            for (int i = 0; i < starCount && i < resultStarIMG.Length; i++)
-            {
-                resultStarIMG[i].enabled = true;
-            }
+            //int starCount = 0;
+            //// 5分(300秒)以内 → 星1
+            //if (time <= ScoreTime)
+            //{
+            //    starCount++;
+            //    // 2分(120秒)以内 → 星2
+            //    if (time <= ScoreTime /2 )
+            //    {
+            //        starCount++;                   
+            //    }
+            //}
+
+            //// HPが満タン(減っていない)
+            //if (playerHpUI.GetPlayerHpCount() == playerHpUI.GetHp())
+            //{
+            //    starCount++;
+            //}
+
+            //for (int i = 0; i < starCount && i < resultStarIMG.Length; i++)
+            //{
+            //    resultStarIMG[i].enabled = true;
+            //}
         }
     }
 
