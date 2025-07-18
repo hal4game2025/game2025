@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
                 playerMovement.SwingHammer(inputDirection, cameraLook, swingForce, playerStatus.Combo);
                 SwingAction();
                 EnemyDamage();
+
                 StartHitStop(playerStatus.Combo);
                 SoundManager.Instance.Play(playerSEDict["attack"]);
 
@@ -149,6 +150,7 @@ public class PlayerController : MonoBehaviour
                 playerMovement.SwingHammerMoveForward(cameraMovement.transform.forward, swingForce, playerStatus.Combo);
                 SwingActionForward();
                 EnemyDamage();
+
                 SoundManager.Instance.Play(playerSEDict["attack"]);
                 StartHitStop(playerStatus.Combo);
 
@@ -184,6 +186,7 @@ public class PlayerController : MonoBehaviour
             for (int i = 0; i < enemyColliderList.Count; i++)
             {
                 enemyColliderList[i].AddDamage(playerStatus.Rate);
+                //enemyColliderList[i].GetEnemyStatus().HP;
             }
         }
     }

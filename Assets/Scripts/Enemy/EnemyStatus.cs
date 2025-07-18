@@ -13,6 +13,7 @@ public class EnemyStatus : MonoBehaviour
     public float HP { get => nowHP; }
     public float LookSpeed { get => lookSpeed; }
 
+    public bool Deadflg { get; set; }
     void Start()
     {
         nowHP = maxHP;      // ‘Ì—Í‚ğÅ‘å‚É‚·‚é
@@ -22,8 +23,9 @@ public class EnemyStatus : MonoBehaviour
     {
         if (nowHP <= 0f)
         { 
-            gameObject.SetActive(false); // HP‚ª‚O‚É‚È‚Á‚½‚ç”ñ•\¦    
-            SceneManager.Instance.ChangeScene("ResultScene");
+            gameObject.SetActive(false); // HP‚ª‚O‚É‚È‚Á‚½‚ç”ñ•\¦
+            Deadflg = true; // €–Sƒtƒ‰ƒO‚ğ—§‚Ä‚é
+            //SceneManager.Instance.ChangeScene("ResultScene");
             Debug.Log("HP‚ª‚O‚É‚È‚Á‚½‚Ì‚Å”ñ•\¦");
         }
     }

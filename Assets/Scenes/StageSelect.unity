@@ -788,8 +788,8 @@ MonoBehaviour:
   cursorUI: {fileID: 760366727}
   maxStage: 2
   stageName:
-  - Stage1
   - Stage2
+  - Kobayashidesu
   bgm: {fileID: 8300000, guid: 2d030535087b4994aa891e071815439b, type: 3}
 --- !u!1 &1207684094
 GameObject:

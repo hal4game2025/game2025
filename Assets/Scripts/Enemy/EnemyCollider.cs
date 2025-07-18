@@ -19,4 +19,8 @@ public class EnemyCollider : MonoBehaviour
     {
         status.Damage(damage);
     }
+    public EnemyStatus GetEnemyStatus()
+    {
+        return status;
+    }
 }

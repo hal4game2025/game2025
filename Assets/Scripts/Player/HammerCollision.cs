@@ -70,7 +70,13 @@ public class HammerCollision : MonoBehaviour
             }
         }
 
-        if(hitEnemy)          return CollisionType.Enemy; // “G‚ÉÕ“Ë
+        if (hitEnemy)
+        {
+            return CollisionType.Enemy; // “G‚ÉÕ“Ë
+        }
+            
+
+
         else if (hitObstacle) return CollisionType.Obstacles; // áŠQ•¨‚ÉÕ“Ë
 
         return CollisionType.None; // Õ“Ë‚È‚µ
