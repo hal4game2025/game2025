@@ -2066,7 +2066,7 @@ MonoBehaviour:
   - {fileID: 752708998}
   - {fileID: 1529175201}
   - {fileID: 194724467}
-  playerHP: 120000000a000000050000000f000000
+  playerHP: 0f0000000a0000000a00000005000000
   resultImage:
   - {fileID: 1819328206}
   - {fileID: 2092419233}
