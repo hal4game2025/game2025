@@ -46,9 +46,32 @@ public class SceneManager : SingletonMonoBehaviour<SceneManager>
     /// <param name="sceneName"></param>
     async public void ChangeScene(string sceneName)
     {
+
+        if(!IsSceneExist(sceneName))
+        {
+            Debug.LogError($"シーン {sceneName} は存在しません。");
+            return;
+        }
+
         await fadeUtils.Fade(FadeUtils.E_FADE_TYPE.FADE_OUT); // フェードアウト
         SoundManager.Instance.StopAll(); // 音を止める
         await UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
         await fadeUtils.Fade(FadeUtils.E_FADE_TYPE.FADE_IN); // フェードイン
+    }
+
+
+    // シーンが存在するかどうかを確認するメソッド
+    public bool IsSceneExist(string sceneName)
+    {
+        for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings; i++)
+        {
+            string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+            string sceneNameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+            if (sceneNameWithoutExtension == sceneName)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

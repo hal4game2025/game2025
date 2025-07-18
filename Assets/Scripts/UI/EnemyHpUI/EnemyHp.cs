@@ -18,8 +18,7 @@ public class EnemyHPUI : MonoBehaviour
 
     void Start()
     {
-
-        CreateGauges();
+        CreateGauges();        
     }
 
     void Update()
