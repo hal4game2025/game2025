@@ -5,14 +5,9 @@ using static BTNode;
 /// ブレス攻撃
 /// </summary>
 [CreateAssetMenu(menuName = "ScriptableObject/AI/BehaviorTree/Action/Bless")]
-public class BTAction_Bless : BTAction
+public class BTAction_Bless : BTAction_Breath
 {
     [SerializeField, Tooltip("UpBlessのアニメナンバー")] int blessNum = 0;
-    //[SerializeField, Tooltip("エフェクトのクラス")] EffectPlay effectPlay;
-    //[SerializeField, Tooltip("エフェクト名")] string effectName;
-    //[SerializeField, Tooltip("ブレスの発射位置")] Transform blessPos;
-
-    //bool isBless = false;
 
     protected override void OnInitialize(ref AIController.EnemyData data, in Transform target)
     {
@@ -28,45 +23,5 @@ public class BTAction_Bless : BTAction
         {
             base.OnInitialize(ref data, in target);
         }
-    }
-
-    protected override void OnTerminate(ref AIController.EnemyData data, in Transform target)
-    {
-        //isBless = false;
-        base.OnTerminate(ref data, in target);
-    }
-
-    protected override NodeState NodeUpdate(ref AIController.EnemyData data, in Transform target)
-    {
-        switch (data.animState)
-        {
-            case AIController.EnemyAnimState.None:
-                break;
-            case AIController.EnemyAnimState.Start:
-                //--- ターゲットの方を向く
-                Transform transform = data.status.transform;
-                Vector3 pos = target.position - transform.position; // ターゲットからエネミーまでのベクトル
-                pos.y = 0f;
-                Quaternion look = Quaternion.LookRotation(pos);     // 回転に変換
-                // 適用
-                data.status.transform.rotation =
-                    Quaternion.Slerp(transform.rotation, look, data.status.LookSpeed);
-                break;
-            case AIController.EnemyAnimState.Event:
-                // ブレス攻撃開始
-                // ブレスが出ていなかったら発射
-                //if (!isBless)
-                //{
-                //    effectPlay.Play(effectName, blessPos.position);
-                //    isBless = true;
-                //}
-                // 出ていたら何もしない
-                break;
-            case AIController.EnemyAnimState.End:
-                state = NodeState.Success;
-                break;
-        }
-
-        return state;
     }
 }

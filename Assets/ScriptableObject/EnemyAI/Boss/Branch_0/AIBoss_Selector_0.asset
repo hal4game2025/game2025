@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: AIBoss_Selector_0
   m_EditorClassIdentifier: 
   nodes:
+  - {fileID: 11400000, guid: e040611e48cdc054081003b25f606102, type: 2}
+  - {fileID: 11400000, guid: 06114b16f85d0594680ac9e6fdff59ea, type: 2}
   - {fileID: 11400000, guid: a21ac1e2fbafdd74a9c089a512b2620d, type: 2}
+  - {fileID: 11400000, guid: 0e0397ac7e2f750468346f73228fa29f, type: 2}

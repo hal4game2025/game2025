@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0e01767a6aaa5429b1e42b5042483c, type: 3}
   m_Name: Bless
   m_EditorClassIdentifier: 
-  maxRange: 70
+  maxRange: 130
   minRange: 20
   maxCD: 10
-  stiffnessTime: 4
+  stiffnessTime: 5
   animNum: 4
   currentCD: 0

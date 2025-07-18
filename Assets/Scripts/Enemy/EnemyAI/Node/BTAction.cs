@@ -15,6 +15,7 @@ public class BTAction : BTNode
 
     protected override void OnTerminate(ref AIController.EnemyData data, in Transform target)
     {
+        action.currentCD = action.MaxCD;
         data.status.stiffnessTime = action.StiffnessTime;               // d’¼ŠÔİ’è
         data.anim.SetInteger(data.animParamName, data.animIdel);        // ‘Ò‹@ƒ‚[ƒVƒ‡ƒ“Ä¶
     }

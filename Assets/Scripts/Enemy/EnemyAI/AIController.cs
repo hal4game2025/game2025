@@ -23,6 +23,8 @@ public class AIController : MonoBehaviour
         [HideInInspector] public EnemyStatus status;        // 敵ステータス
         [HideInInspector] public EnemyAnimState animState;  // アニメーションの状態
         [HideInInspector] public Animator anim;             // アニメーター
+        [HideInInspector] public EffectPlay effect;         // エフェクト
+        public GameObject[] effectPos;                      // エフェクトを出す位置
         public string animParamName;                        // アニメーションのパラメター名
         public int animIdel;                                // 待機モーションの数
         public BoxCollider[] boxColliders;                  // 攻撃コライダーまとめ
@@ -65,15 +67,17 @@ public class AIController : MonoBehaviour
     void Start()
     {
         //--- データ取得
-        data.status = GetComponent<EnemyStatus>();  // ステータス
-        data.animState = EnemyAnimState.None;
-        data.anim = GetComponent<Animator>();       // アニメーター    
+        data.status     = GetComponent<EnemyStatus>();  // ステータス
+        data.animState  = EnemyAnimState.None;
+        data.anim       = GetComponent<Animator>();     // アニメーター    
+        data.effect     = GetComponent<EffectPlay>();   // エフェクト
 
         //--- 例外チェック
-        if (!bt) Debug.Log("AIController AIBehaviorTreeがない");
-        if (!playerTransform) Debug.Log("AIController プレイヤーの座標がない");
-        if (!data.status) Debug.Log("AIController 敵ステータスない");
-        if (!data.anim) Debug.Log("AIController Animatorがない");
+        if (!bt)                Debug.Log("AIController AIBehaviorTreeがない");
+        if (!playerTransform)   Debug.Log("AIController プレイヤーの座標がない");
+        if (!data.status)       Debug.Log("AIController 敵ステータスない");
+        if (!data.anim)         Debug.Log("AIController Animatorがない");
+        if (!data.effect)       Debug.Log("AIController EffectPlayがない");
 
         // ビヘイビアツリーの初期化
         bt.BTInit();
@@ -81,6 +85,8 @@ public class AIController : MonoBehaviour
 
     void Update()
     {
+        if (data.status.HP <= 0f) return;
+
         // BT更新
         bt.BTUpdate(ref data, in playerTransform);
     }

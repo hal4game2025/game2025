@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0e01767a6aaa5429b1e42b5042483c, type: 3}
   m_Name: Iai
   m_EditorClassIdentifier: 
-  maxRange: 90
+  maxRange: 85
   minRange: 0
-  maxCD: 8
+  maxCD: 10
   stiffnessTime: 5
   animNum: 4
   currentCD: 0

@@ -1114,6 +1114,7 @@ GameObject:
   - component: {fileID: 953755448025961823}
   - component: {fileID: 899132750891787551}
   - component: {fileID: 8132688494657092337}
+  - component: {fileID: 2338811241169013002}
   m_Layer: 0
   m_Name: carb
   m_TagString: Enemy
@@ -1201,6 +1202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5ce02963d2c3b4cb29aad289b7065f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAnim: {fileID: 0}
+  animNum: 10
   maxHP: 100
   nowHP: 100
   lookSpeed: 1
@@ -1223,6 +1226,9 @@ MonoBehaviour:
     status: {fileID: 0}
     animState: 0
     anim: {fileID: 0}
+    effect: {fileID: 0}
+    effectPos:
+    - {fileID: 8806706737568587123}
     animParamName: State
     animIdel: 0
     boxColliders:
@@ -1230,6 +1236,24 @@ MonoBehaviour:
     - {fileID: 7982033850143702860}
     - {fileID: 7400765214782617680}
     - {fileID: 2515872613511459196}
+--- !u!114 &2338811241169013002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883113239121185690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e132f7d063ac8ec4b8987fee3e182438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playPos: {x: 99999, y: 99999, z: 99999}
+  effects:
+    pairs:
+    - Key: Breath
+      Value: {fileID: 6975521123954220999, guid: 1058f97bd6b0e7a4c906eedf33f21037, type: 3}
+  lifeTime: 1.5
 --- !u!1 &902751107320421357
 GameObject:
   m_ObjectHideFlags: 0
@@ -3757,6 +3781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258c4d15082657d479e1a19df5c4c676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxColliders: []
 --- !u!1 &3550652516474391174
 GameObject:
   m_ObjectHideFlags: 0
@@ -3854,6 +3879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c674e9d0e9c47b84fbc3434caba2c3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxColliders: []
 --- !u!1 &3562210965734702543
 GameObject:
   m_ObjectHideFlags: 0
@@ -6870,6 +6896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258c4d15082657d479e1a19df5c4c676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxColliders: []
 --- !u!1 &6504777635443123958
 GameObject:
   m_ObjectHideFlags: 0
@@ -9364,13 +9391,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8806706737568587123}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0016872891, z: 0.0044994378}
+  m_LocalRotation: {x: -0.058693603, y: -0, z: -0, w: 0.99827605}
+  m_LocalPosition: {x: -1.535437e-10, y: 0.0016872897, z: 0.0050618676}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 643151032064122529}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -6.73, y: 0, z: 0}
 --- !u!1 &8818888196717391917
 GameObject:
   m_ObjectHideFlags: 0
@@ -9934,3 +9961,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258c4d15082657d479e1a19df5c4c676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxColliders: []

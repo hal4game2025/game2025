@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0e01767a6aaa5429b1e42b5042483c, type: 3}
   m_Name: ChargeAttack
   m_EditorClassIdentifier: 
-  maxRange: 70
+  maxRange: 75
   minRange: 0
-  maxCD: 0
+  maxCD: 6
   stiffnessTime: 6
   animNum: 6
   currentCD: 0
