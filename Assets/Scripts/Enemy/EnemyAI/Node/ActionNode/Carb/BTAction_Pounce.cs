@@ -9,7 +9,7 @@ public class BTAction_Pounce : BTAction
     [SerializeField, Tooltip("移動速度")] float moveSpeed = 1.0f;
     Vector3 attackPos;    // 攻撃時に参照する座標 (追尾ではなく、攻撃時の座標へ飛びつく)
 
-    protected override NodeState NodeUpdate()
+    protected override NodeState NodeUpdate(ref AIController.EnemyData data, in Transform target)
     {
         switch (data.animState)
         {

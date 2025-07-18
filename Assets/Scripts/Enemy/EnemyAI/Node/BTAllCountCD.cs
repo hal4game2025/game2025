@@ -12,20 +12,20 @@ public class BTAllCountCD : BTNode
     public override void NodeInit()
     {
         // 行動ノードにCDを設定
-        foreach (var init in actionDatas)
+        foreach (var actionData in actionDatas)
         {
-            init.SettingCD();
+            actionData.SettingCD();
         }
         base.NodeInit();
     }
 
-    protected override NodeState NodeUpdate()
+    protected override NodeState NodeUpdate(ref AIController.EnemyData data, in Transform target)
     {
         // CD更新
-        foreach (var data in actionDatas)
+        foreach (var actionData in actionDatas)
         {
-            data.currentCD -= Time.deltaTime;
-            if (data.currentCD < 0) data.currentCD = 0f;
+            actionData.currentCD -= Time.deltaTime;
+            if (actionData.currentCD < 0) actionData.currentCD = 0f;
         }
         
         // 常に成功

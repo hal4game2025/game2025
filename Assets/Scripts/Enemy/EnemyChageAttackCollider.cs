@@ -5,6 +5,7 @@ public class EnemyChageAttackCollider : MonoBehaviour
     EnemyStatus status;
     AIController controller;
     BoxCollider boxCollider;
+    [SerializeField, Tooltip("ペアのコライダー")] BoxCollider[] boxColliders;
 
     bool isAtk = false;
 
@@ -33,6 +34,12 @@ public class EnemyChageAttackCollider : MonoBehaviour
         {
             controller.SetEnemyAnimState((int)AIController.EnemyAnimState.Next);
             boxCollider.enabled = false;
+
+            // ペアのコライダーを非アクティブ化
+            foreach (var boxCollider in boxColliders)
+            {
+                boxCollider.enabled = false;
+            }
         }
 
         if (isAtk) return;
@@ -44,10 +51,14 @@ public class EnemyChageAttackCollider : MonoBehaviour
             var script = other.gameObject.GetComponent<PlayerStatus>();
             if (!script) Debug.Log("プレイヤーとの衝突エラー");
 
-            //other.gameObject.SetActive(false); // プレイヤーを非表示
-            // 仮で10ダメ ←ワンパンなはず
-            script.TakeDamage(10);
+            script.TakeDamage(3);
             isAtk = true;
+
+            // ペアのコライダーを非アクティブ化
+            foreach (var boxCollider in boxColliders)
+            {
+                boxCollider.enabled = false;
+            }
         }
     }
 }

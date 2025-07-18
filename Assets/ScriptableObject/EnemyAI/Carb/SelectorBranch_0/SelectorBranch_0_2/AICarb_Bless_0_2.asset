@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: AICarb_Bless_0_2
   m_EditorClassIdentifier: 
   action: {fileID: 11400000, guid: 055228504c7b09c4587a9f79d89515cb, type: 2}
+  effectName: Breath
+  num: 0
   blessNum: 5

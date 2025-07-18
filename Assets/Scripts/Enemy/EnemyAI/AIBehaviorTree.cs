@@ -22,8 +22,8 @@ public class AIBehaviorTree : ScriptableObject
     /// BTçXêV
     /// </summary>
     /// <returns></returns>
-    public BTNode.NodeState BTUpdate(AIController.EnemyData data, Transform playerTransform)
+    public BTNode.NodeState BTUpdate(ref AIController.EnemyData data, in Transform target)
     {
-        return rootNode.Tick(data, playerTransform);
+        return rootNode.Tick(ref data, in target);
     }
 }

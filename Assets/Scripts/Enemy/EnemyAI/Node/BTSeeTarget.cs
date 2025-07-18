@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObject/AI/BehaviorTree/SeeTarget")]
 public class BTSeeTarget : BTNode
 {
-    protected override NodeState NodeUpdate()
+    protected override NodeState NodeUpdate(ref AIController.EnemyData data, in Transform target)
     {
         Transform transform = data.status.transform;
 

@@ -13,7 +13,7 @@ public class EffectPlay : MonoBehaviour
     [SerializeField]
     MyDictionary<string, GameObject> effects;
 
-    float lifeTime = 1.3f;
+    [SerializeField] float lifeTime = 1.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +50,23 @@ public class EffectPlay : MonoBehaviour
         }
     }
 
-   
+    /// <summary>
+    /// ÉuÉåÉXópÇ…çÏÇ¡ÇΩ
+    /// </summary>
+    /// <param name="effectname"></param>
+    /// <param name="Pos"></param>
+    /// <param name="rot"></param>
+    public void PlayEffect(in string effectname, in Transform target)
+    {
+        if (effects.Dict[effectname] != null)
+        {
+            GameObject currentEffect = Instantiate(effects.Dict[effectname], target.position, target.rotation, target);
+
+            StartCoroutine(DestroyObject(currentEffect, lifeTime));
+        }
+    }
+
+
     private IEnumerator DestroyObject(GameObject obj, float deley)
     {
         yield return new WaitForSeconds(deley);

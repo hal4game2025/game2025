@@ -5,7 +5,7 @@ public class BTCheckRange : BTConditions
 {
     float distance = 0f;
 
-    protected override NodeState NodeUpdate()
+    protected override NodeState NodeUpdate(ref AIController.EnemyData data, in Transform target)
     {
         // ‹——£
         distance = Vector3.Distance(target.position, data.status.gameObject.transform.position);

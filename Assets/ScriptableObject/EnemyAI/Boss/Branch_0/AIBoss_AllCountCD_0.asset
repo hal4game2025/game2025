@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c700b3757889a84fa7e326f5210e6e7, type: 3}
+  m_Name: AIBoss_AllCountCD_0
+  m_EditorClassIdentifier: 
+  actionDatas:
+  - {fileID: 11400000, guid: 1575555b1b217624aa292df52ee0a978, type: 2}
+  - {fileID: 11400000, guid: 983dbbb3e6a9259468f00bf62990b130, type: 2}
+  - {fileID: 11400000, guid: 1fa11a536d51b0f448474feeccfb41ab, type: 2}
+  - {fileID: 11400000, guid: 5c4822f413b04fd45b3e96254698aad0, type: 2}

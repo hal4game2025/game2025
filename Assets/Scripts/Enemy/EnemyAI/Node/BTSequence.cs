@@ -24,20 +24,20 @@ public class BTSequence : BTComposite
     /// 実行処理
     /// </summary>
     /// <returns></returns>
-    protected override NodeState NodeUpdate()
+    protected override NodeState NodeUpdate(ref AIController.EnemyData data, in Transform target)
     {
         // 実行中のノードがあるか
         if (runningNode)
         {
             // 実行
-            state = runningNode.Tick(data, target);
+            state = runningNode.Tick(ref data, in target);
             return state;
         }
 
         foreach (var node in nodes)
         {
             // 実行
-            state = node.Tick(data, target);
+            state = node.Tick(ref data, in target);
 
             // 実行中のノードを記憶する
             if (state == NodeState.Running)

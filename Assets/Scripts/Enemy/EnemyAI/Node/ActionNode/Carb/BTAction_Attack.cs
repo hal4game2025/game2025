@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObject/AI/BehaviorTree/Action/Attack")]
 public class BTAction_Attack : BTAction
 {
-    protected override NodeState NodeUpdate()
+    protected override NodeState NodeUpdate(ref AIController.EnemyData data, in Transform target)
     {
         // アニメーションが終わっているかチェック (注意点：AnimClipでアニメーションの最後にEvent関数を入れる)
         if (data.animState == AIController.EnemyAnimState.End)

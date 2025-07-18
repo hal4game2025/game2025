@@ -13,26 +13,18 @@ public abstract class BTNode : ScriptableObject
         Running     // 処理中
     }
 
-    protected NodeState state;     // 状態
-    protected BTNode runningNode;                   // 処理中のノードを記憶
-    protected AIController.EnemyData data;
-    protected Transform target;
-
-    private void SetData(AIController.EnemyData data, Transform target)
-    {
-        this.data = data;
-        this.target = target;
-    }
+    protected NodeState state;      // 状態
+    protected BTNode runningNode;   // 処理中のノードを記憶
 
     /// <summary>
     /// 実行時に初期化を行う
     /// </summary>
-    protected virtual void OnInitialize() { }
+    protected virtual void OnInitialize(ref AIController.EnemyData data, in Transform target) { }
 
     /// <summary>
     /// 終了処理
     /// </summary>
-    protected virtual void OnTerminate()
+    protected virtual void OnTerminate(ref AIController.EnemyData data, in Transform target)
     {
         if (runningNode) runningNode = null; // 実行中のノード解放
     }
@@ -41,7 +33,7 @@ public abstract class BTNode : ScriptableObject
     /// ノード更新
     /// </summary>
     /// <returns></returns>
-    protected virtual NodeState NodeUpdate() { return NodeState.None; }
+    protected virtual NodeState NodeUpdate(ref AIController.EnemyData data, in Transform target) { return NodeState.None; }
 
     /// <summary>
     /// ノードの初期化
@@ -56,18 +48,17 @@ public abstract class BTNode : ScriptableObject
     /// 実行処理
     /// </summary>
     /// <returns></returns>
-    public NodeState Tick(AIController.EnemyData data, Transform playerTransform)
+    public NodeState Tick(ref AIController.EnemyData data, in Transform target)
     {
-        // 値更新
-        SetData(data, playerTransform);
-
         // 実行中じゃない or animStateがNextなら初期化処理を行う
         if (state != NodeState.Running || data.animState == AIController.EnemyAnimState.Next) 
-            OnInitialize();
+            OnInitialize(ref data, in target);
+
         // ノード更新
-        state = NodeUpdate();
+        state = NodeUpdate(ref data, in target);
+
         // 実行中じゃなければ終了処理
-        if (state != NodeState.Running) OnTerminate();
+        if (state != NodeState.Running) OnTerminate(ref data, target);
 
         return state;
     }

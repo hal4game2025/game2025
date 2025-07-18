@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObject/AI/BehaviorTree/Conditions/CheckStiffnessTime")]
 public class BTCheckStiffnessTime : BTConditions
 {
-    protected override NodeState NodeUpdate()
+    protected override NodeState NodeUpdate(ref AIController.EnemyData data, in Transform target)
     {
         if (data.status.stiffnessTime > 0f) data.status.stiffnessTime -= Time.deltaTime;
 

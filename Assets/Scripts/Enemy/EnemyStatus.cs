@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class EnemyStatus : MonoBehaviour
 {
+    [SerializeField, CustomLabel("ヒットアニメーションスクリプト")] HitAnim hitAnim;
+    [HideInInspector] Animator animator;
+    [SerializeField, CustomLabel("死亡アニメ番号")] int animNum = 0;
     [SerializeField, CustomLabel("最大体力")]   float maxHP = 100f;
     [SerializeField, CustomLabel("現在の体力")] float nowHP = 100f;
     [SerializeField, CustomLabel("振り向き速度")] float lookSpeed = 1f;
@@ -16,13 +19,15 @@ public class EnemyStatus : MonoBehaviour
     void Start()
     {
         nowHP = maxHP-1;      // 体力を最大にする
-    }                         // HPUIでどうしようもないバグがあるため-1させていただいてます
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
         if (nowHP <= 0f)
         { 
-            gameObject.SetActive(false); // HPが０になったら非表示    
+            //gameObject.SetActive(false); // HPが０になったら非表示
+            animator.SetInteger("State", animNum);
             SceneManager.Instance.ChangeScene("ResultScene");
             Debug.Log("HPが０になったので非表示");
         }
@@ -37,6 +42,9 @@ public class EnemyStatus : MonoBehaviour
         if (nowHP <= 0f) return;
         nowHP -= damage;
         Debug.Log("ダメージを与えた: " + damage);
+
+        // ヒットアニメーション
+        //hitAnim.PlayHitAnim();
     }
         
 }
